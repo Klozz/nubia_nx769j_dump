@@ -1,0 +1,14 @@
+<!-- Copyright (c) 2023 Qualcomm Technologies, Inc.
+All Rights Reserved.
+Confidential and Proprietary - Qualcomm Technologies, Inc.
+-->
+
+<manifest version="1.0" type="framework">
+   <hal format="aidl">
+       <name>vendor.qti.qvirt</name>
+       <interface>
+            <name>IVirtualizationService</name>
+            <instance>default</instance>
+       </interface>
+   </hal>
+</manifest>
