@@ -1,0 +1,18 @@
+on post-fs-data
+    chown system system /dev/zlog_exception
+    chown system system /dev/zlog_comm
+    chmod 0664 /dev/zlog_exception
+    chmod 0666 /dev/zlog_comm
+
+#on boot
+#    class_start zlog_daemon
+
+#on charger
+#    class_start zlog_daemon
+
+#service zlog_daemon /vendor/bin/zlog_daemon
+#    class zlog_daemon
+#    user root
+#    group root system
+
+

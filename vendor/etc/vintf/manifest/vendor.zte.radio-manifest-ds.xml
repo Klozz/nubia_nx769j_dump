@@ -1,0 +1,14 @@
+<!--
+    Copyright (c) 2022 ZTE Corporation.
+    All Rights Reserved.
+    Confidential and Proprietary - ZTE Corporation.
+-->
+
+<manifest version="1.0" type="device">
+    <hal format="aidl">
+        <name>vendor.zte.radio</name>
+        <version>1</version>
+        <fqname>IVendorRadio/slot1</fqname>
+        <fqname>IVendorRadio/slot2</fqname>
+    </hal>
+</manifest>

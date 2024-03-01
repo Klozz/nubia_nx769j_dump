@@ -1,0 +1,8 @@
+<?xml version="1.0" standalone="no"?>
+<sat_config>
+    <SatConfigParam ultra_camera_ratio="0.5265f" wide_camera_ratio="1.0f" tele_camera_ratio="2.4324f"
+    ultra_wide_afocal_2="0.0f" ultra_wide_afocal_5="0.0f" wide_tele_afocal_2="-17.00f" wide_tele_afocal_5="-2.0f"
+    ultra_wide_2="0.0f" ultra_wide_5="0.0f" wide_tele_2="-17.00f" wide_tele_5="-2.0f"
+    fallback_ultra_wide_2="31.0f" fallback_ultra_wide_5="2.0f">
+    </SatConfigParam>
+</sat_config>

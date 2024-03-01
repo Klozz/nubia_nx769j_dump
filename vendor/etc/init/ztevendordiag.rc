@@ -1,0 +1,19 @@
+service vendordiag /vendor/bin/vendordiag
+    class core
+    user root
+    group radio cache inet misc audio diag vendor_qti_diag bluetooth drmrpc mediadrm system
+
+service zswsubsys_diag /vendor/bin/zte_diag_callback ${persist.odm.zswdiag.subsys}
+    user root
+    disabled
+    oneshot
+    group system root
+
+on property:persist.odm.zswdiag.subsys=* && property:persist.vendor.ssr.restart_level=ALL_ENABLE
+    start zswsubsys_diag
+
+on boot
+    chown system system /sys/module/soc_sleep_stats/parameters/sleep_zswscnoff_state
+    chmod 0644 /sys/module/soc_sleep_stats/parameters/sleep_zswscnoff_state
+    setprop persist.odm.zswdiag.subsys 99
+

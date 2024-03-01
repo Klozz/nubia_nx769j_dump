@@ -1,0 +1,99 @@
+{
+    "config": {
+    "hw_platform": ["MTP", "Surf", "RCM", "QRD", "HDK"],
+    "soc_id": ["557","577"]
+    },
+    "akmlib": {
+        "owner": "akmlib",
+        ".rotv": {
+            "owner": "akmlib",
+            ".config": {
+                "owner": "akmlib",
+                "config1": {
+                    "ver": "0","type": "int","data": "1"
+                },
+                "config2": {
+                    "ver": "0","type": "int","data": "2"
+                }
+            },
+            ".volatile": {
+                "owner": "akmlib",
+                "hdst": {
+                    "ver": "0","type": "int","data": "10"
+                },
+                "bias_x": {
+                    "ver": "0","type": "int","data": "20"
+                },
+                "bias_y": {
+                    "ver": "0","type": "int","data": "30"
+                },
+                "bias_z": {
+                    "ver": "0","type": "int","data": "40"
+                },
+                "href_x": {
+                    "ver": "0","type": "int","data": "50"
+                },
+                "href_y": {
+                    "ver": "0","type": "int","data": "60"
+                },
+                "href_z": {
+                    "ver": "0","type": "int","data": "70"
+                },
+                "hbase_x": {
+                    "ver": "0","type": "int","data": "80"
+                },
+                "hbase_y": {
+                    "ver": "0","type": "int","data": "90"
+                },
+                "hbase_z": {
+                    "ver": "0","type": "int","data": "100"
+                }
+            }
+        },
+        ".magcal": {
+            "owner": "akmlib",
+            ".config": {
+                "owner": "akmlib",
+                "config1": {
+                    "ver": "0","type": "int","data": "3"
+                },
+                "config2": {
+                    "ver": "0","type": "int","data": "4"
+                }
+            },
+            ".volatile": {
+                "owner": "akmlib",
+                "hdst": {
+                    "ver": "0","type": "int","data": "11"
+                },
+                "bias_x": {
+                    "ver": "0","type": "int","data": "21"
+                },
+                "bias_y": {
+                    "ver": "0","type": "int","data": "31"
+                },
+                "bias_z": {
+                    "ver": "0","type": "int","data": "41"
+                },
+                "href_x": {
+                    "ver": "0","type": "int","data": "51"
+                },
+                "href_y": {
+                    "ver": "0","type": "int","data": "61"
+                },
+                "href_z": {
+                    "ver": "0","type": "int","data": "71"
+                },
+                "hbase_x": {
+                    "ver": "0","type": "int","data": "81"
+                },
+                "hbase_y": {
+                    "ver": "0","type": "int","data": "91"
+                },
+                "hbase_z": {
+                    "ver": "0","type": "int","data": "101"
+                }
+            }
+        }
+    }
+}

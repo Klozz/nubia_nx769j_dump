@@ -1,0 +1,6 @@
+service camerahalvs /vendor/bin/camerahalvs
+    class late_start
+    user cameraserver
+    group audio camera input drmrpc
+    oneshot
+

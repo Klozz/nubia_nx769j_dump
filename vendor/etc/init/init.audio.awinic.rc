@@ -1,0 +1,29 @@
+on post-fs-data
+    mkdir /mnt/vendor/persist/smartpa_cali_data 0777 system root
+    #ZTE permission to calibrate smart pa in PV version
+    chown system system /sys/bus/i2c/drivers/aw881xx_smartpa/7-0034/rw
+    chown system system /sys/bus/i2c/drivers/aw881xx_smartpa/7-0034/monitor
+    chown system system /sys/bus/i2c/drivers/aw881xx_smartpa/7-0034/re
+    chown system system /sys/bus/i2c/drivers/aw881xx_smartpa/7-0034/f0
+    chown system system /sys/bus/i2c/drivers/aw881xx_smartpa/7-0034/cali
+
+    chown system system /sys/bus/i2c/drivers/aw881xx_smartpa/8-0034/rw
+    chown system system /sys/bus/i2c/drivers/aw881xx_smartpa/8-0034/monitor
+    chown system system /sys/bus/i2c/drivers/aw881xx_smartpa/8-0034/re
+    chown system system /sys/bus/i2c/drivers/aw881xx_smartpa/8-0034/f0
+    chown system system /sys/bus/i2c/drivers/aw881xx_smartpa/8-0034/cali
+
+    chown system system /sys/bus/i2c/drivers/aw881xx_smartpa/0-0034/rw
+    chown system system /sys/bus/i2c/drivers/aw881xx_smartpa/0-0034/monitor
+    chown system system /sys/bus/i2c/drivers/aw881xx_smartpa/0-0034/re
+    chown system system /sys/bus/i2c/drivers/aw881xx_smartpa/0-0034/f0
+    chown system system /sys/bus/i2c/drivers/aw881xx_smartpa/0-0034/cali
+
+    chown system system /sys/bus/i2c/drivers/aw881xx_smartpa/0-0035/rw
+    chown system system /sys/bus/i2c/drivers/aw881xx_smartpa/0-0035/monitor
+    chown system system /sys/bus/i2c/drivers/aw881xx_smartpa/0-0035/re
+    chown system system /sys/bus/i2c/drivers/aw881xx_smartpa/0-0035/f0
+    chown system system /sys/bus/i2c/drivers/aw881xx_smartpa/0-0035/cali
+
+    #ZTE permission to read calibration file in normal version
+    chmod 0644 /mnt/vendor/persist/smartpa_cali_data/aw_cali.bin

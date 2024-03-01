@@ -1,0 +1,13 @@
+#####################################################################
+# Copyright (c) 2023 Qualcomm Technologies, Inc.
+# All Rights Reserved.
+# Confidential and Proprietary - Qualcomm Technologies, Inc.
+#####################################################################
+
+on boot && property:ro.boot.product.vendor.sku=pineapple
+    start vendor.qti.hardware.spu.service
+
+service vendor.qti.hardware.spu.service /vendor/bin/hw/vendor.qti.hardware.spu-service
+    class hal
+    user system
+    group system

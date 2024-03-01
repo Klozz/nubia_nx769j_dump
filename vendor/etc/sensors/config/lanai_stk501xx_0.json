@@ -1,0 +1,157 @@
+{
+    "config": {
+        "hw_platform": ["MTP", "Surf", "RCM", "QRD", "HDK"],
+        "soc_id": ["557", "577"]
+    },
+    "stk501xx_0": {
+        "owner": "sns_stk501xx",
+        ".sar": {
+            "owner": "sns_stk501xx",
+            ".config": {
+                "owner": "sns_stk501xx",
+                "is_dri": {
+                    "type": "int",
+                    "ver": "1",
+                    "data": "1"
+                },
+                "hw_id": {
+                    "type": "int",
+                    "ver": "0",
+                    "data": "0"
+                },
+                "res_idx": {
+                    "type": "int",
+                    "ver": "0",
+                    "data": "0"
+                },
+                "sync_stream": {
+                    "type": "int",
+                    "ver": "0",
+                    "data": "0"
+                }
+            }
+        }
+    },
+    "stk501xx_0_platform": {
+        "owner": "sns_stk501xx",
+        ".config": {
+            "owner": "sns_stk501xx",
+            "bus_type": {
+                "type": "int",
+                "ver": "0",
+                "data": "0"
+            },
+            "bus_instance": {
+                "type": "int",
+                "ver": "0",
+                "data": "4"
+            },
+            "slave_config": {
+                "type": "int",
+                "ver": "0",
+                "data": "40"
+            },
+            "min_bus_speed_khz": {
+                "type": "int",
+                "ver": "0",
+                "data": "100"
+            },
+            "max_bus_speed_khz": {
+                "type": "int",
+                "ver": "0",
+                "data": "400"
+            },
+            "reg_addr_type": {
+                "type": "int",
+                "ver": "0",
+                "data": "1"
+            },
+            "dri_irq_num": {
+                "type": "int",
+                "ver": "1",
+                "data": "112"
+            },
+            "irq_pull_type": {
+                "type": "int",
+                "ver": "1",
+                "data": "3"
+            },
+            "irq_is_chip_pin": {
+                "type": "int",
+                "ver": "0",
+                "data": "1"
+            },
+            "irq_drive_strength": {
+                "type": "int",
+                "ver": "0",
+                "data": "0"
+            },
+            "irq_trigger_type": {
+                "type": "int",
+                "ver": "0",
+                "data": "1"
+            },
+            "num_rail": {
+                "type": "int",
+                "ver": "0",
+                "data": "2"
+            },
+            "rail_on_state": {
+                "type": "int",
+                "ver": "0",
+                "data": "1"
+            },
+            "vdd_rail": {
+                "type": "str",
+                "ver": "0",
+                "data": "/pmic/client/sensor_vdd"
+            },
+            "vddio_rail": {
+                "type": "str",
+                "ver": "0",
+                "data": "/pmic/client/sensor_vddio"
+            },
+            "rigid_body_type": {
+                "type": "int",
+                "ver": "0",
+                "data": "0"
+            }
+        },
+        ".sar": {
+            "owner": "sns_stk501xx",
+            ".fac_cal": {
+                "owner": "sns_stk501xx",
+                "prox_th0": {
+                    "type": "flt",
+                    "ver": "0",
+                    "data": "4500.0"
+                },
+                "prox_th1": {
+                    "type": "flt",
+                    "ver": "0",
+                    "data": "4500.0"
+                },
+                "prox_th2": {
+                    "type": "flt",
+                    "ver": "0",
+                    "data": "4500.0"
+                },
+                "prox_th3": {
+                    "type": "flt",
+                    "ver": "0",
+                    "data": "4500.0"
+                },
+                "prox_th4": {
+                    "type": "flt",
+                    "ver": "0",
+                    "data": "4500.0"
+                },
+                "prox_th5": {
+                    "type": "flt",
+                    "ver": "0",
+                    "data": "4500.0"
+                }
+            }
+        }
+    }
+}

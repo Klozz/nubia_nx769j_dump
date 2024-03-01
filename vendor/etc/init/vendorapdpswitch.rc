@@ -1,0 +1,21 @@
+service vendorapdpswitch-mini /vendor/bin/apdpswitch mini
+    class core
+    user root
+    group system
+    disabled
+    oneshot
+
+
+service vendorapdpswitch-full /vendor/bin/apdpswitch sec-full
+    class core
+    user root
+    group system
+    disabled
+    oneshot
+
+
+on property:odm.wetest_on=1 && property:persist.odm.sys.minidump=1
+    start vendorapdpswitch-mini
+
+on property:persist.sys.ztelog.enable=1 && property:persist.vendor.ssr.restart_level=ALL_DISABLE
+    start vendorapdpswitch-full

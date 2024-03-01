@@ -1,0 +1,56 @@
+#nubia add for performance
+#
+#Performance optimization extension centralized modification for easy to maintain and porting, reduce conflict and redundancy.
+#pineapple
+
+#on early-init
+#on init
+#on post-fs
+#on early-boot
+
+on boot
+    #nubia begin add for TGPA
+    write /dev/cpuset/bigcluster/cpus "2-7"
+    write /dev/cpuset/littlecluster/cpus "0-1"
+    chown system system /dev/cpuset/bigcluster/tasks
+    chown system system /dev/cpuset/littlecluster/tasks
+    #nubia add for TGPA end
+
+    write /dev/cpuset/restricted/cpus "0-1,5-6"
+
+on post-fs-data
+    #move to system core init.rc
+    #chown system system /sys/kernel/cpu_pressure/level
+    #chmod 444 /sys/kernel/cpu_pressure/level
+    #nubia add for sched
+
+    chmod 0666 /sys/fork_monitor/debug
+    chmod 0666 /sys/fork_monitor/opts
+    chmod 0666 /sys/fork_monitor/enable
+    chown system system /sys/fork_monitor/opts
+    chown system system /sys/fork_monitor/debug
+    chown system system /sys/fork_monitor/enable
+    #nubia add end
+
+#for input boost perf
+on property:nubia.perf.cpu.input.boost.freq=0
+    write /proc/sys/walt/input_boost/input_boost_freq "1248000 0 0 0 0 0 0 0"
+on property:nubia.perf.cpu.input.boost.freq=1
+    write /proc/sys/walt/input_boost/input_boost_freq "1344000 0 0 0 0 1190400 0 0"
+on property:nubia.perf.cpu.input.boost.freq=2
+    write /proc/sys/walt/input_boost/input_boost_freq "1804800 0 0 0 0 2131200 0 0"
+on property:nubia.perf.cpu.input.boost.ms=0
+    write /proc/sys/walt/input_boost/input_boost_ms "100"
+on property:nubia.perf.cpu.input.boost.ms=1
+    write /proc/sys/walt/input_boost/input_boost_ms "200"
+on property:nubia.perf.cpu.input.boost.ms=2
+    write /proc/sys/walt/input_boost/input_boost_ms "50"
+
+#for cpufreq ctrl perf
+on property:nubia.perf.cpu.cpufreq.ctrl=*
+    write /sys/devices/system/cpu/cpu0/cpufreq/walt/cpufreq_ctrl ${nubia.perf.cpu.cpufreq.ctrl}
+
+#add for touping
+on property:sys.nubia.tp.wfdconfig=*
+    setprop persist.vendor.debug.wfd.config ${sys.nubia.tp.wfdconfig}
+

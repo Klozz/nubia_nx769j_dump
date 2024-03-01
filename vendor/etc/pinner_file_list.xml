@@ -1,0 +1,28 @@
+<pinner_file_list version="1">
+    <file_list_great_than_8G>
+        <file name="/system/framework/boot-framework.vdex"/>
+        <file name="/system/framework/arm/boot-framework.oat"/>
+        <file name="/system/framework/arm64/boot-framework.art"/>
+        <file name="/system/framework/framework.jar"/>
+        <file name="/system/framework/services.jar"/>
+        <file name="/system/bin/surfaceflinger"/>
+        <file name="/apex/com.android.art/javalib/core-libart.jar"/>
+        <file name="/apex/com.android.art/javalib/core-oj.jar"/>
+    </file_list_great_than_8G>
+    <file_list_great_than_3G>
+        <file name="/system/framework/boot-framework.vdex"/>
+        <file name="/system/framework/arm/boot-framework.oat"/>
+        <file name="/system/framework/arm64/boot-framework.art"/>
+        <file name="/system/framework/framework.jar"/>
+        <file name="/system/framework/services.jar"/>
+        <file name="/system/bin/surfaceflinger"/>
+        <file name="/apex/com.android.art/javalib/core-libart.jar"/>
+        <file name="/apex/com.android.art/javalib/core-oj.jar"/>
+    </file_list_great_than_3G>
+    <file_list_great_than_2G>
+        <!--file name="empty"/-->
+    </file_list_great_than_2G>
+    <file_list_less_than_2G>
+        <!--file name="empty"/-->
+    </file_list_less_than_2G>
+</pinner_file_list>

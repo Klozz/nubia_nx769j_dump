@@ -1,0 +1,12 @@
+service variantidBin /vendor/bin/variantid
+    class main
+    user root
+    oneshot
+
+on load_persist_props_action
+    start variantidBin
+
+#zte add begin for ztetransform phase 2,setprop begin with ro.
+#on property:sys.custom.variant.transformtriger=true
+#    load_zte_twice_transformers_ro_props
+#zte add end for ztetransform phase 2,setprop begin with ro.

@@ -1,0 +1,5 @@
+service wifi-hal-1-0 /vendor/bin/hw/vendor.hardware.zte.wifi@1.0-service
+    class hal
+    capabilities NET_ADMIN NET_RAW SYS_MODULE
+    user wifi
+    group wifi

@@ -1,0 +1,15 @@
+#
+# ifaa 2.0
+#
+
+service alipayServiced /vendor/bin/alipayServiced
+   class late_start
+   user system
+   disabled
+
+service alikey /system/bin/alikey_client 2
+    class late_start
+    disabled
+    oneshot
+    user root
+    group system

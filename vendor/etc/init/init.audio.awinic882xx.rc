@@ -1,0 +1,9 @@
+on post-fs-data
+    mkdir /mnt/vendor/persist/smartpa_cali_data 0777 system root
+
+    #ZTE permission to read calibration file in normal version
+    chmod 0644 /mnt/vendor/persist/smartpa_cali_data/aw_cali.bin
+    chmod 0666 /dev/aw882xx_smartpa
+
+on boot
+    chmod 0666 /dev/aw882xx_smartpa

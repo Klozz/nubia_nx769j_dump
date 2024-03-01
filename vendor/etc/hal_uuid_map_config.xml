@@ -1,0 +1,12 @@
+<!-- Vendor mapping file -->
+
+<ref_do>
+    <!-- mapping entries to map unique identifiers to device hal services -->
+    <!-- uids -->
+    <uuid_ref_do>
+        <uids>
+            <uid>0</uid>
+        </uids>
+        <uuid>9f36407ead0639fc966f14dde7970f68</uuid>
+    </uuid_ref_do>
+</ref_do>

@@ -1,0 +1,46 @@
+#
+# Copyright (c) 2018 ZTE Corporation.
+# All Rights Reserved.
+# Confidential and Proprietary - ZTE Corporation.
+#
+
+on post-fs-data
+    #Create directories for mdlog
+    mkdir /data/vendor/subsys_vendor 0771 root system
+
+
+service init-ssdaemon_vendor-sh /vendor/bin/init.ssdaemon_vendor.sh
+    class late_start
+    user root
+    group system radio audio log root
+    oneshot
+
+service mtk-ssdaemon_vendor /vendor/bin/ssdaemon_vendor -c libss-mtk.so
+    class late_start
+    user root
+    group system radio audio log root
+    disabled
+
+service sprd-ssdaemon_vendor /vendor/bin/ssdaemon_vendor -c libss-sprd.so
+    class late_start
+    user root
+    group system radio audio log root
+    disabled
+
+service qti-ssdaemon_vendor /vendor/bin/ssdaemon_vendor -c libss-qti.so
+    class late_start
+    user root
+    group system radio audio log everybody root oem_2907
+    disabled
+
+service qti-msdaemon_vendor-0 /vendor/bin/ssdaemon_vendor -c libss-modem.so -i 0
+    class late_start
+    user root
+    group system radio audio log root
+    disabled
+
+service qti-msdaemon_vendor-1 /vendor/bin/ssdaemon_vendor -c libss-modem.so -i 1
+    class late_start
+    user root
+    group system radio audio log root
+    disabled

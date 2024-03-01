@@ -1,0 +1,23 @@
+#
+# zte add for wifi sniffer log
+#
+on property:persist.sys.wifisniffer.enable=1
+    setprop vendor.wifisniffer.channel ${persist.sys.wifisniffer.channel}
+    setprop vendor.wifisniffer.bandwidth ${persist.sys.wifisniffer.bandwidth}
+    setprop vendor.wifisniffer.time ${persist.sys.wifisniffer.time}
+    start start_wifi_sniffer
+
+on property:persist.sys.wifisniffer.enable=0
+    start stop_wifi_sniffer
+
+service start_wifi_sniffer /vendor/bin/start_wifi_sniffer_log.sh
+    class late_start
+    user root
+    disabled
+    oneshot
+
+service stop_wifi_sniffer /vendor/bin/stop_wifi_sniffer_log.sh
+    class late_start
+    user root
+    disabled
+    oneshot

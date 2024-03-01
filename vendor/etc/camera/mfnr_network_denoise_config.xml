@@ -1,0 +1,26 @@
+<?xml version="1.0" standalone="no"?>
+<mfnr_network_denoise_config>
+    <PhoneConfigParam target_brightness="0.35f" cache_path="/data/vendor/camera/" phone_id="NX769J"
+        k1_net="0.0004897055f" k2_net="0.01507620f" s1_net="7.910723e-7f" s2_net="0.002898401f"
+        s3_net="-1.223214f" black_level_net="64" white_level_net="1023" iso_a="2000"
+        model_width="608" model_height="608" tflite_model="tflite_model_denoised_608_608">
+        <CameraConfigParam camera_id="0" factor_rough="8" k1_camera="0.0003028166722164247f"
+            k2_camera="0.08063317541686299f" s1_camera="3.908765667408359e-07" s2_camera="-0.00036154779909230094" s3_camera="0.5400042422331134"
+            black_level_camera="64" white_level_camera="1023" max_analog_iso="3200" num_w="4"
+            num_h="3" threshold_dpc_luma_percent="0.04f" target_brightness="0.5f" clahe_strength="1.0f"></CameraConfigParam>
+        <CameraConfigParam camera_id="1" factor_rough="8" k1_camera="0.0006052919792694428f" 
+            k2_camera="0.00700883182253953f" s1_camera="7.565887187103564e-07" 
+            s2_camera="0.0016668425161272728" s3_camera="0.01996026509230642"
+            black_level_camera="64" white_level_camera="1023" max_analog_iso="1550" num_w="3"
+            num_h="2" threshold_dpc_luma_percent="0.005f" min_net_ratio="0.7f" target_brightness="1.0f"></CameraConfigParam>
+        <CameraConfigParam camera_id="2" factor_rough="8" k1_camera="0.00033696356773461975f"            
+           k2_camera="-0.013056600834413346f" s1_camera="8.538863048737574e-07" 
+           s2_camera="-0.0007600615383166653" s3_camera="0.8372605213285317"
+           black_level_camera="64" white_level_camera="1023" max_analog_iso="1600" num_w="4"
+           num_h="3" threshold_dpc_luma_percent="0.03f" min_net_ratio="0.9f" clahe_strength="1.0f"></CameraConfigParam>
+    </PhoneConfigParam>
+    <Mode name="hdr">
+        <CameraConfigParam camera_id="0"  target_brightness="0.2f" clahe_strength="0.4f"></CameraConfigParam>
+        <CameraConfigParam camera_id="2"  target_brightness="0.35f" clahe_strength="0.4f"></CameraConfigParam>
+    </Mode>
+</mfnr_network_denoise_config>
