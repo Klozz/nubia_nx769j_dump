@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<permissionconfig>
+	<uses-permission name="android.permission.READ_VENDOR_CONFIG">
+		<package-info package="com.zte.retrieve">239900A8A11B39FFD3400600D81607ED9E4BB6AD25299B30553E1FE6C3828425</package-info>
+	</uses-permission>
+	<uses-permission name="android.permission.WRITE_VENDOR_CONFIG">
+		<package-info package="com.zte.retrieve">239900A8A11B39FFD3400600D81607ED9E4BB6AD25299B30553E1FE6C3828425</package-info>
+	</uses-permission>
+</permissionconfig>

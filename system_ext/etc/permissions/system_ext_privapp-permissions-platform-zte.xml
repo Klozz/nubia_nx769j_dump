@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<permissions>
+
+  <privapp-permissions package="com.zte.cn.zteshare">
+    <permission name="android.permission.LOCAL_MAC_ADDRESS"/>
+  </privapp-permissions>
+
+  <privapp-permissions package="com.android.emergency">
+    <permission name="android.permission.START_ACTIVITIES_FROM_BACKGROUND"/>
+  </privapp-permissions>
+
+  <privapp-permissions package="com.zte.voiprecorder">
+    <permission name="android.permission.CAPTURE_AUDIO_OUTPUT"/>
+    <permission name="android.permission.CAPTURE_VOICE_COMMUNICATION_OUTPUT"/>
+  </privapp-permissions>
+</permissions>

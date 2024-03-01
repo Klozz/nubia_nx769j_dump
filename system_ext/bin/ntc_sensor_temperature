@@ -1,0 +1,70 @@
+#This is a shell script file for production NTC testing
+#Input "<this_file> <NTC num>" to return a single NTC value, input "<this_file> all" to return all NTC value
+
+#In case of different value precision on different platform, we need to adjust the "div" for value dividing to make return value unify,
+#    according to the platform name and soc_id
+target=`getprop ro.board.platform`
+if [ -f /sys/devices/soc0/soc_id ]; then
+    soc_id=`cat /sys/devices/soc0/soc_id`
+else
+    soc_id=`cat /sys/devices/system/soc/soc0/id`
+fi
+div=1
+case "$target" in
+"msm8953")
+    case "$soc_id" in
+    "338")
+        div=1000
+        ;;
+    esac
+    ;;
+"msm8937")
+    div=1000
+    ;;
+"bengal")
+    div=1000
+    ;;
+*)
+    div=1
+    ;;
+esac
+
+let argc=$#+1
+ii=0
+jj=0
+kk=0
+if [ $argc -eq 2 ];then
+    if [ $1 = "all" ];then
+        for tn in $(ls /sys/class/thermal/);do
+            if [ -r /sys/class/thermal/$tn/temp ];then
+                if [ -r /sys/class/thermal/$tn/type ];then
+                    origtemp=$(cat /sys/class/thermal/$tn/temp)
+                    echo "$tn:\t$(cat /sys/class/thermal/$tn/type) -> $(($origtemp/$div))\n"
+                    let ii+=1
+                    let jj+=1
+                else
+                    echo "/sys/class/thermal/$tn/type open failed\n"
+                    let ii+=1
+                    let kk+=1
+                fi
+            else
+                echo "/sys/class/thermal/$tn/temp open failed\n"
+                let ii+=1
+                let kk+=1
+            fi
+        done
+        echo "Totally $ii thermal_zones, $jj success, $kk failed\n"
+        exit
+    fi
+    if [ -d /sys/class/thermal/thermal_zone$1 ];then
+        if [ -r /sys/class/thermal/thermal_zone$1/temp ];then
+            echo $(($(cat /sys/class/thermal/thermal_zone$1/temp)/$div))
+        else
+            echo "/sys/class/thermal/$kk/temp open failed\n"
+        fi
+    else
+        echo "ntc_thermal test failed!"
+    fi
+else
+    echo "parameter number error argc $argc"
+fi

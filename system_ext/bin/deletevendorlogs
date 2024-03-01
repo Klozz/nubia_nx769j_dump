@@ -1,0 +1,9 @@
+#!/system/bin/sh
+
+export PATH=/vendor/xbin:$PATH
+SYSDIR=/data/local
+LOGDIR=$SYSDIR/vendor_logs
+
+if [ -d $LOGDIR ] ; then
+    rm -rf $LOGDIR
+fi

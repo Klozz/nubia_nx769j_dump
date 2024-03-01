@@ -1,0 +1,4 @@
+service logcontrol /system_ext/bin/logcontrol
+    class late_start
+    user root
+    oneshot

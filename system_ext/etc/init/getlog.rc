@@ -1,0 +1,335 @@
+#
+# zte log
+#
+on property:persist.sys.ztelog.enable=0
+    stop getlog
+    stop iotop
+
+on property:persist.sys.ztelog.enable=1
+    mount debugfs none /sys/kernel/debug
+    chmod 0755 /sys/kernel/debug
+    start iotop
+    stop  gettinylog
+    #stop getearlylog
+    start getlog
+    start triggerlogtag
+
+    #setprop dalvik.vm.lockprof.threshold 100
+    #setprop persist.backtrace.threshold 100
+
+    #enable to record when app enter suspend or resume
+    write /sys/module/msm_pm/parameters/zte_enableRecord 1
+    write /sys/module/pm_debug/parameters/zte_enableRecord 1
+    #start start_tracer
+
+on property:persist.sys.ztetinylog.enable=0
+    stop gettinylog
+    start deletevndrlogs
+
+on property:persist.sys.ztetinylog.enable=1
+    stop getlog
+    start gettinylog
+
+on property:init.svc.atrace2=stopped && property:persist.sys.ztelog.enable=1
+    #sched trace event
+    write /sys/kernel/tracing/events/sched/sched_switch/enable 1
+    write /sys/kernel/tracing/events/sched/sched_wakeup/enable 1
+    write /sys/kernel/tracing/events/sched/sched_waking/enable 1
+    write /sys/kernel/tracing/events/sched/sched_blocked_reason/enable 1
+    write /sys/kernel/tracing/events/sched/sched_cpu_hotplug/enable 1
+    write /sys/kernel/tracing/events/sched/sched_pi_setprio/enable 1
+    write /sys/kernel/tracing/events/sched/sched_process_exit/enable 1
+    write /sys/kernel/tracing/events/cgroup/enable 1
+    write /sys/kernel/tracing/events/oom/oom_score_adj_update/enable 1
+    write /sys/kernel/tracing/events/task/task_rename/enable 1
+    write /sys/kernel/tracing/events/task/task_newtask/enable 1
+    #freq trace event
+    write /sys/kernel/tracing/events/power/cpu_frequency/enable 1
+    write /sys/kernel/tracing/events/power/clock_set_rate/enable 1
+    write /sys/kernel/tracing/events/power/clock_disable/enable 1
+    write /sys/kernel/tracing/events/power/clock_enable/enable 1
+    write /sys/kernel/tracing/events/clk/clk_set_rate/enable 1
+    write /sys/kernel/tracing/events/clk/clk_disable/enable 1
+    write /sys/kernel/tracing/events/clk/clk_enable/enable 1
+    write /sys/kernel/tracing/events/power/cpu_frequency_limits/enable 1
+    #memreclaim trace event
+    write /sys/kernel/tracing/events/vmscan/mm_vmscan_direct_reclaim_begin/enable 1
+    write /sys/kernel/tracing/events/vmscan/mm_vmscan_direct_reclaim_end/enable 1
+    write /sys/kernel/tracing/events/vmscan/mm_vmscan_kswapd_wake/enable 1
+    write /sys/kernel/tracing/events/vmscan/mm_vmscan_kswapd_sleep/enable 1
+    write /sys/kernel/tracing/events/lowmemorykiller/enable 1
+    #workq trace event
+    write /sys/kernel/tracing/events/workqueue/enable 1
+    # irq trace event
+    write /sys/kernel/tracing/events/irq/enable 1
+    #write /sys/kernel/tracing/events/binder/enable 1
+    # write /sys/kernel/tracing/events/ipi/enable 1
+    #mmc trace event
+    write /sys/kernel/tracing/events/mmc/enable 1
+    #disk trace event
+    #write /sys/kernel/tracing/events/f2fs/f2fs_sync_file_enter/enable 1
+    #write /sys/kernel/tracing/events/f2fs/f2fs_sync_file_exit/enable 1
+    #write /sys/kernel/tracing/events/f2fs/f2fs_write_begin/enable 1
+    #write /sys/kernel/tracing/events/f2fs/f2fs_write_end/enable 1
+    #write /sys/kernel/tracing/events/ext4/ext4_da_write_begin/enable 1
+    #write /sys/kernel/tracing/events/ext4/ext4_da_write_end/enable 1
+    #write /sys/kernel/tracing/events/ext4/ext4_sync_file_enter/enable 1
+    #write /sys/kernel/tracing/events/ext4/ext4_sync_file_exit/enable 1
+    #write /sys/kernel/tracing/events/block/block_rq_issue/enable 1
+    #write /sys/kernel/tracing/events/block/block_rq_complete/enable 1
+    #display log
+    #write /sys/kernel/tracing/events/drm/enable 1
+    write /sys/kernel/tracing/events/sde/enable 1
+    #write /sys/kernel/tracing/events/sde/tracing_mark_write/enable 1
+    #write /sys/kernel/tracing/events/kgsl/syncpoint_timestamp/enable 1
+    #write /sys/kernel/tracing/events/kgsl/syncpoint_timestamp_expire/enable 1
+    #write /sys/kernel/tracing/events/kgsl/syncpoint_fence/enable 1
+    #write /sys/kernel/tracing/events/kgsl/syncpoint_fence_expire/enable 1
+    write /sys/kernel/tracing/events/dma_fence/enable 1
+
+    #setprop debug.atrace.tags.enableflags 0x607e
+    write /sys/kernel/tracing/options/overwrite 1
+    write /sys/kernel/tracing/saved_cmdlines_size 4096
+    write /sys/kernel/tracing/buffer_size_kb 5120
+    write /sys/kernel/tracing/tracing_on 1
+
+
+
+#
+# dcm log
+#
+on property:persist.sys.dcmlog.enable=0
+    stop iotop
+    stop getlog
+
+on property:persist.sys.dcmlog.enable=1
+    mount debugfs none /sys/kernel/debug
+    chmod 0755 /sys/kernel/debug
+    start getlog
+    #enable to record when app enter suspend or resume
+    write /sys/module/msm_pm/parameters/zte_enableRecord 1
+    write /sys/module/pm_debug/parameters/zte_enableRecord 1
+    start start_tracer
+
+#on property:persist.sys.k=*
+#    start start_tracer
+
+service iotop /system_ext/bin/startiotop.sh
+    class core
+    user root
+    disabled
+    oneshot
+    seclabel u:r:dumpstate:s0
+    writepid /dev/cpuset/background/tasks
+
+service getlog /system_ext/bin/getlogtofile
+    class core
+    user root
+    group root log cache system
+    disabled
+    oneshot
+    writepid /dev/cpuset/background/tasks
+
+service gettinylog /system_ext/bin/gettinylogtofile
+    class core
+    user root
+    group root log cache system
+    disabled
+    oneshot
+    writepid /dev/cpuset/background/tasks
+
+service deletevndrlogs /system_ext/bin/deletevendorlogs
+    class core
+    user root
+    group root log cache system
+    disabled
+    oneshot
+    writepid /dev/cpuset/background/tasks
+
+service getsysteminfo /system_ext/bin/getsysteminfo
+    class core
+    user system
+    group root cache system
+    disabled
+    oneshot
+    writepid /dev/cpuset/background/tasks
+
+service openspeciallog /system_ext/bin/controlspeciallog.sh
+    class main
+    user root
+    disabled
+    oneshot
+    seclabel u:r:dumpstate:s0
+
+service closespeciallog /system_ext/bin/controlspeciallog.sh
+    class main
+    user root
+    disabled
+    oneshot
+    seclabel u:r:dumpstate:s0
+
+service jankdumpsystrace /system_ext/bin/dumptrace.sh
+    class main
+    user root
+    disabled
+    oneshot
+    seclabel u:r:dumpstate:s0
+    writepid /dev/cpuset/background/tasks
+
+service getjuphoonlog /system_ext/bin/getjuphoonlog.sh
+    class main
+    user root
+    group root ext_data_rw sdcard_rw
+    disabled
+    oneshot
+    seclabel u:r:dumpstate:s0
+    writepid /dev/cpuset/background/tasks
+
+service dumpsystrace /system_ext/bin/dumptrace.sh
+    class main
+    user root
+    disabled
+    oneshot
+    seclabel u:r:dumpstate:s0
+    writepid /dev/cpuset/background/tasks
+
+service getsystrace /system_ext/bin/dumptrace.sh
+    user root
+    disabled
+    oneshot
+    keycodes 114 116
+    seclabel u:r:dumpstate:s0
+    writepid /dev/cpuset/background/tasks
+
+# zte add for dumpsys
+service getdumpsys /system_ext/bin/getdumpsys.sh
+    user root
+    disabled
+    oneshot
+    keycodes 114 116
+    seclabel u:r:dumpstate:s0
+    writepid /dev/cpuset/background/tasks
+
+# service start_tracer /system/bin/start_tracer.sh
+#     user root
+#     disabled
+#     oneshot
+#     seclabel u:r:dumpstate:s0
+
+service stop_tracer /system_ext/bin/stop_tracer.sh
+    user root
+    disabled
+    oneshot
+
+#
+# zte tcpdump wetest log
+#
+on property:persist.sys.tcpdump.enable=0
+    stop tcpdump_wetest
+    stop cnss_diag
+    stop vendor.cnss_diag
+
+on property:persist.sys.tcpdump.enable=1
+    start tcpdump_wetest
+    start cnss_diag
+    start vendor.cnss_diag
+
+service tcpdump_wetest /system/bin/tcpdump -iany -p -vv -s 400 -C 40 -W 3 -w /data/tcplog/tcpdump.pcap
+    class late_start
+    user root
+    disabled
+    oneshot
+    writepid /dev/cpuset/background/tasks
+
+#zsw tcpip
+on property:vendor.MB.running=0
+    setprop persist.shell.tcpip.debug 0
+on property:vendor.MB.running=1
+    setprop persist.shell.tcpip.debug 3
+on property:persist.shell.tcpip.debug=0
+    write /proc/driver/debug/tcp_output_debug/enable_debug 0
+    write /sys/module/pm_debug/parameters/tcp_output_debug 0
+on property:persist.shell.tcpip.debug=1
+    write /proc/driver/debug/tcp_output_debug/enable_debug 1
+    write /sys/module/pm_debug/parameters/tcp_output_debug 1
+on property:persist.shell.tcpip.debug=2
+    write /proc/driver/debug/tcp_output_debug/enable_debug 2
+    write /sys/module/pm_debug/parameters/tcp_output_debug 2
+on property:persist.shell.tcpip.debug=3
+    write /proc/driver/debug/tcp_output_debug/enable_debug 3
+    write /sys/module/pm_debug/parameters/tcp_output_debug 3
+on property:persist.shell.tcpip.debug=4
+    write /proc/driver/debug/tcp_output_debug/enable_debug 4
+    write /sys/module/pm_debug/parameters/tcp_output_debug 4
+service tcpip_attach /system_ext/bin/tcpip_attach_detach
+    class late_start
+    user root
+    disabled
+    oneshot
+service tcpip_dettach /system_ext/bin/tcpip_attach_detach -q
+    class late_start
+    user root
+    disabled
+    oneshot
+service tcpcat_poll /system_ext/bin/tcpcat
+    class late_start
+    user root
+    disabled
+    oneshot
+
+on property:persist.sys.systrace.enable=1 && property:persist.sys.ztelog.enable=0
+    start atrace2
+on property:persist.sys.systrace.enable=0 && property:persist.sys.ztelog.enable=0
+    stop atrace2
+    start atrace2_stop
+    write /sys/kernel/tracing/tracing_on 0
+
+service atrace2 /system_ext/bin/atrace2 --async_start -c -b 5120 -t 3600000 gfx wm view webview am res sched freq dalvik input sync hal irq
+    class late_start
+    user root
+    disabled
+    oneshot
+    seclabel u:r:dumpstate:s0
+    writepid /dev/cpuset/background/tasks
+
+service atrace2_stop /system_ext/bin/atrace2 --async_stop
+    class late_start
+    user root
+    disabled
+    oneshot
+    seclabel u:r:dumpstate:s0
+    writepid /dev/cpuset/background/tasks
+
+service dumpmem /system_ext/bin/dumpmem.sh
+    class main
+    user root
+    disabled
+    oneshot
+    seclabel u:r:dumpstate:s0
+    writepid /dev/cpuset/background/tasks
+
+#
+# zte wlan sniffer log
+#
+on property:persist.sys.wifisniffer.tcpdump.enable=1
+    start wifi_sniffer
+on property:persist.sys.wifisniffer.tcpdump.enable=0
+    stop wifi_sniffer
+
+service wifi_sniffer /system/bin/tcpdump -iany -v -C 300 -W 2 -w /data/tcplog/wifisniffer_ch${persist.sys.wifisniffer.channel}_band${persist.sys.wifisniffer.bandwidth}_${persist.sys.wifisniffer.time}.pcap
+    class late_start
+    user root
+    disabled
+    oneshot
+
+on property:persist.sys.ztelog.enable=1
+    start triggerlogtag
+on property:persist.sys.ztelog.enable=0
+    start triggerlogtag
+
+service triggerlogtag /system_ext/bin/triggerlogtag.sh
+    class core
+    user root
+    group root log cache system
+    disabled
+    oneshot

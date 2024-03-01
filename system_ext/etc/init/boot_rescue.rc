@@ -1,0 +1,9 @@
+service bootrescue /system_ext/bin/boot_rescue --res 104857600 --step 10485760 --overflow 524288000 --underflow 10485760
+    class core
+    user root
+    group system
+    disabled
+    oneshot
+
+on post-fs-data
+    start bootrescue

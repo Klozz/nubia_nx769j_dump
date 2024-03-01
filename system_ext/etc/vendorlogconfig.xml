@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<radarconfig>
+    <agentconfig>
+        <Agent>
+            <agentname>btlog</agentname>
+            <extralogpath></extralogpath>
+            <type>VENDOR_LOG_TYPE_BT</type>
+            <prepare>
+                <commands>
+                    <cmd>mkdir ${VENDOR_LOG_OUT_DIR}/${VENDOR_AGENT}</cmd>
+                    <cmd>cp -rf /data/misc/bluetooth/logs/btsnoop_hci.log* ${VENDOR_LOG_OUT_DIR}/${VENDOR_AGENT}</cmd>
+                </commands>
+            </prepare>
+        </Agent>
+        <Agent>
+            <agentname>wlanlog</agentname>
+            <extralogpath></extralogpath>
+            <type>VENDOR_LOG_TYPE_WLAN</type>
+            <prepare>
+                <commands>
+                    <cmd>mkdir ${VENDOR_LOG_OUT_DIR}/${VENDOR_AGENT}</cmd>
+                    <cmd>cp -rf /data/vendor/wifi/wlan_logs/ ${VENDOR_LOG_OUT_DIR}/${VENDOR_AGENT}</cmd>
+                </commands>
+            </prepare>
+        </Agent>
+        <Agent>
+            <agentname>battery</agentname>
+            <extralogpath></extralogpath>
+            <type>VENDOR_LOG_TYPE_POWER</type>
+            <prepare>
+                <commands>
+                    <cmd>./system_ext/bin/getbatterystatus.sh</cmd>
+                    <cmd>mkdir ${VENDOR_LOG_OUT_DIR}/${VENDOR_AGENT}</cmd>
+                    <cmd>mv /sdcard/batterystatus.txt ${VENDOR_LOG_OUT_DIR}/${VENDOR_AGENT}</cmd>
+                </commands>
+            </prepare>
+        </Agent>
+        <Agent>
+            <agentname>tcpdumplog</agentname>
+            <extralogpath></extralogpath>
+            <type>VENDOR_LOG_TYPE_TCPDUMP</type>
+            <prepare>
+                <commands>
+                    <cmd>mkdir ${VENDOR_LOG_OUT_DIR}/${VENDOR_AGENT}</cmd>
+                    <cmd>cp -rf /data/tcplog/ ${VENDOR_LOG_OUT_DIR}/${VENDOR_AGENT}</cmd>
+                </commands>
+            </prepare>
+        </Agent>
+        <Agent>
+            <agentname>adblog</agentname>
+            <extralogpath></extralogpath>
+            <type>VENDOR_LOG_TYPE_LOGCAT</type>
+            <prepare>
+                <commands>
+                    <cmd>logcat -d -b crash -f /data/local/vendor_logs/logcat/logcat_crash_cur.txt -r5120 -n4 -v threadtime AndroidRuntime:D DEBUG:D *:S</cmd>
+                    <cmd>./system_ext/bin/getbatterystatus.sh</cmd>
+                    <cmd>setprop ctl.start collectusage</cmd>
+                    <cmd>cd ${VENDOR_LOG_OUT_DIR};echo "ls -l">>rc_command.txt;date>>rc_command.txt;ls -l ${APLOG_DIR}/logcat>>rc_command.txt;echo "ls main tail 10">>rc_command.txt;ls ${APLOG_DIR}/logcat|grep logcat_main |tail -n +10>>rc_command.txt;echo "ls -t main tail 10">>rc_command.txt;ls -t ${APLOG_DIR}/logcat|grep logcat_main |tail -n +10>>rc_command.txt</cmd>
+                </commands>
+                <delaytime>500</delaytime>
+            </prepare>
+            <compress>
+                <commands>
+                    <cmd>rm -rf ${VENDOR_LOG_OUT_DIR}/${VENDOR_AGENT}</cmd>
+                    <cmd>cp -rf ${APLOG_DIR} ${VENDOR_LOG_OUT_DIR}/${VENDOR_AGENT};cp -n ${APLOG_DIR}/logcat/logcat_*.txt{,.01}.gz ${VENDOR_LOG_OUT_DIR}/${VENDOR_AGENT}/logcat</cmd>
+                    <cmd>cp -rf /data/system/appops.xml ${VENDOR_LOG_OUT_DIR}/${VENDOR_AGENT}</cmd>
+                    <cmd>mv /sdcard/batterystatus.txt ${VENDOR_LOG_OUT_DIR}/${VENDOR_AGENT}</cmd>
+                    <cmd>cd ${VENDOR_LOG_OUT_DIR}/${VENDOR_AGENT};echo "${VENDOR_AGENT} ls -l">>${VENDOR_LOG_OUT_DIR}/rc_command.txt;date>>${VENDOR_LOG_OUT_DIR}/rc_command.txt;ls -l logcat>>${VENDOR_LOG_OUT_DIR}/rc_command.txt;echo "ls main tail 10">>${VENDOR_LOG_OUT_DIR}/rc_command.txt;ls logcat|grep logcat_main |tail -n +10>>${VENDOR_LOG_OUT_DIR}/rc_command.txt;echo "ls -t main tail 10">>${VENDOR_LOG_OUT_DIR}/rc_command.txt;ls -t logcat|grep logcat_main |tail -n +10>>${VENDOR_LOG_OUT_DIR}/rc_command.txt</cmd>
+                    <cmd>mv ${VENDOR_LOG_OUT_DIR}/rc_command.txt ${VENDOR_LOG_OUT_DIR}/${VENDOR_AGENT}/logcat/</cmd>
+                    <cmd>cd ${VENDOR_LOG_OUT_DIR}/${VENDOR_AGENT}/ &amp;&amp; rm -rf loglast[2-9]*.gz</cmd>
+                </commands>
+            </compress>
+        </Agent>
+        <Agent>
+            <agentname>adblog_nolast</agentname>
+            <extralogpath></extralogpath>
+            <type>VENDOR_LOG_TYPE_LOGCAT</type>
+            <prepare>
+                <commands>
+                    <cmd>logcat -d -b crash -f /data/local/vendor_logs/logcat/logcat_crash_cur.txt -r5120 -n4 -v threadtime AndroidRuntime:D DEBUG:D *:S</cmd>
+                    <cmd>./system_ext/bin/getbatterystatus.sh</cmd>
+                    <cmd>setprop ctl.start collectusage</cmd>
+                    <cmd>cd ${VENDOR_LOG_OUT_DIR};echo "ls -l">>rc_command.txt;date>>rc_command.txt;ls -l ${APLOG_DIR}/logcat>>rc_command.txt;echo "ls main tail 10">>rc_command.txt;ls ${APLOG_DIR}/logcat|grep logcat_main |tail -n +10>>rc_command.txt;echo "ls -t main tail 10">>rc_command.txt;ls -t ${APLOG_DIR}/logcat|grep logcat_main |tail -n +10>>rc_command.txt</cmd>
+                </commands>
+                <delaytime>500</delaytime>
+            </prepare>
+            <compress>
+                <commands>
+                    <cmd>rm -rf ${VENDOR_LOG_OUT_DIR}/${VENDOR_AGENT}</cmd>
+                    <cmd>cp -rf ${APLOG_DIR} ${VENDOR_LOG_OUT_DIR}/${VENDOR_AGENT};cp -n ${APLOG_DIR}/logcat/logcat_*.txt{,.01}.gz ${VENDOR_LOG_OUT_DIR}/${VENDOR_AGENT}/logcat</cmd>
+                    <cmd>cp -rf /data/system/appops.xml ${VENDOR_LOG_OUT_DIR}/${VENDOR_AGENT}</cmd>
+                    <cmd>mv /sdcard/batterystatus.txt ${VENDOR_LOG_OUT_DIR}/${VENDOR_AGENT}</cmd>
+                    <cmd>cd ${VENDOR_LOG_OUT_DIR}/${VENDOR_AGENT};echo "${VENDOR_AGENT} ls -l">>${VENDOR_LOG_OUT_DIR}/rc_command.txt;date>>${VENDOR_LOG_OUT_DIR}/rc_command.txt;ls -l logcat>>${VENDOR_LOG_OUT_DIR}/rc_command.txt;echo "ls main tail 10">>${VENDOR_LOG_OUT_DIR}/rc_command.txt;ls logcat|grep logcat_main |tail -n +10>>${VENDOR_LOG_OUT_DIR}/rc_command.txt;echo "ls -t main tail 10">>${VENDOR_LOG_OUT_DIR}/rc_command.txt;ls -t logcat|grep logcat_main |tail -n +10>>${VENDOR_LOG_OUT_DIR}/rc_command.txt</cmd>
+                    <cmd>mv ${VENDOR_LOG_OUT_DIR}/rc_command.txt ${VENDOR_LOG_OUT_DIR}/${VENDOR_AGENT}/logcat/</cmd>
+                    <cmd>cd ${VENDOR_LOG_OUT_DIR}/${VENDOR_AGENT}/ &amp;&amp; rm -rf loglast*</cmd>
+                </commands>
+            </compress>
+        </Agent>
+        <Agent>
+            <agentname>adblog_noradio_nolast</agentname>
+            <extralogpath></extralogpath>
+            <type>VENDOR_LOG_TYPE_LOGCAT</type>
+            <prepare>
+                <commands>
+                    <cmd>logcat -d -b crash -f /data/local/vendor_logs/logcat/logcat_crash_cur.txt -r5120 -n4 -v threadtime AndroidRuntime:D DEBUG:D *:S</cmd>
+                    <cmd>./system_ext/bin/getbatterystatus.sh</cmd>
+                    <cmd>setprop ctl.start collectusage</cmd>
+                    <cmd>cd ${VENDOR_LOG_OUT_DIR};echo "ls -l">>rc_command.txt;date>>rc_command.txt;ls -l ${APLOG_DIR}/logcat>>rc_command.txt;echo "ls main tail 10">>rc_command.txt;ls ${APLOG_DIR}/logcat|grep logcat_main |tail -n +10>>rc_command.txt;echo "ls -t main tail 10">>rc_command.txt;ls -t ${APLOG_DIR}/logcat|grep logcat_main |tail -n +10>>rc_command.txt</cmd>
+                </commands>
+                <delaytime>500</delaytime>
+            </prepare>
+            <compress>
+                <commands>
+                    <cmd>rm -rf ${VENDOR_LOG_OUT_DIR}/${VENDOR_AGENT}</cmd>
+                    <cmd>cp -rf ${APLOG_DIR} ${VENDOR_LOG_OUT_DIR}/${VENDOR_AGENT};cp -n ${APLOG_DIR}/logcat/logcat_*.txt{,.01}.gz ${VENDOR_LOG_OUT_DIR}/${VENDOR_AGENT}/logcat</cmd>
+                    <cmd>cp -rf /data/system/appops.xml ${VENDOR_LOG_OUT_DIR}/${VENDOR_AGENT}</cmd>
+                    <cmd>mv /sdcard/batterystatus.txt ${VENDOR_LOG_OUT_DIR}/${VENDOR_AGENT}</cmd>
+                    <cmd>cd ${VENDOR_LOG_OUT_DIR}/${VENDOR_AGENT};echo "${VENDOR_AGENT} ls -l">>${VENDOR_LOG_OUT_DIR}/rc_command.txt;date>>${VENDOR_LOG_OUT_DIR}/rc_command.txt;ls -l logcat>>${VENDOR_LOG_OUT_DIR}/rc_command.txt;echo "ls main tail 10">>${VENDOR_LOG_OUT_DIR}/rc_command.txt;ls logcat|grep logcat_main |tail -n +10>>${VENDOR_LOG_OUT_DIR}/rc_command.txt;echo "ls -t main tail 10">>${VENDOR_LOG_OUT_DIR}/rc_command.txt;ls -t logcat|grep logcat_main |tail -n +10>>${VENDOR_LOG_OUT_DIR}/rc_command.txt</cmd>
+                    <cmd>mv ${VENDOR_LOG_OUT_DIR}/rc_command.txt ${VENDOR_LOG_OUT_DIR}/${VENDOR_AGENT}/logcat/</cmd>
+                    <cmd>cd ${VENDOR_LOG_OUT_DIR}/${VENDOR_AGENT}/ &amp;&amp; rm -rf loglast*</cmd>
+                </commands>
+            </compress>
+        </Agent>
+    </agentconfig>
+</radarconfig>

@@ -1,0 +1,557 @@
+<?xml version="1.0" encoding="utf-8"?>
+<radarconfig>
+    <policyconfig>
+        <Policy>
+            <policyname>RamdumpPolicy</policyname>
+            <loadstatus>true</loadstatus>
+            <agentname>ramdump,adblog</agentname>
+            <initialstatus>true</initialstatus>
+            <reportevent>RADAR_EVENT_RAMDUMP_REPORT</reportevent>
+            <reportlogtype>RADAR_LOG_TYPE_RAM_DUMP</reportlogtype>
+            <reportlogid>INTERNAL_LOG_ID</reportlogid>
+            <rulename></rulename>
+            <maxcount></maxcount>
+            <compress>true</compress>
+            <submit>true</submit>
+            <offline></offline>
+            <repeat></repeat>
+        </Policy>
+        <Policy>
+            <policyname>MinidumpPolicy</policyname>
+            <loadstatus>true</loadstatus>
+            <agentname>minidump,adblog</agentname>
+            <initialstatus>true</initialstatus>
+            <reportevent>RADAR_EVENT_MINIDUMP_REPORT</reportevent>
+            <reportlogtype>RADAR_LOG_TYPE_RAM_DUMP</reportlogtype>
+            <reportlogid>INTERNAL_LOG_ID</reportlogid>
+            <rulename></rulename>
+            <maxcount></maxcount>
+            <compress>true</compress>
+            <submit>true</submit>
+            <offline></offline>
+            <repeat></repeat>
+        </Policy>
+        <Policy>
+            <policyname>AbnormalRestartReportPolicy</policyname>
+            <loadstatus>true</loadstatus>
+            <agentname>abnormalrestartlog</agentname>
+            <initialstatus>false</initialstatus>
+            <reportevent>RADAR_EVENT_ABNORMAL_RESTART_REPORT</reportevent>
+            <reportlogtype>RADAR_LOG_TYPE_ABNORMAL_RESTART_REPORT</reportlogtype>
+            <reportlogid>INTERNAL_LOG_ID</reportlogid>
+            <rulename></rulename>
+            <maxcount></maxcount>
+            <compress>true</compress>
+            <submit>true</submit>
+            <offline></offline>
+            <repeat>true</repeat>
+        </Policy>
+        <Policy>
+            <policyname>PowerPolicy</policyname>
+            <loadstatus>true</loadstatus>
+            <agentname>power</agentname>
+            <initialstatus>false</initialstatus>
+            <reportevent>RADAR_EVENT_POWER_REPORT</reportevent>
+            <reportlogtype>RADAR_LOG_TYPE_POWER_ISSUE_REPORT</reportlogtype>
+            <reportlogid>INTERNAL_LOG_ID</reportlogid>
+            <rulename></rulename>
+            <maxcount></maxcount>
+            <compress>true</compress>
+            <submit>true</submit>
+            <offline></offline>
+            <repeat></repeat>
+        </Policy>
+        <Policy>
+            <policyname>PowerOnPolicy</policyname>
+            <loadstatus>true</loadstatus>
+            <agentname>poweron</agentname>
+            <initialstatus>false</initialstatus>
+            <reportevent>RADAR_EVENT_POWER_ON_REPORT</reportevent>
+            <reportlogtype>RADAR_LOG_TYPE_PERFORMANCE_COLLECT,RADAR_LOG_TYPE_POWER_STATISTICS</reportlogtype>
+            <reportlogid>INTERNAL_LOG_ID</reportlogid>
+            <rulename></rulename>
+            <maxcount></maxcount>
+            <compress>true</compress>
+            <submit>true</submit>
+            <offline></offline>
+            <repeat></repeat>
+        </Policy>
+        <Policy>
+            <policyname>JankyFramePolicy</policyname>
+            <loadstatus>true</loadstatus>
+            <agentname>jankyframe</agentname>
+            <initialstatus>false</initialstatus>
+            <reportevent>RADAR_EVENT_JANKYFRAME_REPORT</reportevent>
+            <reportlogtype>RADAR_LOG_TYPE_LOG_JANKYFRAME</reportlogtype>
+            <reportlogid>INTERNAL_LOG_ID</reportlogid>
+            <rulename>jankyframe</rulename>
+            <maxcount>6</maxcount>
+            <compress>true</compress>
+            <submit>true</submit>
+            <offline></offline>
+            <repeat>false</repeat>
+            <supportcmd>true</supportcmd>
+            <delaytime>60000</delaytime>
+            <cmds>setprop ctl.start jankdumpsystrace</cmds>
+            <forbiddenarray>RADAR_EVENT_JANKYFRAME_REPORT,RADAR_EVENT_CRASH_REPORT</forbiddenarray>
+            <forbiddentime>180000</forbiddentime>
+        </Policy>
+        <Policy>
+            <policyname>JankyFramePolicy</policyname>
+            <loadstatus>false</loadstatus>
+            <agentname>jankyframe</agentname>
+            <initialstatus>false</initialstatus>
+            <reportevent>RADAR_EVENT_JANKYFRAME_REPORT</reportevent>
+            <reportlogtype>RADAR_LOG_TYPE_LOG_JANKYFRAME</reportlogtype>
+            <reportlogid>INTERNAL_LOG_ID</reportlogid>
+            <rulename>jankyframe</rulename>
+            <maxcount>2</maxcount>
+            <compress>true</compress>
+            <submit>false</submit>
+            <offline>true</offline>
+            <repeat>false</repeat>
+            <supportcmd>true</supportcmd>
+            <delaytime>60000</delaytime>
+            <cmds>setprop ctl.start jankdumpsystrace</cmds>
+        </Policy>
+        <Policy>
+            <policyname>DropBoxPolicy</policyname>
+            <loadstatus>true</loadstatus>
+            <agentname>adblog_crash,juphoon_log</agentname>
+            <initialstatus>false</initialstatus>
+            <reportevent>RADAR_EVENT_CRASH_REPORT</reportevent>
+            <reportlogtype></reportlogtype>
+            <reportlogid>INTERNAL_LOG_ID</reportlogid>
+            <rulename>dropbox</rulename>
+            <maxcount>3</maxcount>
+            <compress>true</compress>
+            <submit>true</submit>
+            <offline></offline>
+            <repeat>true</repeat>
+        </Policy>
+        <Policy>
+            <policyname>DropBoxOfflinePolicy</policyname>
+            <loadstatus>false</loadstatus>
+            <agentname>adblog_crash_offline</agentname>
+            <initialstatus>true</initialstatus>
+            <reportevent>RADAR_EVENT_CRASH_REPORT</reportevent>
+            <reportlogtype></reportlogtype>
+            <reportlogid>INTERNAL_LOG_ID</reportlogid>
+            <rulename>dropbox</rulename>
+            <maxcount>3</maxcount>
+            <compress>true</compress>
+            <submit>false</submit>
+            <offline>true</offline>
+            <repeat>true</repeat>
+            <supportcmd>true</supportcmd>
+        </Policy>
+    </policyconfig>
+    <agentconfig>
+        <Agent>
+            <agentname>adblog_all</agentname>
+            <extralogpath></extralogpath>
+            <type>RADAR_LOG_TYPE_ADB</type>
+            <prepare>
+                <commands>
+                    <cmd>setprop ctl.start collectusage</cmd>
+                    <cmd>./system_ext/bin/snapshotwhenpull.sh</cmd>
+                </commands>
+                <delaytime>15000</delaytime>
+            </prepare>
+            <compress>
+                <commands>
+                    <cmd>cp -rf ${APLOG_DIR} ${LOG_OUT_DIR}/${AGENT}</cmd>
+                    <cmd>cp -rf /sdcard/sd_logs/.bugle ${LOG_OUT_DIR}/${AGENT}</cmd>
+                    <cmd>cp -rf /data/system/appops.xml ${LOG_OUT_DIR}/${AGENT}</cmd>
+                    <cmd>cd ${LOG_OUT_DIR} &amp;&amp; nice -n 15 tar -zcvf ${AGENT_LOG} ${AGENT}</cmd>
+                </commands>
+            </compress>
+            <post>
+                <commands>
+                    <cmd>rm -rf ${LOG_OUT_DIR}/${AGENT}</cmd>
+                    <cmd>rm -rf /sdcard/sd_logs/.bugle</cmd>
+                </commands>
+            </post>
+        </Agent>
+        <Agent>
+            <agentname>adblog</agentname>
+            <extralogpath></extralogpath>
+            <type>RADAR_LOG_TYPE_ADB</type>
+            <prepare>
+                <commands>
+                    <cmd>setprop ctl.start collectusage</cmd>
+                    <cmd>./system_ext/bin/snapshotwhenpull.sh</cmd>
+                    <cmd>rm -rf ${LOG_OUT_DIR}/${AGENT}</cmd>
+                </commands>
+                <delaytime>15000</delaytime>
+            </prepare>
+            <compress>
+                <commands>
+                    <cmd>cp -rf ${APLOG_DIR} ${LOG_OUT_DIR}/${AGENT}</cmd>
+                    <cmd>cp -rf /sdcard/sd_logs/.bugle ${LOG_OUT_DIR}/${AGENT}</cmd>
+                    <cmd>cp -rf /data/system/appops.xml ${LOG_OUT_DIR}/${AGENT}</cmd>
+                    <cmd>cd ${LOG_OUT_DIR}/${AGENT}/logcat &amp;&amp; (rm -f `ls |grep logcat_main |tail -n +10`; rm -f `ls |grep logcat_radio |tail -n +10`; rm -f `ls |grep logcat_system |tail -n +6`)</cmd>
+                    <cmd>cd ${LOG_OUT_DIR}/${AGENT} &amp;&amp; nice -n 15 tar xvf loglast1.tar.gz; cd vendor_logs/logcat &amp;&amp; ( rm -f `ls |grep logcat_main |tail -n +10`; rm -f `ls |grep logcat_radio |tail -n +10`; rm -f `ls |grep logcat_system |tail -n +6`; cd ../..; rm loglast1.tar.gz; nice -n 15 tar -zcvf loglast1.tar.gz vendor_logs; rm -rf vendor_logs)</cmd>
+                    <cmd>cd ${LOG_OUT_DIR}/${AGENT} &amp;&amp; nice -n 15 tar xvf loglast2.tar.gz; cd vendor_logs/logcat &amp;&amp; ( rm -f `ls |grep logcat_main |tail -n +10`; rm -f `ls |grep logcat_radio |tail -n +10`; rm -f `ls |grep logcat_system |tail -n +6`; cd ../..; rm loglast2.tar.gz; nice -n 15 tar -zcvf loglast2.tar.gz vendor_logs; rm -rf vendor_logs)</cmd>
+                    <cmd>cd ${LOG_OUT_DIR} &amp;&amp; nice -n 15 tar -zcvf ${AGENT_LOG} ${AGENT} --exclude=loglast3* --exclude=loglast4* --exclude=loglast5*</cmd>
+                </commands>
+            </compress>
+            <post>
+                <commands>
+                    <cmd>rm -rf ${LOG_OUT_DIR}/${AGENT}</cmd>
+                    <cmd>rm -rf /sdcard/sd_logs/.bugle</cmd>
+                </commands>
+            </post>
+        </Agent>
+        <Agent>
+            <agentname>perflog</agentname>
+            <extralogpath></extralogpath>
+            <type>RADAR_LOG_TYPE_PERFORMANCE_COLLECT</type>
+            <prepare>
+                <commands>
+                    <cmd>setprop ctl.start collectusage</cmd>
+                </commands>
+                <delaytime>5000</delaytime>
+            </prepare>
+            <compress>
+                <commands>
+                    <cmd>cd / &amp;&amp; nice -n 15 tar -zcvf ${AGENT_LOG} .${APLOG_DIR}/logcat/summary</cmd>
+                </commands>
+            </compress>
+        </Agent>
+        <Agent>
+            <agentname>abnormalrestartlog</agentname>
+            <extralogpath></extralogpath>
+            <type>RADAR_LOG_TYPE_ADB</type>
+            <prepare>
+                <commands>
+                    <cmd>rm -rf ${LOG_OUT_DIR}/${AGENT}</cmd>
+                    <cmd>cp -rf ${APLOG_DIR} ${LOG_OUT_DIR}/${AGENT}</cmd>
+                </commands>
+            </prepare>
+            <compress>
+                <commands>
+                    <cmd>cd ${LOG_OUT_DIR}/${AGENT} &amp;&amp; nice -n 15 tar xvf loglast1.tar.gz; cd vendor_logs/logcat &amp;&amp; ( rm -f `ls |grep logcat_main |tail -n +10`; rm -f `ls |grep logcat_radio |tail -n +10`; rm -f `ls |grep logcat_system |tail -n +6`; cd ../..; rm loglast1.tar.gz; nice -n 15 tar -zcvf loglast1.tar.gz vendor_logs; rm -rf vendor_logs)</cmd>
+                    <cmd>cd ${LOG_OUT_DIR} &amp;&amp; nice -n 15 tar -zcvf ${AGENT_LOG} ${AGENT} --exclude=loglast2* --exclude=loglast3* --exclude=loglast4* --exclude=loglast5*</cmd>
+                </commands>
+            </compress>
+            <post>
+                <commands>
+                    <cmd>rm -rf ${LOG_OUT_DIR}/${AGENT}</cmd>
+                </commands>
+            </post>
+        </Agent>
+        <Agent>
+            <agentname>adblog_crash</agentname>
+            <extralogpath></extralogpath>
+            <type>RADAR_LOG_TYPE_ADB</type>
+            <prepare>
+                <commands>
+                    <cmd>rm -rf ${LOG_OUT_DIR}/${AGENT}</cmd>
+                    <cmd>cp -rf ${APLOG_DIR} ${LOG_OUT_DIR}/${AGENT}</cmd>
+                </commands>
+            </prepare>
+            <compress>
+                <commands>
+                    <cmd>cd ${LOG_OUT_DIR}/${AGENT}/logcat &amp;&amp; (rm -f systrace*; rm -f `ls |grep logcat_main |tail -n +4`; rm -f `ls |grep logcat_radio |tail -n +4`; rm -f `ls |grep logcat_system |tail -n +4`)</cmd>
+                    <cmd>cd ${LOG_OUT_DIR} &amp;&amp; nice -n 15 tar -zcvf ${AGENT_LOG} ${AGENT} --exclude=loglast*</cmd>
+                </commands>
+            </compress>
+            <post>
+                <commands>
+                    <cmd>rm -rf ${LOG_OUT_DIR}/${AGENT}</cmd>
+                </commands>
+            </post>
+        </Agent>
+        <Agent>
+            <agentname>ramdump</agentname>
+            <extralogpath></extralogpath>
+            <type>RADAR_LOG_TYPE_RAM_DUMP</type>
+            <compress>
+                <commands>
+                    <cmd>cd / &amp;&amp; nice -n 15 tar -zcvf ${AGENT_LOG} ./data/vendor/ramdump ./data/vendor/tombstones/SDX50M ./data/vendor/tombstones/SDX55M --exclude=rawdump.bin --exclude=data/vendor/ramdump/bluetooth</cmd>
+                </commands>
+            </compress>
+            <post>
+                <commands>
+                    <cmd>find /data/vendor/ramdump -type f -mmin +5 -exec rm -rf {} \;</cmd>
+                    <cmd>find /data/vendor/tombstones/SDX50M -type f -mmin +5 -exec rm {} \;</cmd>
+                    <cmd>find /data/vendor/tombstones/SDX55M -type f -mmin +5 -exec rm {} \;</cmd>
+                </commands>
+            </post>
+        </Agent>
+        <Agent>
+            <agentname>minidump</agentname>
+            <extralogpath></extralogpath>
+            <type>RADAR_LOG_TYPE_RAM_DUMP</type>
+            <compress>
+                <commands>
+                    <cmd>cd / &amp;&amp; nice -n 15 tar -zcvf ${AGENT_LOG} ./data/vendor/ramdump/rawdump.bin</cmd>
+                </commands>
+            </compress>
+        </Agent>
+        <Agent>
+            <agentname>power</agentname>
+            <extralogpath></extralogpath>
+            <type>RADAR_LOG_TYPE_POWER_ISSUE_REPORT</type>
+            <prepare>
+                <commands>
+                    <cmd>cp -rf ${APLOG_DIR} ${LOG_OUT_DIR}/${AGENT}</cmd>
+                </commands>
+            </prepare>
+            <compress>
+                <commands>
+                    <cmd>cp -n ${APLOG_DIR}/logcat/logcat_*.txt{,.01}.gz ${LOG_OUT_DIR}/${AGENT}/logcat</cmd>
+                    <cmd>cd ${LOG_OUT_DIR} &amp;&amp; nice -n 15 tar -zcvf ${AGENT_LOG} ${AGENT}/logcat ${AGENT}/kernel ${AGENT}/data_kernel ${AGENT}/snapshotwhenpull.txt</cmd>
+                </commands>
+            </compress>
+            <post>
+                <commands>
+                    <cmd>rm -rf ${LOG_OUT_DIR}/${AGENT}</cmd>
+                </commands>
+            </post>
+        </Agent>
+        <Agent>
+            <agentname>poweron</agentname>
+            <extralogpath></extralogpath>
+            <type>RADAR_LOG_TYPE_PERFORMANCE_COLLECT</type>
+            <prepare>
+                <commands>
+                    <cmd>cp -rf ${APLOG_DIR}/resetlog/summary ${LOG_OUT_DIR}/${AGENT}</cmd>
+                </commands>
+            </prepare>
+            <compress>
+                <commands>
+                    <cmd>cd ${LOG_OUT_DIR} &amp;&amp; nice -n 15 tar -zcvf ${AGENT_LOG} ${AGENT}</cmd>
+                </commands>
+            </compress>
+            <post>
+                <commands>
+                    <cmd>rm -rf ${LOG_OUT_DIR}/${AGENT}</cmd>
+                </commands>
+            </post>
+        </Agent>
+        <Agent>
+            <agentname>diallog</agentname>
+            <extralogpath></extralogpath>
+            <type>RADAR_LOG_TYPE_UNKNOWN</type>
+            <compress>
+                <commands>
+                    <cmd>cd ${LOG_OUT_DIR} &amp;&amp; nice -n 15 tar -zcvf ${AGENT_LOG} ../Android/data/com.android.contacts/files/logs</cmd>
+                </commands>
+            </compress>
+            <post>
+                <commands>
+                    <cmd>rm -rf /sdcard/Android/data/com.android.contacts/files/logs</cmd>
+                </commands>
+            </post>
+        </Agent>
+        <Agent>
+            <agentname>powerlog</agentname>
+            <extralogpath></extralogpath>
+            <type>RADAR_LOG_TYPE_POWER_STATISTICS</type>
+            <prepare>
+                <commands>
+                    <cmd>cp -rf ${APLOG_DIR} ${LOG_OUT_DIR}/${AGENT}</cmd>
+                </commands>
+            </prepare>
+            <compress>
+                <commands>
+                    <cmd>cp -n ${APLOG_DIR}/logcat/logcat_*.txt{,.01}.gz ${LOG_OUT_DIR}/${AGENT}/logcat</cmd>
+                    <cmd>cd ${LOG_OUT_DIR}/${AGENT} &amp;&amp; nice -n 15 tar -zcvf ${AGENT_LOG} ${AGENT}/logcat/pmlog ${AGENT}/logcat/logcat_events*</cmd>
+                </commands>
+            </compress>
+            <post>
+                <commands>
+                    <cmd>rm -rf ${LOG_OUT_DIR}/${AGENT}</cmd>
+                </commands>
+            </post>
+        </Agent>
+        <Agent>
+            <agentname>jankyframe</agentname>
+            <extralogpath></extralogpath>
+            <type>RADAR_LOG_TYPE_LOG_JANKYFRAME</type>
+            <prepare>
+                <commands>
+                    <cmd>cp -rf ${APLOG_DIR} ${LOG_OUT_DIR}/${AGENT}</cmd>
+                </commands>
+            </prepare>
+            <compress>
+                <commands>
+                    <cmd>cp -n ${APLOG_DIR}/logcat/logcat_*.txt{,.01}.gz ${LOG_OUT_DIR}/${AGENT}/logcat</cmd>
+                    <cmd>cd ${LOG_OUT_DIR} &amp;&amp; nice -n 15 tar -zcvf ${AGENT_LOG} ${AGENT}/data_kernel ${AGENT}/gpu ${AGENT}/kernel ${AGENT}/logcat ${AGENT}/snapshotwhenpull.txt --exclude=*4.gz --exclude=*5.gz --exclude=*6.gz --exclude=*7.gz --exclude=*8.gz --exclude=*9.gz --exclude=*0.gz --exclude=*11.gz --exclude=*12.gz --exclude=*13.gz --exclude=*21.gz --exclude=*22.gz --exclude=*23.gz --exclude=*31.gz --exclude=*32.gz</cmd>
+                </commands>
+            </compress>
+            <post>
+                <commands>
+                    <cmd>rm -rf ${LOG_OUT_DIR}/${AGENT}</cmd>
+                </commands>
+            </post>
+        </Agent>
+        <Agent>
+            <agentname>btlog</agentname>
+            <extralogpath></extralogpath>
+            <type>RADAR_LOG_TYPE_BT</type>
+            <prepare>
+                <commands>
+                    <cmd>mkdir ${LOG_OUT_DIR}/${AGENT}</cmd>
+                    <cmd>cp -rf /sdcard/btsnoop_hci.log* ${LOG_OUT_DIR}/${AGENT}</cmd>
+                    <cmd>cp -rf /data/misc/bluetooth/logs/btsnoop_hci.log* ${LOG_OUT_DIR}/${AGENT}</cmd>
+                    <cmd>cp -rf /data/vendor/ssrdump ${LOG_OUT_DIR}/${AGENT}</cmd>
+                </commands>
+            </prepare>
+            <compress>
+                <commands>
+                    <cmd>cd ${LOG_OUT_DIR} &amp;&amp; nice -n 15 tar -zcvf ${AGENT_LOG} ${AGENT}</cmd>
+                </commands>
+            </compress>
+            <post>
+                <commands>
+                    <cmd>rm -rf ${LOG_OUT_DIR}/${AGENT}</cmd>
+                </commands>
+            </post>
+        </Agent>
+        <Agent>
+            <agentname>wlanlog</agentname>
+            <extralogpath></extralogpath>
+            <type>RADAR_LOG_TYPE_UNKNOWN</type>
+            <prepare>
+                <commands>
+                    <cmd>mkdir ${LOG_OUT_DIR}/${AGENT}</cmd>
+                    <cmd>cp -rf /data/vendor/wifi/wlan_logs/ ${LOG_OUT_DIR}/${AGENT}</cmd>
+                </commands>
+            </prepare>
+            <compress>
+                <commands>
+                    <cmd>cd ${LOG_OUT_DIR} &amp;&amp; nice -n 15 tar -zcvf ${AGENT_LOG} ${AGENT}</cmd>
+                </commands>
+            </compress>
+            <post>
+                <commands>
+                    <cmd>rm -rf ${LOG_OUT_DIR}/${AGENT}</cmd>
+                </commands>
+            </post>
+        </Agent>
+        <Agent>
+            <agentname>battery</agentname>
+            <extralogpath></extralogpath>
+            <type>RADAR_LOG_TYPE_ADB</type>
+            <prepare>
+                <commands>
+                    <cmd>./system_ext/bin/getbatterystatus.sh</cmd>
+                </commands>
+                <delaytime>5000</delaytime>
+            </prepare>
+            <compress>
+                <commands>
+                    <cmd>mkdir ${LOG_OUT_DIR}/${AGENT}</cmd>
+                    <cmd>cp -rf /sdcard/batterystatus.txt ${LOG_OUT_DIR}/${AGENT}</cmd>
+                    <cmd>cd ${LOG_OUT_DIR} &amp;&amp; nice -n 15 tar -zcvf ${AGENT_LOG} ${AGENT}</cmd>
+                </commands>
+            </compress>
+            <post>
+                <commands>
+                    <cmd>rm -rf ${LOG_OUT_DIR}/${AGENT}</cmd>
+                </commands>
+            </post>
+        </Agent>
+        <Agent>
+            <agentname>adblog_noradio</agentname>
+            <extralogpath></extralogpath>
+            <type>RADAR_LOG_TYPE_ADB</type>
+            <prepare>
+                <commands>
+                    <cmd>setprop ctl.start collectusage</cmd>
+                    <cmd>./system_ext/bin/snapshotwhenpull.sh</cmd>
+                    <cmd>rm -rf ${LOG_OUT_DIR}/${AGENT}</cmd>
+                </commands>
+                <delaytime>15000</delaytime>
+            </prepare>
+            <compress>
+                <commands>
+                    <cmd>cp -rf ${APLOG_DIR} ${LOG_OUT_DIR}/${AGENT}</cmd>
+                    <cmd>cp -rf /sdcard/sd_logs/.bugle ${LOG_OUT_DIR}/${AGENT}</cmd>
+                    <cmd>cp -rf /data/system/appops.xml ${LOG_OUT_DIR}/${AGENT}</cmd>
+                    <cmd>cd ${LOG_OUT_DIR}/${AGENT}/logcat &amp;&amp; (rm -rf logcat_radio.*; rm -f `ls |grep logcat_main |tail -n +10`; rm -f `ls |grep logcat_system |tail -n +6`)</cmd>
+                    <cmd>cd ${LOG_OUT_DIR}/${AGENT} &amp;&amp; nice -n 15 tar xvf loglast1.tar.gz; cd vendor_logs/logcat &amp;&amp; (rm -f `ls |grep logcat_main |tail -n +10`; rm -f `ls |grep logcat_radio |tail -n +10`; rm -f `ls |grep logcat_system |tail -n +6`; cd ../..; rm loglast1.tar.gz; nice -n 15 tar -zcvf loglast1.tar.gz vendor_logs; rm -rf vendor_logs)</cmd>
+                    <cmd>cd ${LOG_OUT_DIR}/${AGENT} &amp;&amp; nice -n 15 tar xvf loglast2.tar.gz; cd vendor_logs/logcat &amp;&amp; (rm -f `ls |grep logcat_main |tail -n +10`; rm -f `ls |grep logcat_radio |tail -n +10`; rm -f `ls |grep logcat_system |tail -n +6`; cd ../..; rm loglast2.tar.gz; nice -n 15 tar -zcvf loglast2.tar.gz vendor_logs; rm -rf vendor_logs)</cmd>
+                    <cmd>cd ${LOG_OUT_DIR} &amp;&amp; nice -n 15 tar -zcvf ${AGENT_LOG} ${AGENT} --exclude=loglast3* --exclude=loglast4* --exclude=loglast5*</cmd>
+                </commands>
+            </compress>
+            <post>
+                <commands>
+                    <cmd>rm -rf ${LOG_OUT_DIR}/${AGENT}</cmd>
+                    <cmd>rm -rf /sdcard/sd_logs/.bugle</cmd>
+                </commands>
+            </post>
+        </Agent>
+        <Agent>
+            <agentname>adblog_nolast</agentname>
+            <extralogpath></extralogpath>
+            <type>RADAR_LOG_TYPE_ADB</type>
+            <prepare>
+                <commands>
+                    <cmd>setprop ctl.start collectusage</cmd>
+                    <cmd>./system_ext/bin/snapshotwhenpull.sh</cmd>
+                    <cmd>rm -rf ${LOG_OUT_DIR}/${AGENT}</cmd>
+                </commands>
+                <delaytime>15000</delaytime>
+            </prepare>
+            <compress>
+                <commands>
+                    <cmd>cp -rf ${APLOG_DIR} ${LOG_OUT_DIR}/${AGENT}</cmd>
+                    <cmd>cp -rf /sdcard/sd_logs/.bugle ${LOG_OUT_DIR}/${AGENT}</cmd>
+                    <cmd>cp -rf /data/system/appops.xml ${LOG_OUT_DIR}/${AGENT}</cmd>
+                    <cmd>cd ${LOG_OUT_DIR}/${AGENT}/logcat &amp;&amp; (rm -f `ls |grep logcat_main |tail -n +10`; rm -f `ls |grep logcat_radio |tail -n +10`; rm -f `ls |grep logcat_system |tail -n +6`)</cmd>
+                    <cmd>cd ${LOG_OUT_DIR} &amp;&amp; nice -n 15 tar -zcvf ${AGENT_LOG} ${AGENT} --exclude=loglast*</cmd>
+                </commands>
+            </compress>
+            <post>
+                <commands>
+                    <cmd>rm -rf ${LOG_OUT_DIR}/${AGENT}</cmd>
+                    <cmd>rm -rf /sdcard/sd_logs/.bugle</cmd>
+                </commands>
+            </post>
+        </Agent>
+        <Agent>
+            <agentname>adblog_noradio_nolast</agentname>
+            <extralogpath></extralogpath>
+            <type>RADAR_LOG_TYPE_ADB</type>
+            <prepare>
+                <commands>
+                    <cmd>setprop ctl.start collectusage</cmd>
+                    <cmd>./system_ext/bin/snapshotwhenpull.sh</cmd>
+                    <cmd>rm -rf ${LOG_OUT_DIR}/${AGENT}</cmd>
+                </commands>
+                <delaytime>15000</delaytime>
+            </prepare>
+            <compress>
+                <commands>
+                    <cmd>cp -rf ${APLOG_DIR} ${LOG_OUT_DIR}/${AGENT}</cmd>
+                    <cmd>cp -rf /sdcard/sd_logs/.bugle ${LOG_OUT_DIR}/${AGENT}</cmd>
+                    <cmd>cp -rf /data/system/appops.xml ${LOG_OUT_DIR}/${AGENT}</cmd>
+                    <cmd>cd ${LOG_OUT_DIR}/${AGENT}/logcat &amp;&amp; (rm -rf logcat_radio.*;rm -f `ls |grep logcat_main |tail -n +10`; rm -f `ls |grep logcat_radio |tail -n +10`; rm -f `ls |grep logcat_system |tail -n +6`)</cmd>
+                    <cmd>cd ${LOG_OUT_DIR} &amp;&amp; nice -n 15 tar -zcvf ${AGENT_LOG} ${AGENT} --exclude=loglast*</cmd>
+                </commands>
+            </compress>
+            <post>
+                <commands>
+                    <cmd>rm -rf ${LOG_OUT_DIR}/${AGENT}</cmd>
+                    <cmd>rm -rf /sdcard/sd_logs/.bugle</cmd>
+                </commands>
+            </post>
+        </Agent>
+    </agentconfig>
+    <ruleconfig>
+        <Rule>
+            <name>dropbox</name>
+            <keywords>process,file,line,detail</keywords>
+            <logfile>/data/data/com.android.modem.service/log_filter_dropbox.txt</logfile>
+        </Rule>
+        <Rule>
+            <name>jankyframe</name>
+            <keywords>magic</keywords>
+            <logfile></logfile>
+        </Rule>
+    </ruleconfig>
+</radarconfig>

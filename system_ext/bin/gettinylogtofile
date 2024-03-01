@@ -1,0 +1,459 @@
+#!/system/bin/sh
+
+export PATH=/vendor/xbin:$PATH
+platform=`getprop ro.board.platform`
+board=`getprop ro.product.board`
+cell=`getprop ro.vendor.feature.for_zte_cell`
+
+CACHEDIR=/cache
+DATADIR=/data
+SYSDIR=/data/local
+LOGDIR=$SYSDIR/vendor_logs
+LOGS_DIR=vendor_logs
+
+LAST_KMSG_FILE=/proc/last_kmsg
+PROCFS_PATH=/proc
+PSTORE_PATH=/sys/fs/pstore
+PSTORE_CONSOLE_FILE=$PSTORE_PATH/console-ramoops
+PSTORE_CONSOLE_FILE_NEW=$PSTORE_PATH/console-ramoops-0
+INTERVAL_MAIN=30
+KMSG_FILE=/dev/kmsg
+KMSG_EXT_FILE=/proc/kmsg_ext
+PID_INFO_PATH=/sys/module/logger/parameters
+PID_INFO_NAME=$PID_INFO_PATH/pid_info
+sdk=`getprop ro.build.version.sdk`
+
+baseband=`cat /sys/devices/soc0/machine`
+
+
+DMESG="dmesg"
+if [ "$sdk" -gt "26" ];then
+    DMESG="dmesg -S"
+fi
+
+
+function debug()
+{
+    echo $1
+    #echo $1 >>$LOGDIR/getlogdebug.txt
+}
+
+function bak_if_kernel()
+{
+    local bakfile=$1
+    local file=${bakfile##*/}
+    local dir=${bakfile%/*}
+    local size=$2
+
+    debug "bakfile:$bakfile file:$file dir:$dir size:$size"
+    if [ ! -f $bakfile ] ; then
+        debug "bakfile:$bakfile donot exist"
+        return
+    fi
+
+    l=`du -s   $bakfile | awk '{print $1}'`
+    if [ "$l" -gt "$2" ] ;then
+        debug "rm $bakfile.0.tar.gz"
+        #rm $bakfile.0.tar.gz
+        pwd
+        debug "cd $dir"
+        cd $dir
+        debug "$file -> $file.0.tar.gz"
+
+        if [ "$cell" == "true" ]; then
+            KERNEL_LOG_NUM=60
+            if [ -f $file.$KERNEL_LOG_NUM.tar.gz ];then
+                rm $file.$KERNEL_LOG_NUM.tar.gz
+            fi
+
+            for i in $(seq 1 $KERNEL_LOG_NUM)
+            do
+                if [ -f $file.$(($KERNEL_LOG_NUM - $i)).tar.gz ];then
+                    mv $file.$(($KERNEL_LOG_NUM - $i)).tar.gz $file.$(($KERNEL_LOG_NUM - $i + 1)).tar.gz;
+                fi
+            done
+        else
+            rm $file.5.tar.gz
+            mv $file.4.tar.gz $file.5.tar.gz
+            mv $file.3.tar.gz $file.4.tar.gz
+            mv $file.2.tar.gz $file.3.tar.gz
+            mv $file.1.tar.gz $file.2.tar.gz
+            mv $file.0.tar.gz $file.1.tar.gz
+        fi
+        tar zcf $file.0.tar.gz $file
+        debug "rm $file"
+        rm $file
+        cd -
+        pwd
+    fi
+}
+
+function kmsg()
+{
+    debug "kmsg begin"
+    local mycurdir=`pwd`
+    cd /
+    if [ ! -f ".cell" ] ; then
+
+        if [ -f "$KMSG_EXT_FILE" ]; then
+          $DMESG -c >> $LOGDIR/kernel/log_kernel.txt
+        else
+          $DMESG -c | egrep -v  "\[TCP\]|\[IP\]">> $LOGDIR/kernel/log_kernel.txt
+        fi
+        bak_if_kernel  $LOGDIR/kernel/log_kernel.txt 4096
+    fi
+    cd $mycurdir
+    debug "kmsg end"
+}
+
+
+function baseinfo()
+{
+    echo "Service getlog Started:" >> $LOGDIR/logcat/baseinfo.txt
+    uptime >>  $LOGDIR/logcat/baseinfo.txt
+    date >> $LOGDIR/logcat/baseinfo.txt
+    cat /proc/uptime  >> $LOGDIR/logcat/baseinfo.txt
+    echo "========================================" >> $LOGDIR/logcat/baseinfo.txt
+    echo "Kernel Version:" >> $LOGDIR/logcat/baseinfo.txt
+    cat /proc/version >> $LOGDIR/logcat/baseinfo.txt
+    cat /proc/cmdline >> $LOGDIR/logcat/baseinfo.txt
+    echo "========================================" >> $LOGDIR/logcat/baseinfo.txt
+    echo "Memory Info:" >> $LOGDIR/logcat/baseinfo.txt
+    cat /proc/meminfo >> $LOGDIR/logcat/baseinfo.txt
+    echo "========================================" >> $LOGDIR/logcat/baseinfo.txt
+    echo "Property:" >> $LOGDIR/logcat/baseinfo.txt
+    getprop  >> $LOGDIR/logcat/baseinfo.txt
+    echo "========================================" >> $LOGDIR/logcat/baseinfo.txt
+    df -h >> $LOGDIR/logcat/baseinfo.txt
+    echo "========================================" >> $LOGDIR/logcat/baseinfo.txt
+    df >> $LOGDIR/logcat/baseinfo.txt
+    echo "========================================" >> $LOGDIR/logcat/baseinfo.txt
+    mount  >> $LOGDIR/logcat/baseinfo.txt
+    ps | grep "system_server" >> $LOGDIR/logcat/baseinfo.txt
+    echo "========================================" >> $LOGDIR/logcat/baseinfo.txt
+}
+
+
+function jank_detect()
+{
+    dumpsys binder_calls_stats --enable
+}
+
+function dumpheap()
+{
+    am set-watch-heap system 4096000000
+}
+
+function my_logcat
+{
+    while true
+    do
+        logcat $*
+        sleep 1
+    done
+}
+
+function logcat_to_file()
+{
+    my_logcat -b crash -f $LOGDIR/logcat/logcat_crash.txt -r5120 -n2 -v threadtime AndroidRuntime:D DEBUG:D *:S &
+    my_logcat -b main  -f $LOGDIR/logcat/logcat_main.txt -r20480 -n32 -v threadtime *:D PowerTracker:S &
+    my_logcat -b system  -f $LOGDIR/logcat/logcat_system.txt -r20480 -n16 -v threadtime *:D PowerTracker:S &
+    my_logcat -b radio  -f $LOGDIR/logcat/logcat_radio.txt -r20480 -n16 -v threadtime *:D PowerTracker:S &
+    my_logcat -b events -f $LOGDIR/logcat/logcat_events.txt -r4096 -n8 -v threadtime *:D &
+    if [ "$platform" == "taro" ]; then
+        local system_id=`getprop ro.cell.name`
+        if ["$system_id" == ""] ; then
+            my_logcat -b kernel -f $LOGDIR/logcat/logcat_kernel.txt -r20480 -n8  &
+        fi
+    fi
+}
+
+function save_reset_log_preloop()
+{
+    date > $LOGDIR/resetlog/kernel_resetlog.txt
+    cat $LAST_KMSG_FILE >> $LOGDIR/resetlog/kernel_resetlog.txt
+    cat $PSTORE_CONSOLE_FILE >> $LOGDIR/resetlog/kernel_resetlog.txt
+    chmod -R 755 $LOGDIR/resetlog/*
+}
+
+function save_reset_log_inloop()
+{
+    if [ "$isresetlogsavedone" -eq "1" ] ;then
+        return
+    fi
+
+    if [ -e $PSTORE_CONSOLE_FILE_NEW ]; then
+        dumpstate -k >> $LOGDIR/resetlog/kernel_resetlog.txt
+        isresetlogsavedone=1
+    fi;
+}
+
+function mainloop()
+{
+    debug "mainloop begin"
+    local interval=0
+    local e
+    local next
+
+    #kmsg
+    for e in ${crontab[@]}
+    do
+        eval next=\${${e}[0]}
+        eval interval=\${${e}[1]}
+        debug "cur:$e $next $interval $sys_uptime"
+        if [ "$sys_uptime" -ge "$next" ] ;then
+            interval=$(($interval + $sys_uptime))
+            eval ${e}[0]=\$interval
+            eval next=\${${e}[0]}
+            debug "next:$next $interval $sys_uptime"
+            eval local len=\${#${e}[@]}
+            local funi=2
+            while [ $funi -lt $len ]
+            do
+                eval \${${e}[$funi]}
+                eval debug \${${e}[$funi]}
+                funi=$(($funi + 1))
+            done
+        fi
+    done
+    #chmod logcat from 755 to 777 for RIL exception log ZTE_yangxiangling_2017212
+    chmod 777 $LOGDIR/logcat
+    chmod -R 755  $LOGDIR/logcat/*
+    chmod -R 755  $LOGDIR/kernel/*
+
+    debug "mainloop end"
+}
+
+function need_log
+{
+    local total=`du -s $LOGDIR | awk '{print $1}'`
+
+    if [ "$total" -ge "204800" ]; then
+        debug "$LOGDIR is over 200M, don't capture log"
+        return 1
+    fi
+    return 0
+}
+
+# Only keep 64 tombstone compressed files
+function clear_tombstone_files() {
+  for file in `ls -r |grep "tombstone" |tail -n +65`
+  do
+    rm -f $file
+  done
+}
+
+function delete_logs
+{
+    rm -rf $LOGDIR/bugreports
+    rm -rf $LOGDIR/Pictures
+    rm $LOGDIR/loglast[1-9]*.gz
+    rm $LOGDIR/*.hprof
+    rm -rf $LOGDIR/logcat/mainsystem.txt
+    clear_tombstone_files
+}
+
+function delete_logs_low
+{
+    total=`du -s $LOGDIR | awk '{print $1}'`
+
+    if [ "$total" -ge "204800" ]; then
+        debug "$LOGDIR is over 200M, delete some log"
+        delete_logs
+    fi
+}
+
+function packages_info_boot()
+{
+    #pm list packages > $LOGDIR/logcat/installedapp.txt
+    cat /data/system/packages.xml > $LOGDIR/logcat/packages-boot.xml
+    cat /data/system/device_policies.xml > $LOGDIR/logcat/device_policies-boot.xml
+    cat /data/system/users/0/package-restrictions.xml > $LOGDIR/logcat/package-restrictions-boot.xml
+    cat /data/misc_de/0/apexdata/com.android.permission/runtime-permissions.xml > $LOGDIR/logcat/runtime-permissions-boot.xml
+    cat /data/system/users/0/settings_secure.xml  > $LOGDIR/logcat/settings_secure-boot.xml
+    cat /data/system/users/0/settings_system.xml > $LOGDIR/logcat/settings_system-boot.xml
+    cat /data/system/users/0/settings_global.xml >  $LOGDIR/logcat/settings_global-boot.xml
+    cat /data/system/users/0/wallpaper >  $LOGDIR/logcat/wallpaper-boot
+    cat /data/system/users/0/wallpaper_orig >  $LOGDIR/logcat/wallpaper_orig-boot
+    cat /data/system/users/0/wallpaper_lock >  $LOGDIR/logcat/wallpaper_lock-boot
+    cat /data/system/users/0/wallpaper_lock_orig >  $LOGDIR/logcat/wallpaper_lock_orig-boot
+    cat /data/system/users/0/wallpaper_info.xml >  $LOGDIR/logcat/wallpaper_info-boot.xml
+    cat /data/system/notification_policy.xml >  $LOGDIR/logcat/notification_policy-boot.xml
+    chmod 755 $LOGDIR/logcat/*.xml
+}
+
+function packages_info()
+{
+    echo "packagesinfo every 60"#pm list packages > $LOGDIR/logcat/installedapp.txt
+    cat /data/system/packages.xml > $LOGDIR/logcat/packages.xml
+     cat /data/system/device_policies.xml > $LOGDIR/logcat/device_policies-boot.xml
+     cat /data/system/users/0/package-restrictions.xml > $LOGDIR/logcat/package-restrictions.xml
+     cat /data/misc_de/0/apexdata/com.android.permission/runtime-permissions.xml > $LOGDIR/logcat/runtime-permissions.xml
+     cat /data/system/users/0/settings_secure.xml  > $LOGDIR/logcat/settings_secure.xml
+     cat /data/system/users/0/settings_system.xml > $LOGDIR/logcat/settings_system.xml
+     cat /data/system/users/0/settings_global.xml >  $LOGDIR/logcat/settings_global.xml
+     cat /data/system/users/0/wallpaper >  $LOGDIR/logcat/wallpaper
+     cat /data/system/users/0/wallpaper_orig >  $LOGDIR/logcat/wallpaper_orig
+     cat /data/system/users/0/wallpaper_lock >  $LOGDIR/logcat/wallpaper_lock
+     cat /data/system/users/0/wallpaper_lock_orig >  $LOGDIR/logcat/wallpaper_lock_orig
+     cat /data/system/users/0/wallpaper_info.xml >  $LOGDIR/logcat/wallpaper_info.xml
+     cat /data/system/notification_policy.xml >  $LOGDIR/logcat/notification_policy.xml
+     chmod 755 $LOGDIR/logcat/*.xml
+}
+
+function onboot()
+{
+    debug "onboot"
+    if [ "$isbootcomplete" -eq "1" ] ;then
+        return
+    fi
+    local bootanim_service=`getprop init.svc.bootanim`
+    if [ "$bootanim_service" != "stopped" ] ;then
+        debug "bootanim service $bootanim_service"
+        return
+    fi
+    isbootcomplete=1
+    for func in ${onbootcomplete[@]}
+    do
+        debug "call $func when bootcomplete"
+        $func
+    done
+}
+
+function save_bootlog()
+{
+    debug "save bootlog"
+    setprop persist.odm.getqrtr.lookup 1
+    baseinfo
+    tar czf $LOGDIR/logcat/logsboot0.tar.gz $LOGDIR/kernel $LOGDIR/logcat/logcat_*
+}
+
+function call_at()
+{
+    local which
+    local when
+    local fun
+    for which in ${crontab_at[*]}
+    do
+        eval when=\${${which}[0]}
+        eval fun=\${${which}[1]}
+        if [ "$when" -ne "0" ] ; then
+            debug "$fun will call at $when"
+        fi
+
+        if [ "$when" -ne "0" -a "$sys_uptime" -ge "$when" ] ; then
+            $fun
+            eval ${which}[0]=0
+        fi
+    done
+}
+
+version=`getprop ro.build.version.release`
+version=${version%%.*}
+
+every30s=(0 29 kmsg)
+every60s=(0 59 packages_info)
+crontab=(every30s every60s)
+onbootcomplete=(baseinfo jank_detect dumpheap packages_info_boot)
+bootlog=(180 save_bootlog)
+crontab_at=(bootlog)
+isbootcomplete=0
+isresetlogsavedone=0
+
+
+mkdir $LOGDIR
+mkdir $LOGDIR/kernel
+mkdir $LOGDIR/logcat
+mkdir $LOGDIR/smem
+mkdir $LOGDIR/resetlog
+mkdir $PSTORE_PATH
+
+chmod 755 $PSTORE_PATH
+
+cd $SYSDIR
+
+date > $LOGDIR/kernel/ram_console.txt
+cat $LAST_KMSG_FILE >> $LOGDIR/kernel/ram_console.txt
+cat $PSTORE_CONSOLE_FILE >> $LOGDIR/kernel/ram_console.txt
+
+
+rm -r $LOGS_DIR/resetlog/*
+rm -r $LOGS_DIR/kernel/*
+rm -r $LOGS_DIR/tz/*
+rm -r $LOGS_DIR/data_kernel/*
+rm -r $LOGS_DIR/logcat/*
+rm -r $LOGS_DIR/smem/*
+rm -r $LOGS_DIR/smem*.tar.gz
+rm -r $LOGS_DIR/*.txt
+rm -r $LOGS_DIR/*.log
+rm -f $LOGS_DIR/modem/*
+rm -r $LOGS_DIR/gpu/*
+
+rm -rf $LOGS_DIR/data_kernel
+rm -rf $LOGS_DIR/gpu
+rm -rf $LOGS_DIR/tz
+rm -rf $LOGS_DIR/modem
+rm -rf $LOGS_DIR/smem
+rm -r $LOGS_DIR/loglast5.tar.gz
+rm -r $LOGS_DIR/loglast4.tar.gz
+rm -r $LOGS_DIR/loglast3.tar.gz
+rm -r $LOGS_DIR/loglast2.tar.gz
+rm -r $LOGS_DIR/loglast1.tar.gz
+
+
+chown system.root $LOGDIR/logcat/
+chmod -R 775 $LOGDIR/
+
+
+chmod 755 /sys/kernel/debug
+
+logcat_to_file
+
+rm /data/local/tmp/stopmonkey
+
+baseinfo
+chmod -R 775 $LOGDIR/
+
+sys_uptime=$INTERVAL_MAIN
+
+#console-ramoops-0 need indeterminate time seconds, so delay to check in loop
+#set resetlog of console-ramoops-0 saving during while loop
+save_reset_log_preloop
+
+#start getsysteminfo
+
+while true
+do
+    uptime0=`cat /proc/uptime | awk '{print $1}'`
+    uptime0=${uptime0/\.*/}
+
+    debug "time: $sys_uptime"
+
+    save_reset_log_inloop
+    onboot
+    call_at
+
+    if need_log ; then
+        mainloop
+    else
+        debug "donot log"
+        delete_logs
+    fi
+    delete_logs_low
+    uptime1=`cat /proc/uptime | awk '{print $1}'`
+    uptime1=${uptime1/\.*/}
+    sec=$(($uptime0 + $INTERVAL_MAIN - $uptime1))
+
+    if [ -z "$sec" ]; then
+        sec=$INTERVAL_MAIN
+    fi
+
+    if [ "$sec" -gt "30" -o  "$sec" -le "0" ]; then
+        debug "sec error $sec, reset it"
+        sec=$INTERVAL_MAIN
+    fi
+
+    debug "need to sleep $sec"
+    sleep $sec
+    sys_uptime=$(($sys_uptime + $INTERVAL_MAIN))
+done

@@ -1,0 +1,12 @@
+# get software upgrade flag
+service boot-su /system_ext/bin/bootservice readswupgradeflag
+    class late_start
+    user root
+    oneshot
+
+#get anti theft status
+service boot-at /system_ext/bin/bootservice readantitheftflag
+    class late_start
+    user root
+    oneshot
+

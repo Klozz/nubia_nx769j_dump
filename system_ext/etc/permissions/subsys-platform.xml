@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<permissions>
+    <library name="com.android.subsys.VendorSubsysServiceComponentFactory"
+            file="/system_ext/framework/subsys-platform.jar"/>
+</permissions>

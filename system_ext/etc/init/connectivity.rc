@@ -1,0 +1,65 @@
+#
+# zte connectivity.rc
+#
+on post-fs-data
+    #Create directory for BT pcm sample
+    mkdir /data/vendor/audio/bt 0770 media audio
+    chmod 0664 /mnt/vendor/persist/.bt_nv.bin
+    # Allow all permission to /data/misc/dhcp for "Other"
+    mkdir /data/misc/dhcp 0777 dhcp dhcp
+    chown dhcp dhcp /data/misc/dhcp
+    # add tcpdump log directory
+    mkdir /data/tcplog 0777 root root
+    #cover data/property/persistent_properties
+    setprop persist.enable.bluetooth.voipleawar false
+    setprop persist.vendor.service.bt.adv_audio_mask 0
+
+#
+# zte btlog(QXDM and UART)
+#
+on property:persist.sys.btlog.enable=0
+    #write /sys/devices/soc/7570000.uart/debug_mask 3
+    start stop_qxdmbtlog
+    setprop persist.vendor.service.bdroid.soclog ""
+
+on property:persist.sys.btlog.enable=1
+    start start_qxdmbtlog
+    setprop persist.vendor.service.bdroid.soclog ""
+
+on property:persist.sys.btipclog.enable=0
+    stop start_ipclog
+
+on property:persist.sys.btipclog.enable=1
+    start start_ipclog
+
+service start_qxdmbtlog /system_ext/bin/start_qxdmbtlog.sh
+    user root
+    disabled
+    oneshot
+
+service stop_qxdmbtlog /system_ext/bin/stop_qxdmbtlog.sh
+    user root
+    disabled
+    oneshot
+
+service start_ipclog /system_ext/bin/start_ipclog.sh
+    user root
+    group root
+    disabled
+    oneshot
+
+service btchip /system_ext/bin/init.btprop.sh
+    class late_start
+    oneshot
+
+service wlan_prop /system_ext/bin/init.wlanprop.sh
+    class late_start
+    oneshot
+
+# RF test *983*28#-abandoned
+service bttestmode /system_ext/bin/bt_testmode.sh
+    class late_start
+    user root
+    oneshot
+    disabled
+

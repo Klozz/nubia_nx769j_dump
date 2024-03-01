@@ -1,0 +1,38 @@
+let argc=$#+1
+ii=0
+jj=0
+kk=0
+if [ $argc -eq 2 ];then
+    if [ $1 = "all" ];then
+        for tn in $(ls /sys/class/thermal/);do
+            if [ -r /sys/class/thermal/$tn/temp ];then
+                if [ -r /sys/class/thermal/$tn/type ];then
+                    echo "$tn:\t$(cat /sys/class/thermal/$tn/type) -> $(cat /sys/class/thermal/$tn/temp)\n"
+                    let ii+=1
+                    let jj+=1
+                else
+                    echo "/sys/class/thermal/$tn/type open failed\n"
+                    let ii+=1
+                    let kk+=1
+                fi
+            else
+                echo "/sys/class/thermal/$tn/temp open failed\n"
+                let ii+=1
+                let kk+=1
+            fi
+        done
+        echo "Totally $ii thermal_zones, $jj success, $kk failed\n"
+        exit
+    fi
+    if [ -d /sys/class/thermal/thermal_zone$1 ];then
+        if [ -r /sys/class/thermal/thermal_zone$1/type ];then
+            echo "success"
+        else
+            echo "/sys/class/thermal/$kk/temp open failed\n"
+        fi
+    else
+        echo "ntc_thermal test failed!"
+    fi
+else
+    echo "parameter number error argc $argc"
+fi

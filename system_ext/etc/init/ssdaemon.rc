@@ -1,0 +1,5 @@
+service ssdaemon /system_ext/bin/ssdaemon
+    class late_start
+    socket sub-system-d stream 0660 system system
+    user root
+    group system radio audio log nfc

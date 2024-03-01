@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ * Copyright (c) 2018 ZTE Corporation.
+ * All Rights Reserved.
+ * Confidential and Proprietary - ZTE Corporation.
+-->
+
+<!--
+ * This XML file declares which signature|privileged permissions should be granted to SubsysService.
+-->
+<permissions>
+    <privapp-permissions package="com.android.subsys">
+        <permission name="android.permission.ACCESS_BROADCAST_RADIO"/>
+        <permission name="android.permission.MASTER_CLEAR"/>
+        <permission name="android.permission.MODIFY_AUDIO_ROUTING"/>
+        <permission name="android.permission.MODIFY_AUDIO_SETTINGS"/>
+        <permission name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
+        <permission name="android.permission.READ_PRECISE_PHONE_STATE"/>
+        <permission name="android.permission.REBOOT"/>
+        <permission name="android.permission.SYSTEM_ALERT_WINDOW"/>
+        <permission name="android.permission.WAKE_LOCK" />
+        <permission name="android.permission.SET_MEDIA_KEY_LISTENER"/>
+        <permission name="android.permission.FOREGROUND_SERVICE"/>
+    </privapp-permissions>
+</permissions>

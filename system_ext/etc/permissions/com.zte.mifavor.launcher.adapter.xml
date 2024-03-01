@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ UI-Dept.
+  -->
+<permissions>
+    <privapp-permissions package="com.zte.mifavor.launcher.adapter">
+        <permission name="android.permission.STATUS_BAR"/>
+        <permission name="android.permission.DELETE_PACKAGES"/>
+    </privapp-permissions>
+</permissions>

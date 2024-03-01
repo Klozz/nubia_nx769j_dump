@@ -1,0 +1,363 @@
+#!/system/bin/sh
+
+export PATH=/vendor/xbin:$PATH
+SYSDIR=/logdump
+LOGDIR=$SYSDIR/vendor_logs
+DEBUGFS_PATH=/sys/kernel/debug
+PSTORE_PATH=/sys/fs/pstore
+PSTORE_CONSOLE_FILE=$PSTORE_PATH/console-ramoops
+PSTORE_CONSOLE_FILE_NEW=$PSTORE_PATH/console-ramoops-0
+LAST_KMSG_FILE=/proc/last_kmsg
+SMEM_DEBUGFS_PATH=$DEBUGFS_PATH/smem_log
+KMSG_EXT_FILE=/proc/kmsg_ext
+INTERVAL_MAIN=30
+DMESG="dmesg -S"
+BOOTMODE="getprop ro.bootmode"
+
+function debug()
+{
+    echo $1
+    #echo $1 >>$LOGDIR/getlogdebug.txt
+}
+
+function my_logcat
+{
+    while true
+    do
+        logcat $*
+        sleep 1
+    done
+}
+
+function logcat_to_file()
+{
+    my_logcat -b crash -f $LOGDIR/logcat/logcat_crash.txt -r5120 -n8 -v threadtime AndroidRuntime:D DEBUG:D LIB_DEBUG:D *:S &
+    my_logcat -b system -f $LOGDIR/logcat/logcat_system.txt -r5120 -n16 -v threadtime *:D &
+    my_logcat -b main -f $LOGDIR/logcat/logcat_main.txt -r5120 -n32 -v threadtime *:D ze_/$LOGDIR/logcat/exit_m.txt &
+    #my_logcat -b radio -f $LOGDIR/logcat/logcat_radio.txt -r5120 -n32 -v threadtime *:D ze_/$LOGDIR/logcat/exit_r.txt &
+    my_logcat -b events -f $LOGDIR/logcat/logcat_events.txt -r4096 -n8 -v threadtime *:D &
+}
+
+function save_reset_log_inloop()
+{
+    if [ "$isresetlogsavedone" -eq "1" ] ;then
+        return
+    fi
+
+    if [ -e $PSTORE_CONSOLE_FILE_NEW ]; then
+        dumpstate -k >> $LOGDIR/resetlog/kernel_resetlog.txt
+        isresetlogsavedone=1
+        echo "$PSTORE_CONSOLE_FILE_NEW exist" >> $LOGDIR/logcat/summary/usage.txt
+        date >> $LOGDIR/logcat/summary/usage.txt
+    fi;
+}
+
+function bak_if()
+{
+    local bakfile=$1
+    local file=${bakfile##*/}
+    local dir=${bakfile%/*}
+    local size=$2
+
+    debug "bakfile:$bakfile file:$file dir:$dir size:$size"
+    if [ ! -f $bakfile ] ; then
+        debug "bakfile:$bakfile donot exist"
+        return
+    fi
+
+    l=`du -s   $bakfile | sed 's/[\t ][\t ]*/\n/g' | sed -n '1p'`
+    if [ "$l" -gt "$2" ] ;then
+        debug "rm $bakfile.0.tar.gz"
+        rm $bakfile.0.tar.gz
+        pwd
+        debug "cd $dir"
+        cd $dir
+        debug "$file -> $file.0.tar.gz"
+        tar zcf $file.0.tar.gz $file
+        debug "rm $file"
+        rm $file
+        cd -
+        pwd
+    fi
+}
+
+
+function bak_if_kernel()
+{
+    local bakfile=$1
+    local file=${bakfile##*/}
+    local dir=${bakfile%/*}
+    local size=$2
+
+    debug "bakfile:$bakfile file:$file dir:$dir size:$size"
+    if [ ! -f $bakfile ] ; then
+        debug "bakfile:$bakfile donot exist"
+        return
+    fi
+
+    l=`du -s   $bakfile | sed 's/[\t ][\t ]*/\n/g' | sed -n '1p'`
+    if [ "$l" -gt "$2" ] ;then
+        debug "rm $bakfile.0.tar.gz"
+        #rm $bakfile.0.tar.gz
+        pwd
+        debug "cd $dir"
+        cd $dir
+        debug "$file -> $file.0.tar.gz"
+        rm $file.5.tar.gz
+        mv $file.4.tar.gz $file.5.tar.gz
+        mv $file.3.tar.gz $file.4.tar.gz
+        mv $file.2.tar.gz $file.3.tar.gz
+        mv $file.1.tar.gz $file.2.tar.gz
+        mv $file.0.tar.gz $file.1.tar.gz
+        tar zcf $file.0.tar.gz $file
+        debug "rm $file"
+        rm $file
+        cd -
+        pwd
+    fi
+}
+
+
+function kmsg()
+{
+    debug "kmsg begin"
+    local mycurdir=`pwd`
+    cd /
+    if [ ! -f ".cell" ] ; then
+     $DMESG | grep "avc:" >> $LOGDIR/kernel/selinux_audit.txt
+     bak_if  $LOGDIR/kernel/selinux_audit.txt 4096
+     if [ -f "$KMSG_EXT_FILE" ]; then
+       if [[ "$BOOTMODE" == "charger" ]]; then
+         $DMESG -c >> $LOGDIR/kernel/log_kernel.txt
+       else
+         $DMESG >> $LOGDIR/kernel/log_kernel.txt
+       fi
+     else
+       if [[ "$BOOTMODE" == "charger" ]]; then
+         $DMESG -c | egrep -v  "\[TCP\]|\[IP\]">> $LOGDIR/kernel/log_kernel.txt
+       else
+         $DMESG | egrep -v  "\[TCP\]|\[IP\]">> $LOGDIR/kernel/log_kernel.txt
+       fi
+     fi
+     bak_if_kernel  $LOGDIR/kernel/log_kernel.txt 4096
+    fi
+    cd $mycurdir
+    debug "kmsg end"
+}
+
+
+function save_reset_log_preloop()
+{
+    date > $LOGDIR/resetlog/kernel_resetlog.txt
+    cat $LAST_KMSG_FILE >> $LOGDIR/resetlog/kernel_resetlog.txt
+    cat $PSTORE_CONSOLE_FILE >> $LOGDIR/resetlog/kernel_resetlog.txt
+    cat $SMEM_DEBUGFS_PATH/dump_sym > $LOGDIR/resetlog/smem_log_event.txt
+    cat $SMEM_DEBUGFS_PATH/dump_static_sym > $LOGDIR/resetlog/smem_log_static_events.txt
+    cat $SMEM_DEBUGFS_PATH/dump_power_sym > $LOGDIR/resetlog/smem_log_power_events.txt
+    cat $DEBUGFS_PATH/smd/modem_err > $LOGDIR/resetlog/smd.txt
+    cat $SMEM_DEBUGFS_PATH/dump_voters > $LOGDIR/resetlog/voters.txt
+    chmod -R 755 $LOGDIR/resetlog/*
+}
+
+function need_log
+{
+    local available=`df  | grep "$SYSDIR" | sed 's/[\t ][\t ]*/\n/g' | sed -n '4p'`
+    local total=`du -s $LOGDIR | sed 's/[\t ][\t ]*/\n/g' | sed -n '1p'`
+    if [ "$available"x == ""x ];then
+        available=51200
+    fi
+    #debug "need_log $available $total"
+    if [ "$available" -gt "5120" -a "$total" -lt "51200" ] ;then
+        return 0
+    fi
+    return 1
+}
+
+function delete_logs
+{
+    rm -rf $LOGDIR/bugreports
+    rm $LOGDIR/loglast[1-9]*.gz
+    rm $LOGDIR/*.hprof
+}
+
+function delete_logs_low
+{
+    available=`df | grep "$SYSDIR" | sed 's/[\t ][\t ]*/\n/g' | sed -n '4p'`
+
+    if [ "$available" -lt "20480" ]; then
+        debug "$SYSDIR to low: $available, delete some log"
+        delete_logs
+    fi
+
+    if [ "$available" -lt "10240" ]; then
+        debug "$LOGDIR to low: $available, delete *hprof *.gz"
+        rm $LOGDIR/*.hprof
+        rm $LOGDIR/*.gz
+    fi
+}
+
+function onboot()
+{
+    debug "onboot"
+    if [ "$isbootcomplete" -eq "1" ] ;then
+        return
+    fi
+    local bootanim_service=`getprop init.svc.bootanim`
+    if [ "$bootanim_service" != "stopped" ] ;then
+        debug "bootanim service $bootanim_service"
+        return
+    fi
+    isbootcomplete=1
+    for func in ${onbootcomplete[@]}
+    do
+        debug "call $func when bootcomplete"
+        $func
+    done
+}
+
+function save_bootlog()
+{
+    debug "save bootlog"
+    tar czf $LOGDIR/logcat/logsboot0.tar.gz $LOGDIR/kernel $LOGDIR/logcat/logcat_*
+}
+
+function call_at()
+{
+    local which
+    local when
+    local fun
+    for which in ${crontab_at[*]}
+    do
+        eval when=\${${which}[0]}
+        eval fun=\${${which}[1]}
+        if [ "$when" -ne "0" ] ; then
+            debug "$fun will call at $when"
+        fi
+
+        if [ "$when" -ne "0" -a "$sys_uptime" -ge "$when" ] ; then
+            $fun
+            eval ${which}[0]=0
+        fi
+    done
+}
+
+function mainloop()
+{
+    debug "mainloop begin"
+    local interval=0
+    local e
+    local next
+
+    #process_info
+    #kmsg
+    #bakup_tombstones
+    for e in ${crontab[@]}
+    do
+        eval next=\${${e}[0]}
+        eval interval=\${${e}[1]}
+        debug "cur:$e $next $interval $sys_uptime"
+        if [ "$sys_uptime" -ge "$next" ] ;then
+            interval=`expr $interval + $sys_uptime`
+            eval ${e}[0]=\$interval
+            eval next=\${${e}[0]}
+            debug "next:$next $interval $sys_uptime"
+            eval local len=\${#${e}[@]}
+            local funi=2
+            while [ $funi -lt $len ]
+            do
+                eval \${${e}[$funi]}
+                eval debug \${${e}[$funi]}
+                funi=`expr $funi + 1`
+            done
+        fi
+    done
+
+    chmod 777 $LOGDIR/logcat
+    chmod -R 755  $LOGDIR/logcat/*
+    chmod -R 755  $LOGDIR/kernel/*
+    chmod -R 755  $LOGDIR/tz/*
+
+    debug "mainloop end"
+}
+
+
+mkdir $LOGDIR
+mkdir $LOGDIR/kernel
+mkdir $LOGDIR/logcat
+mkdir $LOGDIR/tz
+mkdir $LOGDIR/resetlog
+
+mkdir $LOGDIR/logcat/summary/
+date >> $LOGDIR/logcat/summary/usage.txt
+
+chown system.root $LOGDIR/logcat/
+chmod -R 755 $LOGDIR/
+chmod 755 /sys/kernel/debug
+chmod -R 755 $LOGDIR/
+
+cd $SYSDIR
+mv $LOGDIR/loglast2.tar.gz $LOGDIR/loglast3.tar.gz
+mv $LOGDIR/loglast1.tar.gz $LOGDIR/loglast2.tar.gz
+date > $LOGDIR/kernel/ram_console.txt
+cat $LAST_KMSG_FILE >> $LOGDIR/kernel/ram_console.txt
+cat $PSTORE_CONSOLE_FILE >> $LOGDIR/kernel/ram_console.txt
+tar czf $LOGDIR/loglast1.tar.gz $LOGDIR/kernel $LOGDIR/logcat $LOGDIR/resetlog $LOGDIR/tz
+
+rm -r vendor_logs/resetlog/*
+rm -rf $LOGDIR/resetlog/summary/powerlog
+cp -fr $LOGDIR/logcat/summary $LOGDIR/resetlog/summary/
+mkdir $LOGDIR/resetlog/summary/powerlog
+mkdir $LOGDIR/resetlog/summary/powerlog/logcat_event
+cp -fr $LOGDIR/logcat/pmlog $LOGDIR/resetlog/summary/powerlog/pmlog
+cp -fr $LOGDIR/logcat/logcat_events* $LOGDIR/resetlog/summary/powerlog/logcat_event
+
+rm -r vendor_logs/kernel/*
+rm -r vendor_logs/tz/*
+rm -r vendor_logs/logcat/*
+rm -r vendor_logs/*.txt
+rm -r vendor_logs/*.log
+
+logcat_to_file
+every30s=(0 29 kmsg)
+crontab=(every30s)
+bootlog=(180 save_bootlog)
+crontab_at=(bootlog)
+isbootcomplete=0
+isresetlogsavedone=0
+sys_uptime=$INTERVAL_MAIN
+
+while true
+do
+    uptime0=`cat /proc/uptime | sed 's/[\t ][\t ]*/\n/g' | sed -n '1p'`
+    uptime0=${uptime0/\.*/}
+
+    debug "time: $sys_uptime"
+
+    save_reset_log_inloop
+    onboot
+    call_at
+
+    if need_log ; then
+        mainloop
+    else
+        debug "donot log"
+        delete_logs
+    fi
+    delete_logs_low
+    uptime1=`cat /proc/uptime | sed 's/[\t ][\t ]*/\n/g' | sed -n '1p'`
+    uptime1=${uptime1/\.*/}
+    sec=`expr $uptime0 + $INTERVAL_MAIN - $uptime1`
+
+    if [ -z "$sec" ]; then
+        sec=$INTERVAL_MAIN
+    fi
+
+    if [ "$sec" -gt "30" -o  "$sec" -le "0" ]; then
+        debug "sec error $sec, reset it"
+        sec=$INTERVAL_MAIN
+    fi
+
+    debug "need to sleep $sec"
+    sleep $sec
+    sys_uptime=`expr $sys_uptime + $INTERVAL_MAIN`
+done
