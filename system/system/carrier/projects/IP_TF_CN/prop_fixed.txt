@@ -1,0 +1,8 @@
+persist.vendor.custom.variant.id=IP_TF_CN 
+ro.oem.key1=IP_TF_CN 
+ro.build.display.id=RedMagicOS9.0.12_NX769J_V1A_TF 
+ro.vendor.build.def_theme_name=default_theme_32 
+ro.config.ringtone=Bumblebee.ogg 
+ro.config.alarm_alert=1Bumblebee.ogg 
+ro.config.notification_sound=1Bumblebee.ogg
+

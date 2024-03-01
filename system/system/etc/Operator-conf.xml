@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+        simNumeric:used to match mcc/mnc of current sim card.
+        plmnNumeric:used to match mcc/mnc of current registered network
+        (
+                the length of simNumeric and plmnNumeric can be smaller than 3(including 3 and 0), which matches mcc/mnc that starts with it(0 matches every mcc/mnc);
+                its length also can be larger than 3(not including 3), which matches mcc/mnc that is contained in it;
+                if any of these 2 params is "" or not defined in one item, then this item won't try to match this param
+        )
+
+        spn:used to match spn name stored in current sim card
+        plmn:used to match current registered network name
+        gid/rat/pnn:used to match gid/rat/pnn
+        (
+                if any of these 3 params is "" or not defined in one item, then this item won't try to match this param
+        )
+
+        spnOverride:used to override the spn stored in current sim card
+        plmnOverride:used to override current registered network name
+        showSpn:used to force UI to show/hide spn
+        showPlmn:used to force UI to show/hide plmn
+        (
+                if any of these 4 params is "" or not defined in one item, then this item won't override this param
+                if showSpn or showPlmn is defined as
+        )
+-->
+
+<!--
+content example: (already contain all params)
+        OperatorOverrideInfo simNumeric="46002" plmnNumeric="46000" spn="CMCC" plmn="CMCC" gid="28" rat="13" pnn="ZTEPNN" spnOverride="XXX" plmnOverride="China Mobile"  showSpn="false" showPlmn="true"
+Description:
+        when sim card 46002 attach to 46000 network, and the spn stored in sim card is CMCC, operator name is CMCC, gid is 28, rat is 13, and pnn is ZTEPNN, then the UI will finally show China Mobile
+
+content example:(already contain all params)
+        RoamingCancelInfo simNumeric="46002" plmnNumeric="46000" spn="CMCC" plmn="CMCC" gid="28" rat="13" pnn="ZTEPNN"
+Description:
+        when sim card 46002 attach to 46000 network,and the spn stored in sim card is CMCC, operator name is CMCC, gid is 28, rat is 13, and pnn is ZTEPNN, then the UI will show none roaming
+
+content example:(contain not all params)
+        RoamingCancelInfo simNumeric="46001" spnOverride="China Unicom" showSpn="true"
+Description:
+        when the inserted sim card's mcc/mnc is 46002, then the UI will show "China Unicom + plmn"(the original showing rule will follow the protocol)
+-->
+<OperatorOverrideInfos>
+        <!-- Mexico -->
+        <OperatorOverrideInfo simNumeric="334020" plmnNumeric="330110,72405,732101" plmnOverride="Claro"/>
+        <OperatorOverrideInfo simNumeric="334020" plmnNumeric="310260" plmnOverride="T-Mobile"/>
+        <OperatorOverrideInfo simNumeric="334020" plmnNumeric="71403" plmnOverride="CLARO PA"/>
+        <OperatorOverrideInfo simNumeric="334020" plmnNumeric="73003" plmnOverride="ClaroCHL"/>
+        <OperatorOverrideInfo simNumeric="334020" plmnNumeric="37002" plmnOverride="ClaroDOM"/>
+        <OperatorOverrideInfo simNumeric="334020" plmnNumeric="74810" plmnOverride="CLARO UY"/>
+        <OperatorOverrideInfo simNumeric="334020" plmnNumeric="74402" plmnOverride="CLARO PY"/>
+        <OperatorOverrideInfo simNumeric="334020" plmnNumeric="722310" plmnOverride="CLARO AR"/>
+        <OperatorOverrideInfo simNumeric="334020" plmnNumeric="70401" plmnOverride="CLAROGTM"/>
+        <OperatorOverrideInfo simNumeric="334020" plmnNumeric="71610" plmnOverride="ClaroPER"/>
+        <OperatorOverrideInfo simNumeric="334020" plmnNumeric="74001" plmnOverride="CLARO"/>
+        <OperatorOverrideInfo simNumeric="334020" plmnNumeric="70601" plmnOverride="ClaroSLV"/>
+        <OperatorOverrideInfo simNumeric="334020" plmnNumeric="708001" plmnOverride="ClaroHND"/>
+        <OperatorOverrideInfo simNumeric="334020" plmnNumeric="71021" plmnOverride="ClaroNIC"/>
+        <OperatorOverrideInfo simNumeric="334020" plmnNumeric="71203" plmnOverride="CLARO CR"/>
+        <OperatorOverrideInfo simNumeric="334020" plmnNumeric="334020" plmnOverride="TELCEL"/>
+        <OperatorOverrideInfo simNumeric="334020" plmnNumeric="23212" plmnOverride="A1"/>
+        <OperatorOverrideInfo simNumeric="334020" plmnNumeric="20408" plmnOverride="NL KPN"/>
+        <OperatorOverrideInfo simNumeric="334020" plmnNumeric="29505" plmnOverride="FL1"/>
+        <OperatorOverrideInfo simNumeric="334020" plmnNumeric="29340" plmnOverride="Si.mobil"/>
+        <OperatorOverrideInfo simNumeric="334020" plmnNumeric="28401" plmnOverride="Mtel"/>
+        <OperatorOverrideInfo simNumeric="334020" plmnNumeric="21910" plmnOverride="HR VIP"/>
+        <OperatorOverrideInfo simNumeric="334020" plmnNumeric="20620" plmnOverride="BASE"/>
+        <OperatorOverrideInfo simNumeric="334020" plmnNumeric="29403" plmnOverride="MKD"/>
+        <OperatorOverrideInfo simNumeric="334020" plmnNumeric="25701" plmnOverride="BY VELCOM"/>
+        <OperatorOverrideInfo simNumeric="334020" plmnNumeric="22005" plmnOverride="SRB"/>
+        <OperatorOverrideInfo plmnNumeric="334050" plmnOverride="AT&amp;T" spnOverride="AT&amp;T"/>
+        <RoamingCancelInfo simNumeric="334" plmnNumeric="334"/>
+
+        <!-- Sweden -->
+    <RoamingCancelInfo simNumeric="240" plmnNumeric="240"/>
+
+        <!-- Finland -->
+        <RoamingCancelInfo simNumeric="244" plmnNumeric="244"/>
+
+        <!-- Denmark -->
+        <RoamingCancelInfo simNumeric="238" plmnNumeric="238"/>
+
+        <!-- Norway -->
+        <RoamingCancelInfo simNumeric="242" plmnNumeric="242"/>
+
+        <!-- England Virgin -->
+        <RoamingCancelInfo simNumeric="234" plmnNumeric="234"/>
+        <OperatorOverrideInfo simNumeric="23430,23433" gid="28" plmnNumeric="23430,23438" plmnOverride="Virgin" showSpn="false" showPlmn="true"/>
+        <OperatorOverrideInfo simNumeric="23438" plmnNumeric="23430,23438" plmnOverride="Virgin" showSpn="false" showPlmn="true"/>
+        <OperatorOverrideInfo simNumeric="23430,23433" gid="28" plmnNumeric="23433" plmnOverride="virgin" showSpn="false" showPlmn="true"/>
+        <OperatorOverrideInfo simNumeric="23438" plmnNumeric="23433" plmnOverride="virgin" showSpn="false" showPlmn="true"/>
+        <OperatorOverrideInfo simNumeric="23430,23431,23432,23433,23434" plmnNumeric="23430,23431,23432,23433,23434" plmnOverride="EE" showSpn="false" showPlmn="true"/>
+
+        <!-- Austria -->
+        <RoamingCancelInfo simNumeric="23207" plmnNumeric="23203,23207"/>
+        <RoamingCancelInfo simNumeric="23211,23212" plmnNumeric="23201"/>
+        <RoamingCancelInfo simNumeric="23213,23218" plmnNumeric="23210,23205,23203"/>
+        <RoamingCancelInfo simNumeric="23201" plmnNumeric="23201"/>
+        <RoamingCancelInfo simNumeric="23210" plmnNumeric="23203,23205"/>
+        <RoamingCancelInfo simNumeric="23219" plmnNumeric="23203,23207"/>
+        <RoamingCancelInfo simNumeric="23205" plmnNumeric="23203,23210"/>
+        <OperatorOverrideInfo simNumeric="23207" plmnNumeric="23203,23207" showSpn="true" showPlmn="false"/>
+        <OperatorOverrideInfo simNumeric="23211,23212" plmnNumeric="23201" showSpn="true" showPlmn="false"/>
+        <OperatorOverrideInfo simNumeric="23213,23218" plmnNumeric="23210,23205,23203" showSpn="true" showPlmn="false"/>
+        <OperatorOverrideInfo simNumeric="23201" plmnNumeric="23201" showSpn="true" showPlmn="false"/>
+        <OperatorOverrideInfo simNumeric="23210" plmnNumeric="23203,23205" showSpn="true" showPlmn="false"/>
+        <OperatorOverrideInfo simNumeric="23219" plmnNumeric="23203,23207" showSpn="true" showPlmn="false"/>
+        <OperatorOverrideInfo simNumeric="23205" plmnNumeric="23203,23210" showSpn="true" showPlmn="false"/>
+
+        <!-- France -->
+        <RoamingCancelInfo simNumeric="20823" plmnNumeric="20810"/>
+        <RoamingCancelInfo simNumeric="20826" plmnNumeric="20810,20820,20801"/>
+        <RoamingCancelInfo simNumeric="20815" plmnNumeric="20801,20802"/>
+        <OperatorOverrideInfo simNumeric="20815" plmnNumeric="20801,20802" spn="" showSpn="true" showPlmn="false" roaming="false"/>
+        <OperatorOverrideInfo plmnNumeric="20801" plmnOverride="Orange F" showSpn="false" showPlmn="true" roaming="false"/>
+        <OperatorOverrideInfo plmnNumeric="22610,26003,23101,25901,34001" plmnOverride="Orange" showSpn="false" showPlmn="true" roaming="false"/>
+        <OperatorOverrideInfo plmnNumeric="20610" plmnOverride="Orange B" showSpn="false" showPlmn="true"/>
+        <OperatorOverrideInfo plmnNumeric="21403" plmnOverride="Orange" showSpn="false" showPlmn="true"/>
+        <OperatorOverrideInfo plmnNumeric="64700" plmnOverride="Orange Re" showSpn="false" showPlmn="true"/>
+        <OperatorOverrideInfo plmnNumeric="20801" plmnOverride="Orange FR" showSpn="false" showPlmn="true" roaming="true"/>
+        <OperatorOverrideInfo plmnNumeric="22610" plmnOverride="Orange RO" showSpn="false" showPlmn="true" roaming="true"/>
+        <OperatorOverrideInfo plmnNumeric="26003" plmnOverride="Orange PL" showSpn="false" showPlmn="true" roaming="true"/>
+        <OperatorOverrideInfo plmnNumeric="23101" plmnOverride="Orange SK" showSpn="false" showPlmn="true" roaming="true"/>
+        <OperatorOverrideInfo plmnNumeric="25901" plmnOverride="Orange MD" showSpn="false" showPlmn="true" roaming="true"/>
+        <OperatorOverrideInfo plmnNumeric="34001" plmnOverride="Orange C" showSpn="false" showPlmn="true" roaming="true"/>
+
+        <!-- Germany -->
+        <RoamingCancelInfo simNumeric="26207" plmnNumeric="26203"/>
+        <RoamingCancelInfo simNumeric="26203" plmnNumeric="26207"/>
+
+        <!-- Spain -->
+        <RoamingCancelInfo simNumeric="214" plmnNumeric="214"/>
+        <OperatorOverrideInfo simNumeric="21404" plmnNumeric="21403,21407" showSpn="true" showPlmn="false"/>
+
+        <!-- Romania -->
+        <RoamingCancelInfo simNumeric="22603" plmnNumeric="22606"/>
+        <RoamingCancelInfo simNumeric="22606" plmnNumeric="22603"/>
+        <!-- <OperatorOverrideInfo plmnNumeric="22603,22606" plmnOverride="Telekom.RO 3G"/> -->
+
+        <!-- Poland -->
+        <OperatorOverrideInfo simNumeric="26006" plmnNumeric="26006" plmnOverride="PLAY" showSpn="false" showPlmn="true"/>
+        <OperatorOverrideInfo simNumeric="26006" plmnNumeric="26001" plmnOverride="PLAY(Plus)" showSpn="false" showPlmn="true"/>
+        <OperatorOverrideInfo simNumeric="26006" plmnNumeric="26002" plmnOverride="PLAY(T-Mobile)" showSpn="false" showPlmn="true"/>
+        <OperatorOverrideInfo simNumeric="26006" plmnNumeric="26003" plmnOverride="PLAY(Orange)" showSpn="false" showPlmn="true"/>
+
+        <!-- Belgium Telenet -->
+        <OperatorOverrideInfo plmnNumeric="21601" plmnOverride="TelenorH3G"/>
+        <OperatorOverrideInfo plmnNumeric="21630" plmnOverride="TMO H3G"/>
+        <OperatorOverrideInfo plmnNumeric="21670" plmnOverride="voda HU3G"/>
+        <RoamingCancelInfo simNumeric="20605" plmnNumeric="20610,20620"/>
+
+        <!-- Chile -->
+        <OperatorOverrideInfo simNumeric="73009" plmnOverride="WOM" showSpn="false" showPlmn="true"/>
+        <OperatorOverrideInfo simNumeric="73003" plmnNumeric="730" plmnOverride="Claro" showSpn="false" showPlmn="true"/>
+        <RoamingCancelInfo simNumeric="73002,73003,73008" plmnNumeric="730"/>
+        <RoamingCancelInfo simNumeric="73009" plmnNumeric="73001,73002,73003,73021"/>
+
+        <!-- Venezuela -->
+        <OperatorOverrideInfo simNumeric="73404" plmnNumeric="73404" plmnOverride="Movistar" showSpn="false" showPlmn="true"/>
+        <OperatorOverrideInfo simNumeric="73406" plmnNumeric="73406" plmnOverride="Movilnet" showSpn="false" showPlmn="true"/>
+
+        <!-- Russia -->
+        <OperatorOverrideInfo simNumeric="25020" spnOverride="Tele2 RU" plmnOverride="Tele2 RU" showSpn="false" showPlmn="true"/>
+
+        <!-- Australia -->
+        <RoamingCancelInfo simNumeric="50503" plmnNumeric="505"/>
+        <!-- BELL -->
+        <RoamingCancelInfo simNumeric="302" plmnNumeric="302"/>
+
+        <OperatorOverrideInfo simNumeric="71610" showSpn="false" showPlmn="true"/>
+        <!-- Dominican -->
+        <OperatorOverrideInfo simNumeric="37002" plmnOverride="Claro" showSpn="false" showPlmn="true"/>
+
+        <!-- Columbia -->
+        <OperatorOverrideInfo simNumeric="732101" showSpn="true" showPlmn="false"/>
+        <OperatorOverrideInfo simNumeric="732123" showSpn="true" showPlmn="false"/>
+        <OperatorOverrideInfo simNumeric="732111" showSpn="true" showPlmn="false"/>
+        <OperatorOverrideInfo simNumeric="732103" showSpn="true" showPlmn="false"/>
+        <OperatorOverrideInfo simNumeric="732130" showSpn="true" showPlmn="false"/>
+        <OperatorOverrideInfo simNumeric="732187" showSpn="true" showPlmn="false"/>
+
+        <!-- Softbank -->
+        <OperatorOverrideInfo simNumeric="44020" plmnNumeric="44020" spn="" showSpn="true" showPlmn="false"/>
+
+        <!-- Movistar -->
+        <OperatorOverrideInfo simNumeric="71606" plmnOverride="Movistar"/>
+
+        <!-- VZW -->
+        <OperatorOverrideInfo simNumeric="311480" gid="BAE0000000000000" plmnNumeric="311480" plmnOverride="Verizon Wireless" showSpn="false" showPlmn="true" roaming="false"/>
+        <OperatorOverrideInfo simNumeric="311480" gid="BAE1000000000000" pnn="Visible" plmnOverride="Visible" showSpn="false" showPlmn="true"/>
+
+        <!-- ATT -->
+        <RoamingCancelInfo simNumeric="311180,310410,310150,310170,310380,310560,310680,310070,310090,310030,310280" plmnNumeric="310410"/>
+
+        <!--China -->
+        <OperatorOverrideInfo simNumeric="46000,46002,46004,46007,46008,46021,46022" plmnNumeric="46050" showSpn="false" showPlmn="true" spnOverride="中国移动" plmnOverride="中国移动 - 中国电信"/>
+        <OperatorOverrideInfo simNumeric="46000,46002,46004,46007,46008,46021,46022" plmnNumeric="46031" showSpn="false" showPlmn="true" spnOverride="中国移动" plmnOverride="中国移动 - 中国联通"/>
+        <OperatorOverrideInfo simNumeric="46001,46006,46009,45407,46031,46032" plmnNumeric="46022" showSpn="false" showPlmn="true" spnOverride="中国联通" plmnOverride="中国联通 - 中国移动"/>
+        <OperatorOverrideInfo simNumeric="46001,46006,46009,45407,46031,46032" plmnNumeric="46061" showSpn="false" showPlmn="true" spnOverride="中国联通" plmnOverride="中国联通 - 中国广电"/>
+        <OperatorOverrideInfo simNumeric="46003,46005,46011,46012,46059,46050,46051" plmnNumeric="46021" showSpn="false" showPlmn="true" spnOverride="中国电信" plmnOverride="中国电信 - 中国移动"/>
+        <OperatorOverrideInfo simNumeric="46003,46005,46011,46012,46059,46050,46051" plmnNumeric="46060" showSpn="false" showPlmn="true" spnOverride="中国电信" plmnOverride="中国电信 - 中国广电"/>
+        <OperatorOverrideInfo simNumeric="46015" plmnNumeric="46051" showSpn="false" showPlmn="true" spnOverride="中国广电" plmnOverride="中国广电 - 中国电信"/>
+        <OperatorOverrideInfo simNumeric="46015" plmnNumeric="46032" showSpn="false" showPlmn="true" spnOverride="中国广电" plmnOverride="中国广电 - 中国联通"/>
+
+        <RoamingCancelInfo simNumeric="46000,46002,46004,46007,46008,46021,46022" plmnNumeric="46050,46031,46021,46022"/>
+        <RoamingCancelInfo simNumeric="46001,46006,46009,46031,46032" plmnNumeric="46022,46031,46032,46061"/>
+        <RoamingCancelInfo simNumeric="46003,46005,46011,46012,46059,46050,46051" plmnNumeric="46050,46031,46021,46022,46060"/>
+        <RoamingCancelInfo simNumeric="46015,46060,46061" plmnNumeric="46051,46032,46060,46061"/>
+
+        <OperatorOverrideInfo plmnNumeric="46024,46020,46060,46061,46015" plmnOverride="中国广电" spnOverride="中国广电" showSpn="true" showPlmn="true"/>
+
+        <OperatorOverrideInfo simNumeric="460" showSpn="false" showPlmn="true" roaming="true"/>
+        <OperatorOverrideInfo simNumeric="460" plmnNumeric="460" plmn="" showSpn="false" showPlmn="true"/>
+
+        <!-- WINDTRE -->
+        <OperatorOverrideInfo simNumeric="22288" gid="FFFFFFFFFFFFFFFFFF" spnOverride="WINDTRE"/>
+        <OperatorOverrideInfo simNumeric="22288" gid="FFFFFFFFFF" spnOverride="WINDTRE"/>
+        <OperatorOverrideInfo simNumeric="22288" gid="0000000099" spnOverride="VERY"/>
+
+        <!-- Malaysia -->
+        <OperatorOverrideInfo simNumeric="50212" plmnOverride="MY MAXIS"/>
+        <OperatorOverrideInfo simNumeric="50216" plmnOverride="digi"/>
+        <OperatorOverrideInfo simNumeric="50219" plmnOverride="MY CELCOM"/>
+        <OperatorOverrideInfo simNumeric="50218" plmnOverride="U Mobile"/>
+        <OperatorOverrideInfo simNumeric="502152" plmnOverride="Yes"/>
+        <OperatorOverrideInfo simNumeric="50211,502153" plmnOverride="unifi"/>
+        <RoamingCancelInfo simNumeric="50218" plmnNumeric="50212"/>
+        <RoamingCancelInfo simNumeric="50211,502153" plmnNumeric="50219"/>
+
+<!-- OperatorAdaptInfo begin begin begin -->
+<!--
+OperatorAdaptInfo: this tag name is just for sim self-adaption function which is according to the parameter match to get the operatorName
+sp:used to match sp(digit 8 and 9 of imsi) of current sim card.
+operatorName:used to distinguish different operator's sim inserted and for app to realize sim self-adaption function
+
+content example:
+        OperatorAdaptInfo simNumeric="302720" sp="84,94" operatorName="chatr"
+        OperatorAdaptInfo simNumeric="302720" operatorName="Rogers"
+Description:
+        when sim card which mccmnc is 302720 and sp is 84 or 94, the operator name "chatr" will be returned
+        when sim card which mccmnc is also 302720 but sp is not 84 or 94, the operator name "Rogers" will be returned
+        so when the mcc mnc is same, the item order is very important. More parameters item must add before the less parameters item.
+-->
+        <!-- Canada -->
+        <OperatorAdaptInfo simNumeric="302720" sp="84,94" operatorName="chatr"/>
+        <OperatorAdaptInfo simNumeric="302720" gid="D2" operatorName="chatr"/>
+        <OperatorAdaptInfo simNumeric="302720" sp="92" operatorName="TbayTel"/>
+        <OperatorAdaptInfo simNumeric="302720" gid="BA" operatorName="TbayTel"/>
+        <OperatorAdaptInfo simNumeric="302720" sp="97" operatorName="Cityfone"/>
+        <OperatorAdaptInfo simNumeric="302720" gid="CC" operatorName="Cityfone"/>
+        <OperatorAdaptInfo simNumeric="302720" sp="98" operatorName="Ztar"/>
+        <OperatorAdaptInfo simNumeric="302720" gid="D4" operatorName="Ztar"/>
+        <OperatorAdaptInfo simNumeric="302720" operatorName="Rogers"/>
+        <OperatorAdaptInfo simNumeric="302320" operatorName="chatr"/>
+        <OperatorAdaptInfo simNumeric="302370" sp="97" operatorName="MTS"/>
+        <OperatorAdaptInfo simNumeric="302370" operatorName="Fido"/>
+        <OperatorAdaptInfo simNumeric="302660" operatorName="MTS"/>
+        <OperatorAdaptInfo simNumeric="302220,302221" gid="5455" operatorName="TELUS"/>
+        <OperatorAdaptInfo simNumeric="302220,302221" gid="4B4F" operatorName="Koodo"/>
+        <OperatorAdaptInfo simNumeric="302220,302221" gid="5043" operatorName="PC mobile"/>
+        <OperatorAdaptInfo simNumeric="302220,302221" gid="4D4F" operatorName="Public mobile"/>
+        <OperatorAdaptInfo simNumeric="302610" gid="3D" operatorName="Bell"/>
+        <OperatorAdaptInfo simNumeric="302610" gid="3E" operatorName="Virgin Mobile"/>
+        <OperatorAdaptInfo simNumeric="302610" gid="3F" operatorName="Solo Mobile"/>
+        <OperatorAdaptInfo simNumeric="302610" gid="40" operatorName="PC mobile Bell"/>
+        <OperatorAdaptInfo simNumeric="302610" gid="42" operatorName="Lucky Mobile"/>
+        <OperatorAdaptInfo simNumeric="302630,302640" operatorName="Bell"/>
+        <OperatorAdaptInfo simNumeric="302780" operatorName="SaskTel"/>
+        <OperatorAdaptInfo simNumeric="302490" gid="53" operatorName="Shaw"/>
+        <OperatorAdaptInfo simNumeric="302490" operatorName="FreedomMobile"/>
+        <OperatorAdaptInfo simNumeric="302490" operatorName="FreedomMobile"/>
+        <OperatorAdaptInfo simNumeric="302690" gid="41" operatorName="Jasper"/>
+        <OperatorAdaptInfo simNumeric="302690" gid="3D,43" operatorName="Ericsson"/>
+
+        <!-- CC ATT -->
+        <OperatorAdaptInfo simNumeric="310410" gid="2AC9" operatorName="CC_ATT"/>
+
+        <!-- CC TMO -->
+        <OperatorAdaptInfo simNumeric="310260" gid="2AC9" operatorName="CC_TMO"/>
+<!-- OperatorAdaptInfo end end end -->
+</OperatorOverrideInfos>

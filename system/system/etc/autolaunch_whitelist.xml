@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='utf-8' standalone='yes' ?>
+<list>
+    <string>com.duomi.android</string>
+    <string>com.moji.mjweather</string>
+    <string>com.tencent.mobileqq</string>
+    <string>com.tencent.mm</string>
+    <string>com.moji.zteweather</string>
+    <string>com.android.cts.splitapp</string>
+    <string>android.deviceadmin.cts</string>
+    <string>com.android.cts.verifier</string>
+    <string>com.android.cts.robot</string>
+    <string>com.android.cts.deviceowner</string>
+    <string>android.appwidget.cts.provider</string>
+    <string>android.cts.appwidget</string>
+    <string>com.moji.zteweather</string>
+    <string>com.android.browser</string>
+    <string>zte.com.cn.cloudnotepad</string>
+    <string>com.zte.testradar</string>
+    <string>com.masstest</string>
+    <string>im.yixin</string>
+    <string>com.cttl.usbtest</string>
+    <string>com.cttl.testService</string>
+    <string>com.zte.softda</string>
+    <string>com.archermind.mobilepolice</string>
+    <string>com.android.zte.AutoEmodeTest</string>
+    <string>com.zte.pressure.market</string>
+    <string>com.qiyi.video.zte</string>
+    <string>zte.com.market</string>
+    <string>com.zte.pedometer</string>
+    <string>zte.com.cn.driverMode</string>
+    <string>com.google.android.gms</string>
+</list>

@@ -1,0 +1,4 @@
+<resources>
+    <boolean name="NUBIA_RQ">true</boolean>
+    <boolean name="NUBIA_MAGIC_CUSTOM">true</boolean>
+</resources>

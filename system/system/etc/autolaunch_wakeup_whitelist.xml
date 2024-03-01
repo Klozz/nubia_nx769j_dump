@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='utf-8' standalone='yes' ?>
+<list>
+	<string>com.tencent.mm</string>
+    <string>com.tencent.mobileqq</string>
+	<string>com.eg.android.AlipayGphone</string>
+	<string>com.alipay.security.mobile.authenticator</string>
+    <string>com.zte.softda</string>
+    <string>com.mobiletools.systemhelper</string>
+	<string>com.zte.pedometer</string>
+	<string>com.unionpay.mobile.tsm.unicom</string>
+    <string>com.google.android.gms</string>
+</list>

@@ -1,0 +1,93 @@
+<?xml version='1.0' encoding='utf-8' standalone='yes' ?>
+<WindowReplyControl>
+    <policy name="systemApp_whiteList">
+        <item package="android" />
+        <item package="com.android.permissioncontroller" />
+        <item package="com.google.android.permissioncontroller" />
+        <item package="com.android.messaging" />
+        <item package="com.ztercs.service" />
+        <item package="com.ume.browser" />
+        <item package="cn.nubia.browser" />
+        <item package="com.android.contacts" />
+        <item package="zte.com.cn.filer" />
+        <item package="com.android.calculator2" />
+        <item package="com.android.gallery3d" />
+        <item package="cn.nubia.notepad.preset" />
+        <item package="com.android.calendar" />
+        <item package="cn.zte.bbs" />
+        <item package="com.zte.mifavor.zsearch" />
+    </policy>
+    <policy name="forceSupport_whiteList">
+        <item package="com.tencent.tmgp.supercell.clashroyale" />
+        <item package="com.happyelements.AndroidAnimal" />
+        <item package="com.ea.simcitymobile" />
+        <item package="com.tencent.tmgp.yongyong.skzq" />
+        <item package="com.tencent.tmgp.jqys" />
+        <item package="com.zqgame.jqys.nubia" />
+        <item package="com.miHoYo.bh3" />
+        <item package="com.miHoYo.bh3.uc" />
+        <item package="com.tencent.tmgp.pubgmhd" />
+        <item package="com.autonavi.minimap" />
+        <item package="com.netease.nshm" />
+        <item package="com.baidu.BaiduMap" />
+        <item package="com.netease.cloudmusic" />
+    </policy>
+    <policy name="unSystemApp_blackList">
+        <item package="com.zte.gamemode" />
+        <item package="com.zte.mifavor.weather" />
+        <item package="com.zte.userguide" />
+        <item package="com.caih.esim.roaming" />
+        <item package="com.vertu.concierge" />
+        <item package="com.tencent.tmgp.wec" />
+        <item package="com.netease.mrzh" />
+        <item package="com.aspire.mm" />
+        <item package="com.tencent.jg.wedzhlj" />
+        <item package="com.tencent.tmgp.supercell.brawlstars" />
+        <item package="com.tencent.tmgp.djsy" />
+        <item package="com.tencent.tmgp.tmsk.qj3" />
+        <item package="com.moxiu.launcher" />
+        <item package="com.tencent.tmgp.tom" />
+        <item package="com.tencent.fifamobile" />
+        <item package="com.tencent.tmgp.aligames.kybc" />
+        <item package="com.zengame.zjscmj" />
+        <item package="com.sealgames.sxwy.gw" />
+        <item package="com.jiami.quickmj" />
+        <item package="com.netease.hyxd" />
+        <item package="com.netease.my" />
+        <item package="com.netease.xy3d" />
+        <item package="com.netease.mhxyhtb" />
+        <item package="com.tencent.tmgp.dwrg" />
+    </policy>
+    <policy name="transparentStatusBar_notOverlayCaption_appList">
+        <item package="cn.wps.moffice_eng" />
+        <item package="com.ume.browser" />
+        <item package="com.tencent.mm" />
+        <item package="com.tencent.weread" />
+        <item package="com.tencent.tim" />
+        <item package="com.tencent.mobileqq" />
+        <item package="com.MobileTicket" />
+        <item package="com.sankuai.movie" />
+        <item package="com.coolapk.market" />
+        <item package="com.zte.mifavor.zsearch" />
+        <item package="com.android.gallery3d" />
+        <item package="com.weico.international" />
+        <item package="com.eg.android.AlipayGphone" />
+        <item package="com.quark.browser" />
+        <item package="com.zte.smarthome" />
+        <item package="io.legado.app.release" />
+        <item package="com.smile.gifmaker" />
+        <item package="org.telegram.messenger" />
+    </policy>
+    <policy name="unTransparentStatusBar_overlayCaption_appList">
+        <item package="cn.zte.bbs" />
+    </policy>
+    <policy name="transparentStatusBar_notOverlayCaption_classList">
+    </policy>
+    <policy name="unTransparentStatusBar_overlayCaption_classList">
+    </policy>
+    <policy name="needClear_otherViewCoverCaption_appList">
+        <item package="com.hexin.plat.android" />
+        <item package="com.jingdong.app.mall" />
+        <item package="com.tencent.qgame" />
+    </policy>
+</WindowReplyControl>

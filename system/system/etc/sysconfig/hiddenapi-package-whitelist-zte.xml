@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<config>
+  <zte-hidden-api-whitelisted-app package="zte.com.cn.driverMode" />
+  <hidden-api-whitelisted-app package="com.zte.zdm" />
+  <zte-hidden-api-whitelisted-app package="com.zte.halo.app" />
+  <zte-hidden-api-whitelisted-app package="com.ume.browser.cust" />
+  <hidden-api-whitelisted-app package="com.zte.mifavor.miboard" />
+  <zte-hidden-api-whitelisted-app package="com.zte.weather" />
+  <hidden-api-whitelisted-app package="com.zte.weather" />
+  <zte-hidden-api-whitelisted-app package="com.zte.mifavor.weather" />
+  <hidden-api-whitelisted-app package="com.zte.mifavor.weather" />
+  <zte-hidden-api-whitelisted-app package="com.zte.mifavorpad.weather" />
+  <hidden-api-whitelisted-app package="com.zte.mifavorpad.weather" />
+  <zte-hidden-api-whitelisted-app package="com.zte.fingerflashpay" />
+  <hidden-api-whitelisted-app package="com.zte.fingerflashpay" />
+  <hidden-api-whitelisted-app package="com.zte.beautify" />
+  <hidden-api-whitelisted-app package="com.zte.beautifyadapter" />
+  <hidden-api-whitelisted-app package="zte.com.cn.filer" />
+  <hidden-api-whitelisted-app package="com.zte.userguide" />
+  <zte-hidden-api-whitelisted-app package="com.zte.userguide" />
+  <hidden-api-whitelisted-app package="com.zte.retrieve" />
+  <zte-hidden-api-whitelisted-app package="com.zte.retrieve" />
+  <hidden-api-whitelisted-app package="com.android.messaging" />
+  <hidden-api-whitelisted-app package="cn.nubia.nbgame" />
+  <hidden-api-whitelisted-app package="com.zte.superwallpaper.planet" />
+  <hidden-api-whitelisted-app package="com.zte.voiceassist.wakeup" />
+  <hidden-api-whitelisted-app package="cuuca.sendfiles.Activity" />
+  <zte-hidden-api-whitelisted-app package="cuuca.sendfiles.Activity" />
+  <hidden-api-whitelisted-app package="com.android.calendar" />
+  <zte-hidden-api-whitelisted-app package="cn.nubia.virtualgamehandle" />
+  <hidden-api-whitelisted-app package="cn.nubia.virtualgamehandle" />
+  <zte-hidden-api-whitelisted-app package="cn.nubia.keymapcenter" />
+  <hidden-api-whitelisted-app package="cn.nubia.keymapcenter" />
+  <hidden-api-whitelisted-app package="com.zte.heartyservice" />
+  <hidden-api-whitelisted-app package="com.android.settings" />
+  <hidden-api-whitelisted-app package="com.zte.cloud" />
+  <zte-hidden-api-whitelisted-app package="com.zte.cloud" />
+  <hidden-api-whitelisted-app package="cn.nubia.accounts" />
+  <hidden-api-whitelisted-app package="cn.nubia.usercenter" />
+</config>

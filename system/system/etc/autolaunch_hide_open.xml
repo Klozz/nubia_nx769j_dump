@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='utf-8' standalone='yes' ?>
+<list>
+    <string>com.alipay.security.mobile.authenticator</string>
+    <string>com.zte.hsoverseas</string>
+    <string>com.zte.hsoverseas_ex</string>
+    <string>com.zte.manual</string>
+    <string>com.google.android.webview</string>
+    <string>android.app.stubs</string>
+    <string>com.android.app2</string>
+    <string>com.justsafe.pushsdk</string>
+    <string>com.justsy.mdmsys</string>
+    <string>com.justsy.mdm</string>
+    <string>com.justsy.portal</string>
+    <string>com.justsy.launcher</string>
+    <string>com.justsafe.push.msgbox</string>
+    <string>android.tradefed.contentprovider</string>
+    <string>com.android.tradefed.utils.wifi</string>
+    <string>com.masstest.wetestsystemplugin</string>
+</list>

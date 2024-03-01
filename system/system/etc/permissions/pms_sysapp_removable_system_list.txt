@@ -1,0 +1,11 @@
+com.zte.handservice
+zte.com.cn.alarmclock
+cn.zte.recorder
+com.android.calendar
+com.zte.mifavor.zsearch
+com.zte.halo.app
+com.android.gallery3d
+com.zte.beautify
+com.zte.wallet
+com.zte.heartyservice
+com.android.stk

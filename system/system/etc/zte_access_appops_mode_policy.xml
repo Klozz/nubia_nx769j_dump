@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/*
+** Copyright 2019, Zte create for some self-developed applications
+**
+** Self-developed applications which are non-platform signature,
+** if you want to use the interface setmode() , you must declare it in this file.
+**
+** packageName is application's packageName.
+** sig_sha256 is application's signature of SHA-256.
+** appOps_opValue is the code of operation you want, the value of appOps_opValue can take 1-77:
+**
+** OP_NONE = -1;                           OP_COARSE_LOCATION = 0;                     OP_FINE_LOCATION = 1;
+** OP_GPS = 2;                             OP_VIBRATE = 3;                             OP_READ_CONTACTS = 4;
+** OP_WRITE_CONTACTS = 5;                  OP_READ_CALL_LOG = 6;                       OP_WRITE_CALL_LOG = 7;
+** OP_READ_CALENDAR = 8;                   OP_WRITE_CALENDAR = 9;                      OP_WIFI_SCAN = 10;
+** OP_POST_NOTIFICATION = 11;              OP_NEIGHBORING_CELLS = 12;                  OP_CALL_PHONE = 13;
+** OP_READ_SMS = 14;                       OP_WRITE_SMS = 15;                          OP_RECEIVE_SMS = 16;
+** OP_RECEIVE_EMERGECY_SMS = 17;           OP_RECEIVE_MMS = 18;                        OP_RECEIVE_WAP_PUSH = 19;
+** OP_SEND_SMS = 20;                       OP_READ_ICC_SMS = 21;                       OP_WRITE_ICC_SMS = 22;
+** OP_WRITE_SETTINGS = 23;                 OP_SYSTEM_ALERT_WINDOW = 24;                OP_ACCESS_NOTIFICATIONS = 25;
+** OP_CAMERA = 26;                         OP_RECORD_AUDIO = 27;                       OP_PLAY_AUDIO = 28;
+** OP_READ_CLIPBOARD = 29;                 OP_WRITE_CLIPBOARD = 30;                    OP_TAKE_MEDIA_BUTTONS = 31;
+** OP_TAKE_AUDIO_FOCUS = 32;               OP_AUDIO_MASTER_VOLUME = 33;                OP_AUDIO_VOICE_VOLUME = 34;
+** OP_AUDIO_RING_VOLUME = 35;              OP_AUDIO_MEDIA_VOLUME = 36;                 OP_AUDIO_ALARM_VOLUME = 37;
+** OP_AUDIO_NOTIFICATION_VOLUME = 38;      OP_AUDIO_BLUETOOTH_VOLUME = 39;             OP_WAKE_LOCK = 40;
+** OP_MONITOR_LOCATION = 41;               OP_MONITOR_HIGH_POWER_LOCATION = 42;        OP_GET_USAGE_STATS = 43;
+** OP_MUTE_MICROPHONE = 44;                OP_TOAST_WINDOW = 45;                       OP_PROJECT_MEDIA = 46;
+** OP_ACTIVATE_VPN = 47;                   OP_WRITE_WALLPAPER = 48;                    OP_ASSIST_STRUCTURE = 49;
+** OP_ASSIST_SCREENSHOT = 50;              OP_READ_PHONE_STATE = 51;                   OP_ADD_VOICEMAIL = 52;
+** OP_USE_SIP = 53;                        OP_PROCESS_OUTGOING_CALLS = 54;             OP_USE_FINGERPRINT = 55;
+** OP_BODY_SENSORS = 56;                   OP_READ_CELL_BROADCASTS = 57;               OP_MOCK_LOCATION = 58;
+** OP_READ_EXTERNAL_STORAGE = 59;          OP_WRITE_EXTERNAL_STORAGE = 60;             OP_TURN_SCREEN_ON = 61;
+** OP_GET_ACCOUNTS = 62;                   OP_RUN_IN_BACKGROUND = 63;                  OP_AUDIO_ACCESSIBILITY_VOLUME = 64;
+** OP_READ_PHONE_NUMBERS = 65;             OP_REQUEST_INSTALL_PACKAGES = 66;           OP_PICTURE_IN_PICTURE = 67;
+** OP_INSTANT_APP_START_FOREGROUND = 68;   OP_ANSWER_PHONE_CALLS = 69;                 OP_RUN_ANY_IN_BACKGROUND = 70;
+** OP_CHANGE_WIFI_STATE = 71;              OP_REQUEST_DELETE_PACKAGES = 72;            OP_BIND_ACCESSIBILITY_SERVICE = 73;
+** OP_ACCEPT_HANDOVER = 74;                OP_MANAGE_IPSEC_TUNNELS = 75;               OP_START_FOREGROUND = 76;
+** OP_BLUETOOTH_SCAN = 77;                 OP_USE_BIOMETRIC = 78;                      OP_ACTIVITY_RECOGNITION = 79;
+** OP_SMS_FINANCIAL_TRANSACTIONS = 80;     OP_READ_MEDIA_AUDIO = 81;                   OP_WRITE_MEDIA_AUDIO = 82;
+** OP_READ_MEDIA_VIDEO = 83;               OP_WRITE_MEDIA_VIDEO = 84;                  OP_READ_MEDIA_IMAGES = 85;
+** OP_WRITE_MEDIA_IMAGES = 86;             OP_LEGACY_STORAGE = 87;                     OP_ACCESS_ACCESSIBILITY = 88;
+** OP_READ_DEVICE_IDENTIFIERS = 89;
+** _NUM_OP = 90;
+*/
+-->
+
+<policys>
+    <policy packageName="com.zte.retrieve"
+            sig_sha256="239900A8A11B39FFD3400600D81607ED9E4BB6AD25299B30553E1FE6C3828425"
+            appOps_opValue="15" />
+
+    <policy packageName="com.zte.retrieve"
+            sig_sha256="239900A8A11B39FFD3400600D81607ED9E4BB6AD25299B30553E1FE6C3828425"
+            appOps_opValue="24" />
+
+    <policy packageName="com.zte.retrieve"
+            sig_sha256="239900A8A11B39FFD3400600D81607ED9E4BB6AD25299B30553E1FE6C3828425"
+            appOps_opValue="20" />
+
+    <policy packageName="com.zte.retrieve"
+            sig_sha256="239900A8A11B39FFD3400600D81607ED9E4BB6AD25299B30553E1FE6C3828425"
+            appOps_opValue="5" />
+
+    <policy packageName="com.zte.retrieve"
+            sig_sha256="239900A8A11B39FFD3400600D81607ED9E4BB6AD25299B30553E1FE6C3828425"
+            appOps_opValue="7" />
+
+    <policy packageName="cuuca.sendfiles.Activity"
+            sig_sha256="D9731DBEFDC00B288CBF7A36126B0AC1A8ADE04B39E28545EB96714074443E19"
+            appOps_opValue="15" />
+
+    <policy packageName="cuuca.sendfiles.Activity"
+            sig_sha256="D9731DBEFDC00B288CBF7A36126B0AC1A8ADE04B39E28545EB96714074443E19"
+            appOps_opValue="23" />
+
+    <policy packageName="cuuca.sendfiles.Activity"
+            sig_sha256="D9731DBEFDC00B288CBF7A36126B0AC1A8ADE04B39E28545EB96714074443E19"
+            appOps_opValue="24" />
+
+    <policy packageName="cuuca.sendfiles.Activity"
+            sig_sha256="D9731DBEFDC00B288CBF7A36126B0AC1A8ADE04B39E28545EB96714074443E19"
+            appOps_opValue="43" />
+
+    <policy packageName="cuuca.sendfiles.Activity"
+            sig_sha256="D9731DBEFDC00B288CBF7A36126B0AC1A8ADE04B39E28545EB96714074443E19"
+            appOps_opValue="66"
+            pregrant="true"/>
+
+    <policy packageName="cuuca.sendfiles.Activity"
+            sig_sha256="D9731DBEFDC00B288CBF7A36126B0AC1A8ADE04B39E28545EB96714074443E19"
+            appOps_opValue="92" />
+
+    <policy packageName="com.zte.onekeycp"
+            sig_sha256="D9731DBEFDC00B288CBF7A36126B0AC1A8ADE04B39E28545EB96714074443E19"
+            appOps_opValue="15" />
+
+    <policy packageName="com.zte.onekeycp"
+            sig_sha256="D9731DBEFDC00B288CBF7A36126B0AC1A8ADE04B39E28545EB96714074443E19"
+            appOps_opValue="23" />
+
+    <policy packageName="com.zte.onekeycp"
+            sig_sha256="D9731DBEFDC00B288CBF7A36126B0AC1A8ADE04B39E28545EB96714074443E19"
+            appOps_opValue="24" />
+
+    <policy packageName="com.zte.onekeycp"
+            sig_sha256="D9731DBEFDC00B288CBF7A36126B0AC1A8ADE04B39E28545EB96714074443E19"
+            appOps_opValue="43" />
+
+    <policy packageName="com.zte.onekeycp"
+            sig_sha256="D9731DBEFDC00B288CBF7A36126B0AC1A8ADE04B39E28545EB96714074443E19"
+            appOps_opValue="92" />
+
+    <policy packageName="com.zte.halo.app"
+            sig_sha256="D9731DBEFDC00B288CBF7A36126B0AC1A8ADE04B39E28545EB96714074443E19"
+            appOps_opValue="15" />
+
+    <policy packageName="zte.com.market"
+            sig_sha256="C2DE9D066EF96BE02E61ACBE477EEED7E0B6F205BA02B59177C48BE52778ED55"
+            appOps_opValue="66"
+            pregrant="true"/>
+
+    <policy packageName="com.zte.handservice"
+            sig_sha256="AB5142C0FA0F19F2E36C9B0C3F69278AB078130A9D32458EE5F3C6D11DB323FA"
+            appOps_opValue="89" />
+
+    <policy packageName="com.zte.urprototype"
+            sig_sha256="7AD125516360ACDFADA27B04BFC14CB38B9A71A124C6B5F0AAA5EB25522F4188"
+            appOps_opValue="89" />
+
+    <policy packageName="org.zx.AuthComp"
+            sig_sha256="D9731DBEFDC00B288CBF7A36126B0AC1A8ADE04B39E28545EB96714074443E19"
+            appOps_opValue="89" />
+
+    <policy packageName="com.zte.retrieve"
+            sig_sha256="239900A8A11B39FFD3400600D81607ED9E4BB6AD25299B30553E1FE6C3828425"
+            appOps_opValue="89" />
+
+    <policy packageName="com.zte.heartyservice"
+            sig_sha256="239900A8A11B39FFD3400600D81607ED9E4BB6AD25299B30553E1FE6C3828425"
+            appOps_opValue="89" />
+
+    <policy packageName="com.zte.heartyservice"
+            sig_sha256="239900A8A11B39FFD3400600D81607ED9E4BB6AD25299B30553E1FE6C3828425"
+            appOps_opValue="24"
+            pregrant="true"/>
+
+    <policy packageName="com.zte.kidszone"
+            sig_sha256="D7BB72EA42ADFCADF52C3D641B2B40181D6A36932A81C93207DB172811CA46B7"
+            appOps_opValue="24" />
+
+    <policy packageName="com.zte.cloud"
+            sig_sha256="D9731DBEFDC00B288CBF7A36126B0AC1A8ADE04B39E28545EB96714074443E19"
+            appOps_opValue="15" />
+
+    <policy packageName="com.zte.cloud"
+            sig_sha256="D9731DBEFDC00B288CBF7A36126B0AC1A8ADE04B39E28545EB96714074443E19"
+            appOps_opValue="92" />
+
+    <policy packageName="com.zte.userguide"
+            sig_sha256="AB5142C0FA0F19F2E36C9B0C3F69278AB078130A9D32458EE5F3C6D11DB323FA"
+            appOps_opValue="92"
+            pregrant="true"/>
+
+    <policy packageName="com.zte.beautify"
+            sig_sha256="D7BB72EA42ADFCADF52C3D641B2B40181D6A36932A81C93207DB172811CA46B7"
+            appOps_opValue="24"
+            pregrant="true"/>
+
+    <policy packageName="com.zte.game.enhancement"
+            sig_sha256="D7BB72EA42ADFCADF52C3D641B2B40181D6A36932A81C93207DB172811CA46B7"
+            appOps_opValue="24"
+            pregrant="true"/>
+
+    <policy packageName="com.zte.zmall"
+            sig_sha256="454DFCEE2EA3F133F8B9078A17A492C0CA2479D01F037B25CD8FAD025FE62C66"
+            appOps_opValue="66"
+            pregrant="true"/>
+
+    <policy packageName="cn.nubia.nbgame"
+            sig_sha256="BD94126D9AC1A4E5F1017B70F0414C040AB7800C781E60AE452A33C71080CDE6"
+            appOps_opValue="24"
+            pregrant="true"/>
+
+    <policy packageName="cn.nubia.nbgame"
+            sig_sha256="BD94126D9AC1A4E5F1017B70F0414C040AB7800C781E60AE452A33C71080CDE6"
+            appOps_opValue="43"
+            pregrant="true"/>
+
+    <policy packageName="cn.nubia.nbgame"
+            sig_sha256="BD94126D9AC1A4E5F1017B70F0414C040AB7800C781E60AE452A33C71080CDE6"
+            appOps_opValue="66"
+            pregrant="true"/>
+
+    <policy packageName="cn.nubia.nbgame"
+            sig_sha256="BD94126D9AC1A4E5F1017B70F0414C040AB7800C781E60AE452A33C71080CDE6"
+            appOps_opValue="23"
+            pregrant="true"/>
+
+    <policy packageName="cn.nubia.paycomponent"
+            sig_sha256="BD94126D9AC1A4E5F1017B70F0414C040AB7800C781E60AE452A33C71080CDE6"
+            appOps_opValue="66"
+            pregrant="true"/>
+
+    <policy packageName="cn.nubia.databackup"
+            sig_sha256="BD94126D9AC1A4E5F1017B70F0414C040AB7800C781E60AE452A33C71080CDE6"
+            appOps_opValue="15" />
+
+    <policy packageName="cn.nubia.flycow"
+            sig_sha256="24d2b01bdc77cc525ea49fcbf4e10d71c7ac14acd742142ebcd1a52ec3f2e580"
+            appOps_opValue="15" />
+
+    <policy packageName="com.android.messaging"
+            sig_sha256="812780C5BF94F74EB3F047E54A8A8D25B83DFA4AB85A5A852FCB391D912DB2B2"
+            appOps_opValue="24"
+            pregrant="true"/>
+
+    <!-- platform signed app, no need add sig_sha256 -->
+    <policy packageName="com.android.systemui"
+            appOps_opValue="125"
+            pregrant="true"/>
+
+    <policy packageName="cn.nubia.cloud"
+            sig_sha256="BD94126D9AC1A4E5F1017B70F0414C040AB7800C781E60AE452A33C71080CDE6"
+            appOps_opValue="24" />
+
+    <policy packageName="cn.nubia.notepad.preset"
+            sig_sha256="BD94126D9AC1A4E5F1017B70F0414C040AB7800C781E60AE452A33C71080CDE6"
+            appOps_opValue="92" />
+</policys>

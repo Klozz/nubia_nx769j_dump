@@ -1,0 +1,14 @@
+<config>
+    <install-in-user-type package="cn.nubia.gamelauncher">
+        <install-in user-type="SYSTEM" />
+    </install-in-user-type>
+    <install-in-user-type package="com.zte.multscr">
+        <install-in user-type="SYSTEM" />
+    </install-in-user-type>
+    <install-in-user-type package="com.zte.distservice.servicemanager">
+        <install-in user-type="SYSTEM" />
+    </install-in-user-type>
+    <install-in-user-type package="com.zte.distservice.relayservice">
+        <install-in user-type="SYSTEM" />
+    </install-in-user-type>
+</config>

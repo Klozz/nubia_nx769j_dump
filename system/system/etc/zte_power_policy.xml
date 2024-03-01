@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ZtePower>
+    <alarm_align>
+        <item type="no_need_align">zte.com.cn.alarmclock</item>
+        <item type="no_need_align">com.android.providers.calendar</item>
+        <item type="no_need_align">com.android.phone</item>
+        <item type="no_need_align">com.android.systemui</item>
+        <item type="no_need_align">com.powertest</item>
+        <item type="no_need_align">com.google.android.deskclock</item>
+        <item type="no_need_align">com.tencent.mm</item>
+        <item type="no_need_align">com.android.stk</item>
+        <item type="no_need_align">com.zte.analytics</item>
+        <item type="no_need_align">com.android.deftdeviceregister</item>
+        <item type="no_need_align">cn.nubia.notepad.preset</item>
+        <item type="no_need_align">cn.nubia.redmagickyi</item>
+        <item type="no_need_align">android</item>
+
+        <item type="allow_triggler_in_nightmode">zte.com.cn.alarmclock</item>
+        <item type="allow_triggler_in_nightmode">com.android.providers.calendar</item>
+        <item type="allow_triggler_in_nightmode">android</item>
+        <item type="allow_triggler_in_nightmode">com.zte.powersavemode</item>
+        <item type="allow_triggler_in_nightmode">com.zte.aiengine</item>
+        <item type="allow_triggler_in_nightmode">com.android.systemui</item>
+
+        <item type="no_need_remove_whenkilled">com.android.providers.calendar</item>
+        <item type="no_need_remove_whenkilled">cn.nubia.redmagickyi</item>
+
+        <item type="dynamic_adjust_align">com.zte.dbneopush</item>
+
+        <item type="specail_align_action">com.google.android.gms.gcm.ACTION_CHECK_QUEUE</item>
+
+        <item type="short_align_action">cn.nubia.neopush.PING_TIMER</item>
+
+        <item type="heart_beat_action">com.ss.android.newmedia.message.window.action_check_screen</item>
+        <item type="heart_beat_action">com.xiaomi.push.PING_TIMER</item>
+        <item type="heart_beat_action">AlarmTaskSchedule.com.netese.newsreader.activity</item>
+        <item type="heart_beat_action">cn.etouch.ecalendar_ACTION_SUISENT_ECALENDAR_ShowNotice</item>
+        <item type="heart_beat_action">cn.etouch.ecalendar_ACTION_UPDATE_AD_PER_DAY</item>
+        <item type="heart_beat_action">AlarmNioTaskSchedule.cn.etouch.ecalendar</item>
+        <item type="heart_beat_action">AlarmTaskSchedule.cn.etouch.ecalendar</item>
+        <item type="heart_beat_action">cn.etouch.ecalendar_ACTION_WIDGET_NEED_REFRESH_TASK</item>
+        <item type="heart_beat_action">com.mob.mcl.intent.PING</item>
+        <item type="heart_beat_action">action.hubble.timimg.com.meitu.meiyancamera</item>
+        <item type="heart_beat_action">com.meitu.meiyancamera.mkeepalive.WAKE_UP</item>
+        <item type="heart_beat_action">com.baidu.android.push.intent.KEEP_ALIVE</item>
+        <item type="heart_beat_action">MqttService.pingSender</item>
+        <item type="heart_beat_action">com.mob.push.intent.CHECK_IP</item>
+    </alarm_align>
+</ZtePower>

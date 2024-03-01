@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wifi_config>
+<!-- **************************************WIFI STA CONFIGURATION**************************************** -->
+<!-- Flag indicating whether Passpoint is enabled. 0-disable, 1-enable. (0 as default)-->
+<config_wifi_sta_passpoint_enabled>0</config_wifi_sta_passpoint_enabled>
+<!-- Flag indicating whether Wi-Fi shoule disable in ECM state. (0 as default)
+	0-Do not disable Wi-Fi in ECM state,
+	1-Disable Wi-Fi in ECM state.-->
+<config_wifi_sta_ap_disable_in_ecm>0</config_wifi_sta_ap_disable_in_ecm>
+<!-- OBSOLETED! Flag indicating whether AOSP Internet check should be enabled. 0-disable, 1-enable. (1 as default)-->
+<config_wifi_sta_aosp_internet_check_enabled>1</config_wifi_sta_aosp_internet_check_enabled>
+<!-- Flag indicating whether a browser should be shown when connected to a portal AP. 0-disable, 1-enable. (1 as default)-->
+<config_wifi_sta_portal_ap_browser_enabled>1</config_wifi_sta_portal_ap_browser_enabled>
+<!-- Flag indicating whether AOSP Captive Portal check should be enabled. 0-disable, 1-enable. (1 as default)-->
+<config_wifi_sta_aosp_captive_portal_check_enabled>1</config_wifi_sta_aosp_captive_portal_check_enabled>
+<!-- Flag indicating whether wifi should always be enabled when the device boot up. 0-disable, 1-enable. (0 as default)-->
+<config_wifi_sta_always_open_wifi_when_boot_up>0</config_wifi_sta_always_open_wifi_when_boot_up>
+<!-- Flag indicating whether autoIP should be enabled. 0-disable, 1-enable. (0 as default)-->
+<config_wifi_sta_autoIP_enabled>0</config_wifi_sta_autoIP_enabled>
+<!-- Flag indicating whether ZTE Captive Portal check should be enabled. 0-disable, 1-enable. (0 as default)-->
+<config_wifi_sta_zte_captive_portal_check_enabled>0</config_wifi_sta_zte_captive_portal_check_enabled>
+<!-- Flag indicating whether use carrier auto connect. 0-disable, 1-enable. (0 as default)-->
+<config_wifi_sta_use_auto_connect>0</config_wifi_sta_use_auto_connect>
+
+<!-- **************************************SOFTAP CONFIGURATION**************************************** -->
+<!-- Flag indicating whether wifi(ap) should be banned. (false as default)-->
+<config_wifi_ap_forbidden>0</config_wifi_ap_forbidden>
+<!-- Flag array indicating wifi softap ssid catelog. (0 5 2 as default)
+	0-Read from defconfig,
+	1-Read from MAC,
+	2-Random,
+	3-Read from Device manufacturer and model number/name,
+	4-Read from Device manufacturer and product number/name,
+	5-"_",
+	6-"-",
+	7-" "
+	8-IMEI
+	9-ESN
+	a-ZTE_MARKET_NAME
+	b-My Phone Name-->
+<config_wifi_ap_ssid_catalog defconfig="ZTE_AP" macbits="6" macuppercase="1" randomlength="4" imeilength="4" esnlength="4">b</config_wifi_ap_ssid_catalog>
+<!-- Flag indicating wifi softap key management: 0-NONE, 4-WPA2_PSK, 8-SAE, 9-OWE, (4 as default)-->
+<config_wifi_ap_keymgmt>4</config_wifi_ap_keymgmt>
+<!-- Flag indicating wifi softap psk catelog. 0-Read from config file, 1-Random, 2-MDN, 3-num+letter+specail, 4-num+letter, 5-IMEI. (1 as default)-->
+<config_wifi_ap_key_catalog defconfig="12345678" randomlength="12" mdnlength="10" imeilength="15">1</config_wifi_ap_key_catalog>
+<!-- Flag indicating channel number that softap uses. (6 as default)-->
+<config_wifi_ap_channel_num>0</config_wifi_ap_channel_num>
+<!-- Flag indicating whether store SSID and psk in /persist partition. 0-disable, 1-enable. (0 as default)-->
+<config_wifi_ap_persist_ssid>0</config_wifi_ap_persist_ssid>
+<!-- Flag indicating max clients that softap can support. (8 as default)-->
+<config_wifi_ap_max_clients>8</config_wifi_ap_max_clients>
+<!-- Flag indicating whether to hide softAp SSID. 0-not hide, 1-hide. (0 as default)-->
+<config_wifi_ap_hide_ssid>0</config_wifi_ap_hide_ssid>
+<!-- Flag indicating power mode time. (15 as default)-->
+<config_wifi_ap_power_mode>10</config_wifi_ap_power_mode>
+<!-- Flag indicating power mode notification. 0-no notification, 1-have notification. (0 as default)-->
+<config_wifi_ap_power_mode_notification>1</config_wifi_ap_power_mode_notification>
+<!-- Flag indicating whether power mode should check USB. 0-no check, 1-check. (0 as default)-->
+<config_wifi_ap_power_mode_usb_check>0</config_wifi_ap_power_mode_usb_check>
+<!-- Flag indicating whether dhcp is enabled. 0-no dhcp server, 1-use dhcp server. (1 as default)-->
+<config_wifi_ap_dhcpenable>1</config_wifi_ap_dhcpenable>
+<!-- Flag indicating ap IP lease time. ("3600" as default)-->
+<config_wifi_ap_dhcpleasetime>3600</config_wifi_ap_dhcpleasetime>
+<!-- Flag indicating ap IP address. ("192.168.1.1" as default)-->
+<config_wifi_ap_ipaddr>192.168.1.1</config_wifi_ap_ipaddr>
+<!-- Flag indicating ap netmask. ("255.255.255.0" as default)-->
+<config_wifi_ap_ipnetmask>255.255.255.0</config_wifi_ap_ipnetmask>
+<!-- Flag indicating ap start IP. ("192.168.1.100" as default)-->
+<config_wifi_ap_dhcpipstart>192.168.1.100</config_wifi_ap_dhcpipstart>
+<!-- Flag indicating ap end IP. ("192.168.1.254" as default)-->
+<config_wifi_ap_dhcpipend>192.168.1.254</config_wifi_ap_dhcpipend>
+<!-- Flag indicating macaddr acl. -1-no list, 0-black list, 1-white list. (-1 as default) -->
+<config_wifi_ap_macaddr_acl>0</config_wifi_ap_macaddr_acl>
+<!-- Flag indicating black list. MUST wrapped with ""!!! ("" as default, Multiple MAC addresses are separated by a SPACE separator Ex. "48:28:2f:c5:9b:b3 20:64:32:60:f0:25") -->
+<config_wifi_ap_black_list>""</config_wifi_ap_black_list>
+<!-- Flag indicating white list. MUST wrapped with ""!!! ("" as default, Multiple MAC addresses are separated by a SPACE separator Ex. "48:28:2f:c5:9b:b3 20:64:32:60:f0:25") -->
+<config_wifi_ap_white_list>""</config_wifi_ap_white_list>
+<!-- Flag indicating whether SoftAP max assoc notification enabled. 0-disable, 1-enable. (0 as default)-->
+<config_wifi_ap_max_assoc_notification_enabled>0</config_wifi_ap_max_assoc_notification_enabled>
+<!-- Flag indicating whether softap WPS is enabled. 0-no softap WPS, 1-use softap WPS. (0 as default)-->
+<config_wifi_ap_softap_wps>0</config_wifi_ap_softap_wps>
+<!-- Flag indicating softap tx max power. range from 8 to 24. (24 as default)-->
+<config_wifi_ap_tx_max_power>24</config_wifi_ap_tx_max_power>
+<!-- Flag indicating whether SoftAP authentication enabled. 0-disable, 1-enable. (0 as default)-->
+<config_wifi_ap_authentication_enabled>0</config_wifi_ap_authentication_enabled>
+<!-- Flag indicating whether softap/miracast concurrency is enabled. 0-no concurrency, 1-use concurrency. (0 as default)-->
+<config_wifi_ap_miracast_concurrency>0</config_wifi_ap_miracast_concurrency>
+<!-- Flag indicating whether SoftAP notification enabled. 0-disable, 1-enable. (0 as default)-->
+<config_wifi_ap_notification_enabled>0</config_wifi_ap_notification_enabled>
+<!-- Flag indicating SoftAP power mode options. (0 as default)
+	0-0/5/10
+	1-0/15/30-->
+<config_wifi_ap_power_mode_options>0</config_wifi_ap_power_mode_options>
+<!-- Flag indicating hotspot 802.11 network PHY standard. bgn-b/g/n, g-g only, bg-b/g, a-a/n/ac. (bgn as default)-->
+<config_wifi_ap_phy_standard>bgn</config_wifi_ap_phy_standard>
+<!-- Flag indicating if hotspot data limitation using customized value. 1-use customized value, other-use fixed value. (0 as default)-->
+<config_wifi_ap_data_limit_use_customized_value>0</config_wifi_ap_data_limit_use_customized_value>
+<!-- Flag indicating hotspot data limitation's current fixed value (in MB). 0-no limit (0 as default)-->
+<config_wifi_ap_data_limit_fixed_value>0</config_wifi_ap_data_limit_fixed_value>
+<!-- Flag indicating hotspot data limitation's current customized value (in MB). 0-no value (0 as default)-->
+<config_wifi_ap_data_limit_customized_value>0</config_wifi_ap_data_limit_customized_value>
+
+<!-- **************************************WIFI P2P CONFIGURATION**************************************** -->
+<!-- Flag array indicating wifi softap ssid catelog. (0 5 2 as default)
+	0-Read from config file,
+	1-Read from MAC,
+	2-Random,
+	3-Read from Device manufacturer and model number/name,
+	4-Read from Device manufacturer and product number/name,
+	5-"_",
+	6-"-",
+	7-" "
+	8-IMEI
+	9-ESN
+	a-ZTE_MARKET_NAME
+	b-My Phone Name-->
+<config_wifi_p2p_device_name_catalog defconfig="ZTE_P2P" macbits="6" macuppercase="1" randomlength="8">b</config_wifi_p2p_device_name_catalog>
+
+<!-- **************************************SAVED ITEMS**************************************** -->
+<!-- Carrier. (None as default)
+	None,
+	ATT,
+	BELL,
+	CRICKET,
+	IMM,
+	SPRINT,
+	TELECOM,
+	TF,
+	TMOBILE,
+	USCC,
+	VERIZON,
+	WIND-->
+<config_wifi_carrier>None</config_wifi_carrier>
+<!-- Saved item 1. (0 as default)-->
+<config_wifi_saved_item_1>0</config_wifi_saved_item_1>
+<!-- Saved item 2. (0 as default)-->
+<config_wifi_saved_item_2>0</config_wifi_saved_item_2>
+<!-- Saved item 3. (0 as default)-->
+<config_wifi_saved_item_3>0</config_wifi_saved_item_3>
+<!-- Saved item 4. (0 as default)-->
+<config_wifi_saved_item_4>0</config_wifi_saved_item_4>
+
+</wifi_config>

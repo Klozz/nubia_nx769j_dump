@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='utf-8' standalone='yes' ?>
+<INFOS>
+    <!-- 0->120HZ  1->240HZ 2->360HZ 3->480HZ 4->960HZ -->
+    <PQ82A11_U_D value="3" />
+    <PQ82A11_U PkgName="com.tencent.tmgp.sgame" value="4" />
+    <PQ82A11_U PkgName="com.miHoYo.Yuanshen" value="1" />
+    <PQ82A11_U PkgName="com.tencent.lolm" value="4" />
+</INFOS>

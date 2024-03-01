@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<policys>
+    <policy packageName="com.zte.nps"
+            sig_sha256="FDD5EDC23757876D4B6DCECF4C961B58029D282694B57CD2965AEBEE897AA577" />
+    <policy packageName="com.zte.neopush"
+            sig_sha256="BD94126D9AC1A4E5F1017B70F0414C040AB7800C781E60AE452A33C71080CDE6" />
+    <policy packageName="com.zte.aliveupdate"
+            sig_sha256="D9731DBEFDC00B288CBF7A36126B0AC1A8ADE04B39E28545EB96714074443E19" />
+    <policy packageName="cn.zte.aftersale"
+            sig_sha256="C8A2E9BCCF597C2FB6DC66BEE293FC13F2FC47EC77BC6B2B0D52C11F51192AB8" />
+    <policy packageName="com.zte.userguide"
+            sig_sha256="AB5142C0FA0F19F2E36C9B0C3F69278AB078130A9D32458EE5F3C6D11DB323FA" />
+    <policy packageName="com.zte.zteconfigupdate"
+            sig_sha256="C8A2E9BCCF597C2FB6DC66BEE293FC13F2FC47EC77BC6B2B0D52C11F51192AB8" />
+</policys>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<policys>
+
+    <policy>
+        <thermal_broadcast_name>FPS_BROADCAST</thermal_broadcast_name>
+        <thermal_level1>1</thermal_level1>
+        <thermal_level2>2</thermal_level2>
+    </policy>
+
+    <policy>
+        <thermal_broadcast_name>CAM_FLASH_BROADCAST</thermal_broadcast_name>
+        <thermal_level1>2</thermal_level1>
+        <thermal_level2>3</thermal_level2>
+    </policy>
+
+    <policy>
+        <thermal_broadcast_name>WLAN_CHANGE_BROADCAST</thermal_broadcast_name>
+        <thermal_level1>2</thermal_level1>
+        <thermal_level2>3</thermal_level2>
+    </policy>
+
+    <policy>
+        <thermal_broadcast_name>CHARGE_SEPARATION_BROADCAST</thermal_broadcast_name>
+        <thermal_level1>2</thermal_level1>
+        <thermal_level2>3</thermal_level2>
+    </policy>
+
+</policys>

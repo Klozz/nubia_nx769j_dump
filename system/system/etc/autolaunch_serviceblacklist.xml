@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='utf-8' standalone='yes' ?>
+<list>
+    <string>android.content.SyncAdapter</string>
+	<string>android.accounts.AccountAuthenticator</string>
+	<string>android.service.notification.NotificationListenerService</string>
+	<string>com.qihoo360.mobilesafe.service.KLJobService</string>
+	<string>com.igexin.sdk.PushServiceUser</string>
+	<string>com.igexin.sdk.GActivity</string>
+        <string>com.igexin.sdk.PushService</string>
+	<string>com.xiaomi.push.service.XMPushService</string>
+	<string>com.xiaomi.mipush.sdk.PushMessageHandler</string>
+	<string>com.xiaomi.mipush.sdk.MessageHandleService</string>
+	<string>com.ss.android.message.PushJobService</string>
+	<string>com.qihoo.appstore.push.TransitService</string>
+	<string>com.qihoo.appstore.clean.ScannerTrashService</string>
+	<string>com.qihoo.appstore.zhushouhelper.ZhushouHelperService</string>
+	<string>com.qihoo.accountcenter.service.AccountService</string>
+	<string>com.qihoo.appstore.clean.MemCleanService</string>
+	<string>com.qihoo.appstore.entertainment.VideoMiniService</string>
+	<string>com.qihoo.appstore.keepalive.account.AuthenticationService</string>
+	<string>com.qihoo.appstore.keepalive.account.SyncService</string>
+	<string>com.qihoo.appstore.keepalive.account.SyncServiceNew</string>
+	<string>com.qihoo.core.CoreService</string>
+	<string>com.qihoo.core.CoreServiceProxy</string>
+	<string>com.qihoo.plugin.PluginService</string>
+	<string>com.qihoo360.mobilesafe.pcdaemon.service.DaemonService</string>
+	<string>com.qihoo360.mobilesafe.pcdaemon.sms.HeadlessSmsSendService</string>
+	<string>com.qihoo.appstore.AppStoreNotificationListenerService</string>
+	<string>com.qihoo.appstore.scheduler.NewKLJobService</string>
+	<string>com.qihoo.appstore.scheduler.KLJobService</string>
+	<string>com.qihoo.sdk.report.network.NetworkService</string>
+	<string>com.qihoo.sdk.report.network.SurvivalService</string>
+	<string>com.qihoo.appstore.uninstall.UninstallRecentNoUseService</string>
+	<string>com.morgoo.droidplugin.PluginManagerService</string>
+</list>

@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='utf-8' standalone='yes' ?>
+<sysControlPermission>
+    <policy name="unApproved">
+        <permission name="android.permission.ZTE_SEND_MMS"/>
+        <permission name="android.permission.WRITE_SMS" />                                                                     
+        <permission name="android.permission.BLUETOOTH_ADMIN" />   
+        <permission name="android.permission.CHANGE_WIFI_STATE" />      
+        <permission name="android.permission.CHANGE_NETWORK_STATE" />
+        <permission name="ZTE.permission.ZTE_CAPTURE_IN_BACKGROUD_PERM" />
+        <permission name="ZTE.permission.ZTE_LOCKSCREEN_USE_PERM" />
+        <permission name="ZTE.permission.ZTE_ACTIVITY_START_IN_BG_PERM" />
+        <permission name="ZTE.permission.ZTE_READ_CLIPBOARD_PERM" />
+        <permission name="ZTE.permission.ZTE_GET_ALL_PACKAGES_PERM" />
+        <permission name="ZTE.permission.ZTE_CONTROL_SENSOR_PERM" />
+    </policy>
+    
+    <policy name="ManufaturerApproved">
+
+    </policy>
+
+    <whitelist permName="ZTE.permission.ZTE_LOCKSCREEN_USE_PERM">
+        <item package="cmccwm.mobilemusic" />
+        <item package="fm.xiami.main" />
+        <item package="com.netease.cloudmusic" />
+        <item package="cn.kuwo.player" />
+        <item package="com.tencent.qqmusic" />
+        <item package="com.kugou.android" />
+        <item package="com.sina.weibo" />
+        <item package="com.tencent.mm" />
+        <item package="com.autonavi.minimap" />
+        <item package="com.baidu.BaiduMap" />
+        <item package="com.zte.softda" />
+        <item package="cn.com.zte.mobilemail" />
+        <item package="com.tencent.mobileqq" />
+        <item package="com.eg.android.AlipayGphone" />
+        <item package="com.tencent.map" />
+        <item package="com.yo.voicetranslate" />
+        <item package="com.zte.halo" />
+        <item package="com.zte.halo.ap" />
+        <item package="zte.com.cn.driver.mode" />
+        <item package="zte.com.cn.driverMode" />
+        <item package="com.tencent.smoba" />
+        <item package="zte.com.cn.driver.mode" />
+        <item package="android.server.cts.am" />
+        <item package="android.hardware.sensor.cts" />
+        <item package="com.zte.heartyservice" />
+        <item package="cn.etouch.ecalendar" />
+        <item package="com.keenvim.cnCalendar" />
+        <item package="com.icoolme.android.zteweather" />
+    </whitelist>
+    
+    <blacklist permName="ZTE.permission.ZTE_ACTIVITY_START_IN_BG_PERM">
+    
+    </blacklist>    
+</sysControlPermission>

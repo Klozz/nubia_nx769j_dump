@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+This XML file declares which system apps should be exempted from the hidden API blacklisting.
+-->
+
+<config>
+    <hidden-api-whitelisted-app package="com.zte.mifavor.launcher" />
+    <hidden-api-whitelisted-app package="com.zte.mifavor.launcher.adapter" />
+</config>

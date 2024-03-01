@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<im_components>
+    <pkg name="com.tencent.mm">
+        <comp>{com.tencent.mm/com.tencent.mm.plugin.voip.ui.VideoActivity}</comp>
+        <comp>{com.tencent.mm/com.tencent.mm.plugin.multitalk.ui.MultiTalkMainUI}</comp>
+    </pkg>
+    <pkg name="com.tencent.mobileqq">
+        <comp>{com.tencent.mobileqq/com.tencent.av.ui.VideoInviteFull}</comp>
+        <comp>{com.tencent.mobileqq/com.tencent.av.ui.VideoInviteActivity}</comp>
+        <comp>{com.tencent.mobileqq/com.tencent.av.ui.VChatActivity}</comp>
+        <comp>{com.tencent.mobileqq/com.tencent.av.gaudio.GaInviteDialogActivity}</comp>
+    </pkg>
+    <pkg name="com.sgiggle.production">
+        <comp>{com.sgiggle.production/com.sgiggle.call_base.CallActivity}</comp>
+    </pkg>
+</im_components>

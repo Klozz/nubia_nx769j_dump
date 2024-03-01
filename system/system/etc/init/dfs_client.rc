@@ -1,0 +1,13 @@
+on property:sys.dfsserviced.client=0
+    stop ZTEDFSServiced
+
+on property:sys.dfsserviced.client=1
+    start ZTEDFSServiced
+
+service ZTEDFSServiced /system/bin/ZTEDFSServiced
+    class late_start
+    oneshot
+    disabled
+    user root
+    group root system media_rw
+    seclabel u:r:ZTEDFSServiced:s0

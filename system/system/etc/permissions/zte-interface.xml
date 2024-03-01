@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<permissions>
+
+    <library name="com.zte.interface"
+
+            file="/system/framework/zte-interface.jar"/>
+
+</permissions>

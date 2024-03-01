@@ -1,0 +1,15 @@
+on property:sys.dfsserviced.server=0
+    stop dfs_server
+
+on property:sys.dfsserviced.server=1
+    start dfs_server
+
+service dfs_server /system/bin/dfs_server
+    class late_start
+    oneshot
+    disabled
+    user root
+    group root system media_rw
+    seclabel u:r:dfsserver:s0
+
+

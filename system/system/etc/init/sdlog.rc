@@ -1,0 +1,9 @@
+service sdlog-daemon /system/bin/sdlog
+    class late_start
+    socket sdlog stream 0660 system system
+    group system everybody
+    disabled
+
+on property:persist.service.sdlog.enable=1
+    start sdlog-daemon
+

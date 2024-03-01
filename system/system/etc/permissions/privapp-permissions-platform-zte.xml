@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="utf-8"?>
+<permissions>
+
+  <privapp-permissions package="com.google.android.gsf.login">
+    <permission name="android.permission.CHANGE_COMPONENT_ENABLED_STATE" />
+    <permission name="android.permission.DUMP" />
+    <permission name="android.permission.BACKUP" />
+    <permission name="android.permission.INVOKE_CARRIER_SETUP" />
+    <permission name="android.permission.READ_LOGS" />
+  </privapp-permissions>
+
+  <privapp-permissions package="com.android.vending">
+    <permission name="android.permission.SEND_SAFETY_CENTER_UPDATE" />
+    <permission name="android.permission.GET_APP_OPS_STATS"/>
+    <permission name="android.permission.REBOOT"/>
+    <permission name="android.permission.UPDATE_DEVICE_STATS"/>
+    <permission name="android.permission.GET_APP_OPS_STATS"/>
+    <permission name="android.permission.OVERRIDE_COMPAT_CHANGE_CONFIG_ON_RELEASE_BUILD"/>
+    <permission name="android.permission.ALLOCATE_AGGRESSIVE"/>
+    <permission name="android.permission.CLEAR_APP_CACHE"/>
+    <permission name="android.permission.PACKAGE_USAGE_STATS"/>
+    <permission name="android.permission.GET_ACCOUNTS_PRIVILEGED"/>
+    <permission name="android.permission.STATUS_BAR"/>
+    <permission name="android.permission.BATTERY_STATS"/>
+    <permission name="android.permission.LOADER_USAGE_STATS"/>
+    <permission name="android.permission.WRITE_SECURE_SETTINGS"/>
+    <permission name="android.permission.INSTALL_PACKAGES"/>
+    <permission name="android.permission.SUBSTITUTE_NOTIFICATION_APP_NAME"/>
+    <permission name="android.permission.DELETE_PACKAGES"/>
+    <permission name="com.android.permission.USE_INSTALLER_V2"/>
+    <permission name="android.permission.INTERACT_ACROSS_USERS"/>
+    <permission name="android.permission.PACKAGE_VERIFICATION_AGENT"/>
+    <permission name="android.permission.FORCE_STOP_PACKAGES"/>
+    <permission name="android.permission.READ_PRIVILEGED_PHONE_STATE"/>
+    <permission name="android.permission.CONNECTIVITY_INTERNAL"/>
+    <permission name="android.permission.START_ACTIVITIES_FROM_BACKGROUND"/>
+    <permission name="android.permission.SEND_DEVICE_CUSTOMIZATION_READY"/>
+    <permission name="android.permission.CHANGE_COMPONENT_ENABLED_STATE"/>
+    <permission name="android.permission.MANAGE_USERS"/>
+    <permission name="android.permission.CHANGE_DEVICE_IDLE_TEMP_WHITELIST"/>
+    <permission name="android.permission.SEND_SMS_NO_CONFIRMATION"/>
+    <permission name="android.permission.MANAGE_ROLLBACKS"/>
+    <permission name="android.permission.REAL_GET_TASKS"/>
+    <permission name="android.permission.CHANGE_OVERLAY_PACKAGES"/>
+    <permission name="android.permission.READ_RUNTIME_PROFILES"/>
+    <permission name="android.permission.DUMP"/>
+    <permission name="android.permission.BACKUP"/>
+  </privapp-permissions>
+
+  <privapp-permissions package="com.android.permissioncontroller">
+    <permission name="android.permission.SEND_SAFETY_CENTER_UPDATE" />
+  </privapp-permissions>
+
+  <privapp-permissions package="com.sohu.inputmethod.sogou.nubia">
+    <permission name="android.permission.PACKAGE_USAGE_STATS"/>
+    <permission name="android.permission.CLEAR_APP_CACHE"/>
+    <permission name="android.permission.READ_LOGS"/>
+  </privapp-permissions>
+
+  <privapp-permissions package="zte.com.market">
+    <permission name="android.permission.INSTALL_PACKAGES"/>
+    <permission name="android.permission.LOG_COMPAT_CHANGE"/>
+    <permission name="android.permission.READ_COMPAT_CHANGE_CONFIG"/>
+    <permission name="android.permission.DELETE_PACKAGES"/>
+    <permission name="android.permission.START_ACTIVITIES_FROM_BACKGROUND"/>
+  </privapp-permissions>
+
+  <privapp-permissions package="com.redteamobile.virtual.softsim">
+    <permission name="android.permission.MODIFY_PHONE_STATE"/>
+    <permission name="android.permission.REAL_GET_TASKS"/>
+    <permission name="android.permission.READ_NETWORK_USAGE_HISTORY"/>
+    <permission name="android.permission.READ_PRIVILEGED_PHONE_STATE"/>
+    <permission name="android.permission.WRITE_APN_SETTINGS"/>
+    <permission name="android.permission.WRITE_SECURE_SETTINGS"/>
+  </privapp-permissions>
+
+  <privapp-permissions package="com.zte.halo.app">
+    <permission name="android.permission.WRITE_APN_SETTINGS"/>
+    <permission name="android.permission.STOP_APP_SWITCHES"/>
+    <permission name="android.permission.MANAGE_USERS"/>
+    <permission name="android.permission.START_ACTIVITIES_FROM_BACKGROUND"/>
+    <permission name="android.permission.CHANGE_CONFIGURATION"/>
+    <permission name="android.permission.MODIFY_PHONE_STATE"/>
+    <permission name="android.permission.MANAGE_USB"/>
+    <permission name="android.permission.CALL_PRIVILEGED"/>
+    <permission name="android.permission.WRITE_SECURE_SETTINGS"/>
+    <permission name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
+    <permission name="android.permission.INTERACT_ACROSS_USERS"/>
+    <permission name="android.permission.UPDATE_APP_OPS_STATS"/>
+    <permission name="android.permission.READ_PRIVILEGED_PHONE_STATE"/>
+    <permission name="android.permission.MODIFY_AUDIO_ROUTING"/>
+    <permission name="android.permission.START_FOREGROUND_SERVICES_FROM_BACKGROUND"/>
+    <permission name="android.permission.STATUS_BAR"/>
+  </privapp-permissions>
+
+  <privapp-permissions package="cn.nubia.nbgame">
+    <permission name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
+    <permission name="android.permission.DELETE_PACKAGES"/>
+    <permission name="android.permission.READ_LOGS"/>
+    <permission name="android.permission.INSTALL_PACKAGES"/>
+    <permission name="android.permission.WRITE_SECURE_SETTINGS"/>
+    <permission name="android.permission.READ_PRIVILEGED_PHONE_STATE"/>
+    <permission name="android.permission.PACKAGE_USAGE_STATS"/>
+  </privapp-permissions>
+
+  <privapp-permissions package="com.zte.heartyservice">
+    <permission name="android.permission.CHANGE_COMPONENT_ENABLED_STATE"/>
+    <permission name="android.permission.MODIFY_PHONE_STATE"/>
+    <permission name="android.permission.SCHEDULE_EXACT_ALARM"/>
+    <permission name="android.permission.READ_NETWORK_USAGE_HISTORY"/>
+    <permission name="android.permission.BIND_APPWIDGET"/>
+    <permission name="android.permission.READ_PRIVILEGED_PHONE_STATE"/>
+    <permission name="android.permission.DELETE_PACKAGES"/>
+    <permission name="android.permission.WRITE_MEDIA_STORAGE"/>
+    <permission name="android.permission.UPDATE_APP_OPS_STATS"/>
+    <permission name="android.permission.UPDATE_DEVICE_STATS"/>
+    <permission name="android.permission.STOP_APP_SWITCHES"/>
+    <permission name="android.permission.SET_ALWAYS_FINISH"/>
+    <permission name="android.permission.PACKAGE_USAGE_STATS"/>
+    <permission name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
+    <permission name="android.permission.WRITE_SECURE_SETTINGS"/>
+    <permission name="android.permission.BATTERY_STATS"/>
+    <permission name="android.permission.START_ACTIVITIES_FROM_BACKGROUND"/>
+    <permission name="android.permission.INTERACT_ACROSS_USERS"/>
+    <permission name="android.permission.REAL_GET_TASKS"/>
+    <permission name="android.permission.DELETE_CACHE_FILES"/>
+    <permission name="android.permission.FORCE_STOP_PACKAGES"/>
+    <permission name="android.permission.MOVE_PACKAGE"/>
+    <permission name="android.permission.MANAGE_USERS"/>
+    <permission name="android.permission.GET_APP_OPS_STATS"/>
+    <permission name="android.permission.CLEAR_APP_CACHE"/>
+  </privapp-permissions>
+
+  <privapp-permissions package="com.zte.zbackup.platservice">
+    <permission name="android.permission.MODIFY_PHONE_STATE"/>
+    <permission name="android.permission.WRITE_MEDIA_STORAGE"/>
+    <permission name="android.permission.BATTERY_STATS"/>
+    <permission name="android.permission.TETHER_PRIVILEGED"/>
+    <permission name="android.permission.MASTER_CLEAR"/>
+    <permission name="android.permission.BACKUP"/>
+    <permission name="android.permission.WRITE_SECURE_SETTINGS"/>
+    <permission name="android.permission.LOCAL_MAC_ADDRESS"/>
+    <permission name="android.permission.USER_ACTIVITY"/>
+    <permission name="android.permission.MANAGE_USB"/>
+    <permission name="android.permission.REBOOT"/>
+    <permission name="android.permission.ACCESS_CHECKIN_PROPERTIES"/>
+    <permission name="android.permission.INSTALL_PACKAGES"/>
+    <permission name="android.permission.MOVE_PACKAGE"/>
+    <permission name="android.permission.READ_SEARCH_INDEXABLES"/>
+    <permission name="android.permission.CHANGE_APP_IDLE_STATE"/>
+    <permission name="android.permission.SET_TIME"/>
+    <permission name="android.permission.BLUETOOTH_PRIVILEGED"/>
+    <permission name="android.permission.MANAGE_FINGERPRINT"/>
+    <permission name="android.permission.MANAGE_USERS"/>
+    <permission name="android.permission.FORCE_STOP_PACKAGES"/>
+    <permission name="android.permission.CHANGE_CONFIGURATION"/>
+    <permission name="android.permission.MANAGE_USER_OEM_UNLOCK_STATE"/>
+    <permission name="android.permission.WRITE_APN_SETTINGS"/>
+    <permission name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
+    <permission name="android.permission.DELETE_PACKAGES"/>
+    <permission name="android.permission.USE_RESERVED_DISK"/>
+    <permission name="android.permission.STATUS_BAR"/>
+    <permission name="android.permission.OVERRIDE_WIFI_CONFIG"/>
+  </privapp-permissions>
+
+  <privapp-permissions package="com.zte.cloud">
+    <permission name="android.permission.READ_PRIVILEGED_PHONE_STATE"/>
+    <permission name="android.permission.CHANGE_CONFIGURATION"/>
+    <permission name="android.permission.WRITE_SECURE_SETTINGS"/>
+    <permission name="android.permission.READ_LOGS"/>
+    <permission name="android.permission.DELETE_PACKAGES"/>
+    <permission name="android.permission.WRITE_MEDIA_STORAGE"/>
+    <permission name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
+  </privapp-permissions>
+
+  <privapp-permissions package="com.android.gallery3d">
+    <permission name="android.permission.MANAGE_USERS"/>
+    <permission name="android.permission.INTERACT_ACROSS_USERS"/>
+    <permission name="android.permission.WRITE_MEDIA_STORAGE"/>
+    <permission name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
+    <permission name="android.permission.CHANGE_CONFIGURATION"/>
+  </privapp-permissions>
+
+  <privapp-permissions package="com.zte.wallet.core">
+    <permission name="android.permission.WRITE_SECURE_SETTINGS"/>
+    <permission name="android.permission.READ_PRIVILEGED_PHONE_STATE"/>
+  </privapp-permissions>
+
+  <privapp-permissions package="cn.nubia.photoeditor">
+    <permission name="android.permission.READ_LOGS"/>
+    <permission name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
+    <permission name="android.permission.WRITE_MEDIA_STORAGE"/>
+  </privapp-permissions>
+
+  <privapp-permissions package="com.yulore.framework">
+    <permission name="android.permission.READ_PRIVILEGED_PHONE_STATE"/>
+  </privapp-permissions>
+
+  <privapp-permissions package="com.zte.smartcast">
+      <permission name="android.permission.READ_PRIVILEGED_PHONE_STATE"/>
+  </privapp-permissions>
+
+  <privapp-permissions package="zte.com.cn.filer">
+     <permission name="android.permission.READ_PRIVILEGED_PHONE_STATE"/>
+     <permission name="android.permission.GET_ACCOUNTS_PRIVILEGED"/>
+  </privapp-permissions>
+
+  <privapp-permissions package="com.tencent.android.location">
+    <permission name="android.permission.INSTALL_LOCATION_PROVIDER"/>
+    <permission name="android.permission.WRITE_SECURE_SETTINGS"/>
+  </privapp-permissions>
+
+  <privapp-permissions package="cn.nubia.paycomponent">
+    <permission name="android.permission.INSTALL_PACKAGES"/>
+    <permission name="android.permission.DELETE_PACKAGES"/>
+  </privapp-permissions>
+
+  <privapp-permissions package="com.zte.retrieve">
+    <permission name="android.permission.MOUNT_FORMAT_FILESYSTEMS"/>
+    <permission name="android.permission.UPDATE_APP_OPS_STATS"/>
+    <permission name="android.permission.DELETE_PACKAGES"/>
+    <permission name="android.permission.READ_PRIVILEGED_PHONE_STATE"/>
+    <permission name="android.permission.MANAGE_USERS"/>
+    <permission name="android.permission.WRITE_SECURE_SETTINGS"/>
+    <permission name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
+    <permission name="android.permission.INTERACT_ACROSS_USERS"/>
+    <permission name="android.permission.WRITE_MEDIA_STORAGE"/>
+    <permission name="android.permission.MODIFY_PHONE_STATE"/>
+    <permission name="android.permission.MASTER_CLEAR"/>
+    <permission name="android.permission.SCHEDULE_EXACT_ALARM"/>
+  </privapp-permissions>
+
+  <privapp-permissions package="com.zte.burntest.camera">
+    <permission name="android.permission.STOP_APP_SWITCHES"/>
+  </privapp-permissions>
+
+  <privapp-permissions package="com.zte.timestories">
+    <permission name="android.permission.WRITE_MEDIA_STORAGE"/>
+  </privapp-permissions>
+
+  <privapp-permissions package="com.zte.zdmdaemon">
+    <permission name="android.permission.REBOOT"/>
+    <permission name="android.permission.READ_PRIVILEGED_PHONE_STATE"/>
+    <permission name="android.permission.MASTER_CLEAR"/>
+    <permission name="android.permission.RECOVERY"/>
+    <permission name="android.permission.ACCESS_CACHE_FILESYSTEM"/>
+  </privapp-permissions>
+
+  <privapp-permissions package="com.zte.zdm">
+    <permission name="android.permission.START_ACTIVITIES_FROM_BACKGROUND"/>
+    <permission name="android.permission.WRITE_MEDIA_STORAGE"/>
+    <permission name="android.permission.SCHEDULE_EXACT_ALARM"/>
+    <permission name="android.permission.READ_PRIVILEGED_PHONE_STATE"/>
+    <permission name="android.permission.ACCESS_CACHE_FILESYSTEM"/>
+    <permission name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
+  </privapp-permissions>
+
+  <privapp-permissions package="com.zte.zdmdaemon.install">
+    <permission name="android.permission.INSTALL_PACKAGE_UPDATES"/>
+    <permission name="android.permission.READ_PRIVILEGED_PHONE_STATE"/>
+  </privapp-permissions>
+
+  <privapp-permissions package="com.zte.heartrate">
+    <permission name="android.permission.MANAGE_FINGERPRINT"/>
+    <permission name="android.permission.INTERACT_ACROSS_USERS"/>
+  </privapp-permissions>
+
+  <privapp-permissions package="cn.nubia.gamepi">
+    <permission name="android.permission.WRITE_SECURE_SETTINGS"/>
+  </privapp-permissions>
+  
+  <privapp-permissions package="com.zte.aliveupdate">
+    <permission name="android.permission.INSTALL_PACKAGES"/>
+    <permission name="android.permission.READ_PRIVILEGED_PHONE_STATE"/>
+    <permission name="android.permission.WRITE_MEDIA_STORAGE"/>
+    <permission name="android.permission.PACKAGE_USAGE_STATS"/>
+    <permission name="android.permission.CHANGE_COMPONENT_ENABLED_STATE"/>
+    <permission name="android.permission.ACCESS_CACHE_FILESYSTEM"/>
+    <permission name="android.permission.CLEAR_APP_CACHE"/>
+    <permission name="android.permission.BATTERY_STATS"/>
+    <permission name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
+    <permission name="android.permission.INTERACT_ACROSS_USERS"/>
+    <permission name="android.permission.DELETE_PACKAGES"/>
+  </privapp-permissions>
+
+   <privapp-permissions package="com.zte.gamecardassist">
+    <permission name="android.permission.WRITE_SECURE_SETTINGS"/>
+  </privapp-permissions>
+
+</permissions>
